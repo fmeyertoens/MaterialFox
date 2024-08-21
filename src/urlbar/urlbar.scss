@@ -157,7 +157,6 @@
   background-color: var(--toolbar-field-background-color) !important;
   border: 0 !important;
   box-shadow: none !important;
-  padding: 2px !important;
   background-clip: padding-box !important;
   transition: background-color 0.1s var(--ease-basic) !important;
   -moz-box-align: center !important;
@@ -185,7 +184,6 @@
   }
 
   &[focused] {
-    border: 2px solid var(--primary-color) !important;
     padding: 0 !important;
     margin: 0 !important;
   }
@@ -206,27 +204,35 @@
   width: 100% !important;
   left: 0 !important;
   right: 0 !important;
+
+  & > .urlbar-input-container {
+    border-color: var(--primary-color) !important;
+  }
 }
 
 #urlbar[breakout][breakout-extend] {
   // don't move urlbar on breakout
   left: 0 !important;
+
+  & > .urlbar-input-container {
+    padding-inline: var(--urlbar-container-padding);
+  }
 }
 
 #urlbar-background {
   display: none !important;
 }
 
-#urlbar-input-container,
+.urlbar-input-container,
 #searchbar {
   display: flex !important;
   align-items: center !important;
 }
 
-#urlbar-input-container {
-  height: auto !important;
+.urlbar-input-container {
   padding: 0 !important;
-  border: 0 !important;
+  border: 2px solid transparent !important;
+  border-radius: 99px !important;
 }
 
 .urlbar-input-box,
@@ -253,16 +259,6 @@
 }
 
 #urlbar[open] {
-  & #urlbar-input-container {
-    height: 37px !important;
-  }
-
-  & #identity-box {
-    // adjust position because of missing border
-    margin-inline-start: 2px !important;
-    margin-block-start: -2px !important;
-  }
-
   & .urlbarView {
     display: block !important;
     width: 100% !important;
