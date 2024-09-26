@@ -3,4 +3,9 @@
   fill: var(--primary-text-color) !important;
 }
 
+.autocomplete-richlistitem[selected] {
+  background-color: var(--primary-color) !important;
+  color: var(--primary-text-color) !important;
+}
+
 /*# sourceMappingURL=forms.css.map */
