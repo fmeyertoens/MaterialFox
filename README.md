@@ -31,6 +31,8 @@ You might want to set the following preferences in `about:config`.
 
 This theme uses SCSS to generate the CSS files for Firefox.
 
+- prefix MaterialFox specific css custom properties (variables): --mf-[variable-name]
+
 ### Install dependencies
 
 `npm install`
