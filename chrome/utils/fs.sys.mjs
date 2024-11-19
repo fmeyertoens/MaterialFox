@@ -1,4 +1,19 @@
 export class FileSystem {
+  // begin https://github.com/aminomancer/uc.css.js?tab=readme-ov-file#styling-browser-toolbox-windows
+  static traverseToMainProfile(str) {
+    let dir = Services.dirsvc.get(str, Ci.nsIFile);
+    if (!dir.exists()) {
+      let toAddChrome = false;
+      while (dir.target.includes('chrome_debugger_profile')) {
+        dir = dir.parent;
+        toAddChrome = true;
+      }
+      if (toAddChrome) dir.append('chrome');
+    }
+    return dir;
+  }
+  // end
+
   static RESULT_CONTENT = Symbol('Content');
   static RESULT_DIRECTORY = Symbol('Directory');
   static RESULT_ERROR = Symbol('Error');
@@ -232,7 +247,7 @@ export class FileSystem {
     return FileSystem.convertChromeURIToFileURI(`chrome://userchrome/content/${fileName}`).spec;
   }
   static chromeDir() {
-    return FileSystemResult.fromDirectory(Services.dirsvc.get('UChrm', Ci.nsIFile));
+    return FileSystemResult.fromDirectory(this.traverseToMainProfile('UChrm'));
   }
   static StringContent(obj) {
     return FileSystemResult.fromContent(obj);

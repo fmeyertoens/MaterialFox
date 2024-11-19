@@ -1,0 +1,38 @@
+/* a stylesheet for custom user rules. this way you can customize the theme,
+and when you update you can preserve your modifications by just updating everything except this file. */
+/* add a dummy rule so this will be loaded by the style editor on any page. */
+@-moz-document url-prefix("chrome://devtools/content/") {
+  @layer markup-base {
+    :root.theme-dark .tag {
+      --theme-highlight-blue: #e06c75;
+    }
+    :root.theme-dark .attr-name {
+      --theme-highlight-red: #d19a66;
+    }
+    :root.theme-dark .attr-value {
+      --theme-highlight-purple: #98c379;
+    }
+  }
+  :root.theme-dark .ruleview-propertyname,
+:root.theme-dark .inspector-variable {
+    --theme-highlight-blue: #abb2bf;
+  }
+  :root.theme-dark .ruleview-propertyvalue {
+    --theme-highlight-red: #d19a66;
+  }
+  :root.theme-dark .ruleview-propertyvaluecontainer a {
+    --theme-highlight-purple: #e06c75;
+  }
+  :root.theme-dark .ruleview-rule-ancestor-selectorcontainer,
+:root.theme-dark .ruleview-ancestor-ruleopen,
+:root.theme-dark .ruleview-ancestor-ruleclose {
+    color: #c678dd;
+  }
+  :root.theme-dark .ruleview-selector,
+:root.theme-dark .ruleview-ruleopen,
+:root.theme-dark .ruleview-ruleclose {
+    color: #d19a66;
+  }
+}
+
+/*# sourceMappingURL=custom-content.css.map */

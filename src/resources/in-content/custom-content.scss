@@ -1,0 +1,49 @@
+/* a stylesheet for custom user rules. this way you can customize the theme,
+and when you update you can preserve your modifications by just updating everything except this file. */
+
+/* add a dummy rule so this will be loaded by the style editor on any page. */
+:root {
+  // --uc-dummy-custom-property: initial;
+}
+
+@-moz-document url-prefix("chrome://devtools/content/")
+{
+  :root.theme-dark {
+    @layer markup-base {
+      .tag {
+        --theme-highlight-blue: #e06c75;
+      }
+      .attr-name {
+        --theme-highlight-red: #d19a66;
+      }
+      .attr-value {
+        --theme-highlight-purple: #98c379;
+      }
+    }
+
+    .ruleview-propertyname,
+    .inspector-variable {
+      --theme-highlight-blue: #abb2bf;
+    }
+
+    .ruleview-propertyvalue {
+      --theme-highlight-red: #d19a66;
+    }
+
+    .ruleview-propertyvaluecontainer a {
+      --theme-highlight-purple: #e06c75;
+    }
+
+    .ruleview-rule-ancestor-selectorcontainer,
+    .ruleview-ancestor-ruleopen,
+    .ruleview-ancestor-ruleclose {
+      color: #c678dd;
+    }
+
+    .ruleview-selector,
+    .ruleview-ruleopen,
+    .ruleview-ruleclose {
+      color: #d19a66;
+    }
+  }
+}
