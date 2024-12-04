@@ -162,9 +162,7 @@
   -moz-box-align: center !important;
   display: block !important;
   margin: 0 !important;
-  top: 0 !important;
   color: inherit !important;
-  position: relative !important; /* 74+ */
 
   --urlbar-height: 28px !important;
 
@@ -199,24 +197,12 @@
   }
 }
 
-/* if only focused, don't break out the urlbar */
-#urlbar[focused]:not([open]) {
-  width: 100% !important;
-  left: 0 !important;
-  right: 0 !important;
-
-  & > .urlbar-input-container {
-    border-color: var(--primary-color) !important;
-  }
+#urlbar[focused]:not([open]) > .urlbar-input-container {
+  border-color: var(--primary-color) !important;
 }
 
-#urlbar[breakout][breakout-extend] {
-  // don't move urlbar on breakout
-  left: 0 !important;
-
-  & > .urlbar-input-container {
-    padding-inline: var(--urlbar-container-padding);
-  }
+#urlbar[breakout][breakout-extend] > .urlbar-input-container {
+  padding-inline: var(--urlbar-container-padding);
 }
 
 #urlbar-background {
