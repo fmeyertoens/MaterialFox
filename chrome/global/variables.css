@@ -106,8 +106,13 @@
   --toolbar-non-lwt-textcolor: var(--toolbar-color) !important;
   --toolbar-field-fontsize: 14px !important;
   --mf-space-above-tabbar: 8px;
+  --mf-tab-shadow-size: 4px;
+  --mf-tab-margin-top: var(--mf-tab-shadow-size);
+  --mf-tab-height: 32px !important;
+  --mf-tab-height-full: calc(var(--mf-tab-height) + var(--mf-tab-margin-top));
+  --tab-min-height: var(--mf-tab-height);
   --tab-separator-opacity: 0.35 !important;
-  --tab-block-margin: var(--mf-space-above-tabbar) !important;
+  --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
   --tab-top-radius: 8px;
   --tab-bottom-radius: var(--tab-top-radius);
   --toolbar-field-background-color: hsl(200, 12%, 95%) !important;
@@ -138,6 +143,10 @@
   --toolbar-color: hsl(213, 5%, 39%) !important;
   --toolbox-border-bottom-color: hsl(0, 0%, 70%) !important;
 }
+:host[sizemode=maximized],
+:root[sizemode=maximized] {
+  --mf-tab-margin-top: 0;
+}
 @media (prefers-color-scheme: dark) {
   :host,
 :root {
@@ -157,19 +166,6 @@
 :root[sizemode=maximized] {
     --mf-space-above-tabbar: 0px;
   }
-}
-
-#titlebar,
-#tabbrowser-tabs {
-  --mf-tab-shadow-size: 4px;
-  --mf-tab-margin-top: var(--mf-tab-shadow-size);
-  --mf-tab-height: 32px !important;
-  --mf-tab-height-full: calc(var(--mf-tab-height) + var(--mf-tab-margin-top));
-  --tab-min-height: var(--mf-tab-height);
-}
-:is(:host, :root)[sizemode=maximized] #titlebar,
-:is(:host, :root)[sizemode=maximized] #tabbrowser-tabs {
-  --mf-tab-margin-top: 0;
 }
 
 @media (-moz-bool-pref: 'materialFox.reduceTabOverflow') {

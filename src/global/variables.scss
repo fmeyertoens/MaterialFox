@@ -141,8 +141,17 @@
 
   --mf-space-above-tabbar: 8px;
 
+  // tab background shadow is set by FF
+  --mf-tab-shadow-size: 4px;
+  --mf-tab-margin-top: var(--mf-tab-shadow-size);
+  --mf-tab-height: 32px !important;
+  --mf-tab-height-full: calc(var(--mf-tab-height) + var(--mf-tab-margin-top));
+  // --tab-min-height is used by FF
+  --tab-min-height: var(--mf-tab-height);
+
   --tab-separator-opacity: 0.35 !important;
-  --tab-block-margin: var(--mf-space-above-tabbar) !important;
+  // mf tabs only have top margin unlike default FF tabs
+  --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
   --tab-top-radius: 8px;
   --tab-bottom-radius: var(--tab-top-radius);
 
@@ -175,6 +184,10 @@
     --toolbox-border-bottom-color: hsl(0, 0%, 70%) !important;
   }
 
+  &[sizemode='maximized'] {
+    --mf-tab-margin-top: 0;
+  }
+
   @media (prefers-color-scheme: dark) {
     --toolbar-field-background-color: #202124 !important;
     --toolbar-field-hover-background-color: #292a2d !important;
@@ -192,21 +205,6 @@
     &[sizemode='maximized'] {
       --mf-space-above-tabbar: 0px;
     }
-  }
-}
-
-#titlebar,
-#tabbrowser-tabs {
-  // tab background shadow is set by FF
-  --mf-tab-shadow-size: 4px;
-  --mf-tab-margin-top: var(--mf-tab-shadow-size);
-  --mf-tab-height: 32px !important;
-  --mf-tab-height-full: calc(var(--mf-tab-height) + var(--mf-tab-margin-top));
-  // --tab-min-height is used by FF
-  --tab-min-height: var(--mf-tab-height);
-
-  :is(:host, :root)[sizemode='maximized'] & {
-    --mf-tab-margin-top: 0;
   }
 }
 
