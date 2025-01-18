@@ -42,7 +42,7 @@ hbox[anonid='findbar-textbox-wrapper'] {
   }
   &:focus-within {
     background-color: var(--toolbar-field-focus-background-color) !important;
-    border-color: var(--primary-color) !important;
+    border-color: var(--mf-primary-color) !important;
   }
   & toolbarbutton {
     border-radius: 99px !important;

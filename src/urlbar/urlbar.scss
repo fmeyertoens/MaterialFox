@@ -198,7 +198,7 @@
 }
 
 #urlbar[focused]:not([open]) > .urlbar-input-container {
-  border-color: var(--primary-color) !important;
+  border-color: var(--mf-primary-color) !important;
 }
 
 #urlbar[breakout][breakout-extend] > .urlbar-input-container {
@@ -230,7 +230,7 @@
   width: 100% !important;
 
   &::selection {
-    background-color: var(--primary-color) !important;
+    background-color: var(--mf-primary-color) !important;
   }
 }
 

@@ -64,7 +64,7 @@
   --lwt-toolbarbutton-icon-fill: #fff !important;
 
   /* icons_attention */
-  --lwt-toolbarbutton-icon-fill-attention: var(--primary-color) !important;
+  --lwt-toolbarbutton-icon-fill-attention: var(--mf-primary-color) !important;
 
   /* button_background_hover */
   --lwt-toolbarbutton-hover-background: #434649 !important;
@@ -93,7 +93,7 @@
   --autocomplete-popup-highlight-color: #fff !important;
 
   /* urlbar popup */
-  --lwt-brighttext-url-color: var(--primary-color) !important;
+  --lwt-brighttext-url-color: var(--mf-primary-color) !important;
 }
 
 :is(#sidebar-box, #sidebar)[style*='--sidebar-background-color:rgb(56, 56, 61);'] {
@@ -114,11 +114,11 @@
 
 :host,
 :root {
-  --primary-color: hsl(219, 72%, 53%);
+  --mf-primary-color: hsl(219, 72%, 53%);
   // hover
-  --primary-color-lighter: hsl(219, 75%, 60%);
+  --mf-primary-color-lighter: hsl(219, 75%, 60%);
   // active
-  --primary-color-very-light: hsl(219, 80%, 65%);
+  --mf-primary-color-very-light: hsl(219, 80%, 65%);
   --primary-text-color: white;
 
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
@@ -167,6 +167,8 @@
     var(--arrowpanel-menuitem-padding-inline) !important;
   --arrowpanel-menuitem-border-radius: 0px !important;
 
+  accent-color: var(--mf-primary-color) !important;
+
   &[privatebrowsingmode='temporary'] {
     --toolbar-field-background-color: #202124 !important;
     --toolbar-field-hover-background-color: #292a2d !important;
@@ -193,7 +195,7 @@
     --toolbar-field-hover-background-color: #292a2d !important;
     --toolbar-field-focus-background-color: #202124 !important;
 
-    --focus-outline-color: var(--primary-color) !important;
+    --focus-outline-color: var(--mf-primary-color) !important;
 
     & :is(#urlbar, #searchbar) {
       --toolbarbutton-hover-background: hsl(206, 5%, 26%) !important;
@@ -259,13 +261,13 @@
   :root[dialogroot] {
     &,
     & dialog {
-      --in-content-primary-button-background: var(--primary-color) !important;
+      --in-content-primary-button-background: var(--mf-primary-color) !important;
       --in-content-primary-button-text-color: var(--primary-text-color) !important;
 
-      --in-content-primary-button-background-hover: var(--primary-color-lighter) !important;
+      --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
       --in-content-primary-button-text-color-hover: var(--primary-text-color) !important;
 
-      --in-content-primary-button-background-active: var(--primary-color-very-light) !important;
+      --in-content-primary-button-background-active: var(--mf-primary-color-very-light) !important;
       --in-content-primary-button-text-color-active: var(--primary-text-color) !important;
     }
   }
