@@ -21,31 +21,6 @@
   }
 }
 
-@media (-moz-os-version: windows-win7) {
-  :root:not([privatebrowsingmode='temporary']) #TabsToolbar:not(:-moz-lwtheme) {
-    color: #808387 !important;
-    --toolbarbutton-hover-background: rgba(196, 198, 204, 0.8) !important;
-    --toolbarbutton-active-background: #bec0c6 !important;
-  }
-
-  :root:not([privatebrowsingmode='temporary'])
-    #TabsToolbar
-    toolbarbutton:not(:-moz-lwtheme):not(:hover):not([open]) {
-    background-color: rgba(218, 220, 227, 0.8) !important;
-  }
-
-  :root:not([privatebrowsingmode='temporary'])
-    .tabbrowser-tab:not([visuallyselected]):not(:-moz-lwtheme) {
-    --tab-bgcolor: rgb(218, 220, 227) !important;
-    --tab-opacity: 0.8 !important;
-  }
-
-  :root:not([privatebrowsingmode='temporary'])
-    .tabbrowser-tab:hover:not([visuallyselected]):not(:-moz-lwtheme) {
-    --tab-bgcolor: #e9ebef !important;
-  }
-}
-
 /* < FF 65, >= FF 65 */
 :-moz-any(.titlebar-placeholder, .titlebar-spacer) {
   border: 0 !important;
@@ -421,6 +396,10 @@
       background-color: var(--toolbarbutton-active-background) !important;
     }
   }
+}
+
+.tab-audio-button {
+  --button-border-radius: var(--border-radius-circle) !important;
 }
 
 .tab-icon-overlay:not([pinned], [sharing], [crashed]):is(
