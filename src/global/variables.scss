@@ -119,7 +119,7 @@
   --mf-primary-color-lighter: hsl(219, 75%, 60%);
   // active
   --mf-primary-color-very-light: hsl(219, 80%, 65%);
-  --primary-text-color: white;
+  --mf-primary-text-color: white;
   --toolbarbutton-icon-fill-attention: var(--mf-primary-color) !important;
 
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
@@ -189,6 +189,11 @@
 
   &[sizemode='maximized'] {
     --mf-tab-margin-top: 0;
+  }
+
+  ::selection {
+    background-color: var(--mf-primary-color);
+    color: var(--mf-primary-text-color);
   }
 
   @media (prefers-color-scheme: dark) {
@@ -263,13 +268,13 @@
     &,
     & dialog {
       --in-content-primary-button-background: var(--mf-primary-color) !important;
-      --in-content-primary-button-text-color: var(--primary-text-color) !important;
+      --in-content-primary-button-text-color: var(--mf-primary-text-color) !important;
 
       --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
-      --in-content-primary-button-text-color-hover: var(--primary-text-color) !important;
+      --in-content-primary-button-text-color-hover: var(--mf-primary-text-color) !important;
 
       --in-content-primary-button-background-active: var(--mf-primary-color-very-light) !important;
-      --in-content-primary-button-text-color-active: var(--primary-text-color) !important;
+      --in-content-primary-button-text-color-active: var(--mf-primary-text-color) !important;
     }
   }
 }
