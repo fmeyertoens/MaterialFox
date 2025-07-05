@@ -45,7 +45,7 @@ This theme uses SCSS to generate the CSS files for Firefox.
 
 - This is a fork of the original MaterialFox by muckSponge. I've made some changes to the theme to suit my own preferences and I will update this theme as long as I use it myself but I cannot guarantee that it will work with your setup. My configuration is
 
-  - Windows, macOS
+  - Windows
   - Dark theme
   - Compact density
 
