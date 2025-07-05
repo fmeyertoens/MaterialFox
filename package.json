@@ -19,6 +19,6 @@
   },
   "homepage": "https://github.com/fmeyertoens/MaterialFox#readme",
   "devDependencies": {
-    "sass": "^1.34.1"
+    "sass": "^1.89.2"
   }
 }
