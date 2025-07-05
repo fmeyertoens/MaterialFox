@@ -285,7 +285,7 @@
 }
 
 /* separator */
-#urlbar[pageproxystate=valid] #identity-box:-moz-any(.chromeUI, .extensionPage, .notSecureText) #identity-icon-box::after {
+#urlbar[pageproxystate=valid] #identity-box:is(.chromeUI, .extensionPage, .notSecureText) #identity-icon-box::after {
   content: "" !important;
   display: block !important;
   position: absolute !important;
@@ -296,7 +296,7 @@
   width: 1px !important;
   transition: opacity 0.2s var(--ease-basic) !important;
 }
-#urlbar[pageproxystate=valid] #identity-box:-moz-any(.chromeUI, .extensionPage, .notSecureText) {
+#urlbar[pageproxystate=valid] #identity-box:is(.chromeUI, .extensionPage, .notSecureText) {
   margin-inline-end: 8px !important;
 }
 #urlbar[pageproxystate=valid] #identity-box:hover #identity-icon-box::after {
@@ -306,12 +306,12 @@
   list-style-image: none !important;
   margin-inline-end: -16px !important;
 }
-#urlbar[pageproxystate=valid] #identity-box:-moz-any(.mixedActiveBlocked,
+#urlbar[pageproxystate=valid] #identity-box:is(.mixedActiveBlocked,
 .mixedDisplayContentLoadedActiveBlocked,
 .mixedActiveContent) > #connection-icon {
   display: -moz-box !important;
 }
-#urlbar[pageproxystate=valid] #identity-box:-moz-any(.weakCipher,
+#urlbar[pageproxystate=valid] #identity-box:is(.weakCipher,
 .certUserOverridden,
 .certErrorPage,
 .insecureLoginForms,
@@ -444,7 +444,7 @@
   width: auto !important;
 }
 
-.urlbar-page-action:-moz-any(#reader-mode-button,
+.urlbar-page-action:is(#reader-mode-button,
 #pageActionButton,
 #pocket-button-box,
 #pageAction-urlbar-screenshots_mozilla_org,
@@ -459,7 +459,7 @@
   margin-inline-start: -32px !important;
 }
 
-#urlbar:hover .urlbar-page-action:-moz-any(#reader-mode-button,
+#urlbar:hover .urlbar-page-action:is(#reader-mode-button,
 #pageActionButton,
 #pocket-button-box,
 #pageAction-urlbar-screenshots_mozilla_org,
@@ -468,7 +468,7 @@
 #pageAction-urlbar-copyURL,
 #pageAction-urlbar-shareURL,
 #pageAction-urlbar-addSearchEngine),
-.urlbar-page-action:-moz-any(#reader-mode-button,
+.urlbar-page-action:is(#reader-mode-button,
 #pageActionButton,
 #pocket-button-box,
 #pageAction-urlbar-screenshots_mozilla_org,
@@ -476,8 +476,8 @@
 #pageAction-urlbar-emailLink,
 #pageAction-urlbar-copyURL,
 #pageAction-urlbar-shareURL,
-#pageAction-urlbar-addSearchEngine):-moz-any(:hover, [open], [readeractive]),
-.urlbar-page-action:-moz-any(:hover, [open]) ~ .urlbar-page-action:-moz-any(#reader-mode-button,
+#pageAction-urlbar-addSearchEngine):is(:hover, [open], [readeractive]),
+.urlbar-page-action:is(:hover, [open]) ~ .urlbar-page-action:is(#reader-mode-button,
 #pageActionButton,
 #pocket-button-box,
 #pageAction-urlbar-screenshots_mozilla_org,
@@ -486,7 +486,7 @@
 #pageAction-urlbar-copyURL,
 #pageAction-urlbar-shareURL,
 #pageAction-urlbar-addSearchEngine),
-#tracking-protection-icon-container[open] ~ #page-action-buttons .urlbar-page-action:-moz-any(#reader-mode-button,
+#tracking-protection-icon-container[open] ~ #page-action-buttons .urlbar-page-action:is(#reader-mode-button,
 #pageActionButton,
 #pocket-button-box,
 #pageAction-urlbar-screenshots_mozilla_org,
@@ -626,12 +626,10 @@
     --lock-icon: url(connection-2x.svg);
     --warning-icon: url(connection-warning-2x.svg);
   }
-
   #urlbar,
-#searchbar {
+  #searchbar {
     --input-offset: -0.5px;
   }
-
   #identity-icon-labels {
     padding-inline-end: 0.5px !important;
   }

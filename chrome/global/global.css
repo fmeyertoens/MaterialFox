@@ -8,7 +8,7 @@
     color: #666a6d !important;
   }
 }
-#navigator-toolbox :-moz-any(toolbar, #nav-bar-customization-target):not(#toolbar-menubar) {
+#navigator-toolbox :is(toolbar, #nav-bar-customization-target):not(#toolbar-menubar) {
   -moz-box-align: center !important;
 }
 
@@ -57,7 +57,7 @@
   margin: 0 !important;
 }
 
-#navigator-toolbox :-moz-any(.toolbarbutton-1, .scrollbutton-up, .scrollbutton-down),
+#navigator-toolbox :is(.toolbarbutton-1, .scrollbutton-up, .scrollbutton-down),
 #scrollbutton-up[part=scrollbutton-up]:not(.menupopup-scrollbutton),
 #scrollbutton-down[part=scrollbutton-down]:not(.menupopup-scrollbutton) {
   max-height: 32px !important;
@@ -66,7 +66,7 @@
   width: 32px;
 }
 
-#navigator-toolbox :-moz-any(.toolbarbutton-icon, .toolbarbutton-badge-stack),
+#navigator-toolbox :is(.toolbarbutton-icon, .toolbarbutton-badge-stack),
 #scrollbutton-up[part=scrollbutton-up]:not(.menupopup-scrollbutton) > .toolbarbutton-icon,
 #scrollbutton-down[part=scrollbutton-down]:not(.menupopup-scrollbutton) > .toolbarbutton-icon {
   fill-opacity: 1 !important;
@@ -75,7 +75,7 @@
 }
 
 #navigator-toolbox > #PersonalToolbar .toolbarbutton-1 > .toolbarbutton-icon,
-#navigator-toolbox .toolbarbutton-1 > :-moz-any(.toolbarbutton-icon, .toolbarbutton-badge-stack),
+#navigator-toolbox .toolbarbutton-1 > :is(.toolbarbutton-icon, .toolbarbutton-badge-stack),
 #scrollbutton-up[part=scrollbutton-up]:not(.menupopup-scrollbutton) > .toolbarbutton-icon,
 #scrollbutton-down[part=scrollbutton-down]:not(.menupopup-scrollbutton) > .toolbarbutton-icon {
   padding: 6px !important;
@@ -96,7 +96,7 @@
   padding-top: 1px !important;
 }
 
-:root:not([uidensity=compact]) :-moz-any(#customization-palette-container, #customization-panel-container) {
+:root:not([uidensity=compact]) :is(#customization-palette-container, #customization-panel-container) {
   margin-top: -1px !important;
 }
 
@@ -121,7 +121,7 @@
   border: 0 !important;
   font-size: 14px !important;
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12) !important;
-  color: rgba(255, 255, 255, 0.87) !important;
+  color: hsla(0, 0%, 100%, 0.87) !important;
   transition-timing-function: var(--ease-out), linear !important;
   transition-property: transform, top !important;
   /* hack to keep it in same place as [ontop] */

@@ -302,7 +302,7 @@
 
 /* separator */
 #urlbar[pageproxystate='valid'] {
-  & #identity-box:-moz-any(.chromeUI, .extensionPage, .notSecureText) #identity-icon-box::after {
+  & #identity-box:is(.chromeUI, .extensionPage, .notSecureText) #identity-icon-box::after {
     content: '' !important;
     display: block !important;
     position: absolute !important;
@@ -314,7 +314,7 @@
     transition: opacity 0.2s var(--ease-basic) !important;
   }
 
-  & #identity-box:-moz-any(.chromeUI, .extensionPage, .notSecureText) {
+  & #identity-box:is(.chromeUI, .extensionPage, .notSecureText) {
     margin-inline-end: 8px !important;
   }
 
@@ -328,7 +328,7 @@
   }
 
   &
-    #identity-box:-moz-any(
+    #identity-box:is(
       .mixedActiveBlocked,
       .mixedDisplayContentLoadedActiveBlocked,
       .mixedActiveContent
@@ -338,7 +338,7 @@
   }
 
   &
-    #identity-box:-moz-any(
+    #identity-box:is(
       .weakCipher,
       .certUserOverridden,
       .certErrorPage,
@@ -480,7 +480,7 @@
   width: auto !important;
 }
 
-.urlbar-page-action:-moz-any(
+.urlbar-page-action:is(
     #reader-mode-button,
     #pageActionButton,
     #pocket-button-box,
@@ -499,7 +499,7 @@
 }
 
 #urlbar:hover
-  .urlbar-page-action:-moz-any(
+  .urlbar-page-action:is(
     #reader-mode-button,
     #pageActionButton,
     #pocket-button-box,
@@ -510,7 +510,7 @@
     #pageAction-urlbar-shareURL,
     #pageAction-urlbar-addSearchEngine
   ),
-.urlbar-page-action:-moz-any(
+.urlbar-page-action:is(
     #reader-mode-button,
     #pageActionButton,
     #pocket-button-box,
@@ -520,9 +520,9 @@
     #pageAction-urlbar-copyURL,
     #pageAction-urlbar-shareURL,
     #pageAction-urlbar-addSearchEngine
-  ):-moz-any(:hover, [open], [readeractive]),
-.urlbar-page-action:-moz-any(:hover, [open])
-  ~ .urlbar-page-action:-moz-any(
+  ):is(:hover, [open], [readeractive]),
+.urlbar-page-action:is(:hover, [open])
+  ~ .urlbar-page-action:is(
     #reader-mode-button,
     #pageActionButton,
     #pocket-button-box,
@@ -535,7 +535,7 @@
   ),
 #tracking-protection-icon-container[open]
   ~ #page-action-buttons
-  .urlbar-page-action:-moz-any(
+  .urlbar-page-action:is(
     #reader-mode-button,
     #pageActionButton,
     #pocket-button-box,

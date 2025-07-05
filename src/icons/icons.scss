@@ -1,4 +1,4 @@
-.toolbarbutton-1:-moz-any(#back-button, #forward-button),
+.toolbarbutton-1:is(#back-button, #forward-button),
 #context-back,
 #context-forward,
 .subviewbutton-back,
@@ -231,7 +231,7 @@ richlistitem[originaltype='loginsFooter'] .ac-site-icon {
 
 /* high DPI adjustments */
 @media (min--moz-device-pixel-ratio: 2) {
-  .toolbarbutton-1:-moz-any(#back-button, #forward-button),
+  .toolbarbutton-1:is(#back-button, #forward-button),
   #context-back,
   #context-forward,
   .subviewbutton-back,

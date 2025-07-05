@@ -1,4 +1,4 @@
-.toolbarbutton-1:-moz-any(#back-button, #forward-button),
+.toolbarbutton-1:is(#back-button, #forward-button),
 #context-back,
 #context-forward,
 .subviewbutton-back,
@@ -229,42 +229,35 @@ richlistitem[originaltype=loginsFooter] .ac-site-icon {
 
 /* high DPI adjustments */
 @media (min--moz-device-pixel-ratio: 2) {
-  .toolbarbutton-1:-moz-any(#back-button, #forward-button),
-#context-back,
-#context-forward,
-.subviewbutton-back,
-.identity-popup-expander {
+  .toolbarbutton-1:is(#back-button, #forward-button),
+  #context-back,
+  #context-forward,
+  .subviewbutton-back,
+  .identity-popup-expander {
     list-style-image: url(arrow-back-2x.svg) !important;
   }
-
   #PanelUI-menu-button:not([badge-status|=update]) .toolbarbutton-icon {
     transform: translate(-0.5px, -0.5px) !important;
   }
-
   #stop-button {
     list-style-image: url(stop-2x.svg) !important;
   }
-
   #reload-button,
-#context-reload {
+  #context-reload {
     list-style-image: url(refresh-2x.svg) !important;
   }
-
   #home-button {
     list-style-image: url(home-2x.svg) !important;
   }
-
   #star-button,
-#context-bookmarkpage,
-#pageAction-panel-bookmark,
-#panelMenuBookmarkThisPage {
+  #context-bookmarkpage,
+  #pageAction-panel-bookmark,
+  #panelMenuBookmarkThisPage {
     list-style-image: url(star-2x.svg) !important;
   }
-
   #bookmarks-menu-button .toolbarbutton-icon {
     transform: translateX(0.5px) !important;
   }
-
   #library-button {
     list-style-image: url(library-2x.svg) !important;
   }

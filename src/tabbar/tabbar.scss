@@ -3,7 +3,7 @@
     -moz-appearance: none !important;
   }
 
-  :root:-moz-any([inFullscreen], [tabsintitlebar]):not([privatebrowsingmode='temporary'])
+  :root:is([inFullscreen], [tabsintitlebar]):not([privatebrowsingmode='temporary'])
     #TabsToolbar:not(:-moz-lwtheme) {
     background-color: #dee1e5 !important;
     color: #606367 !important;
@@ -11,18 +11,18 @@
     --toolbarbutton-active-background: #bec0c5 !important;
   }
 
-  :root:-moz-any([inFullscreen], [tabsintitlebar]):not([privatebrowsingmode='temporary'])
+  :root:is([inFullscreen], [tabsintitlebar]):not([privatebrowsingmode='temporary'])
     #TabsToolbar:not(:-moz-lwtheme):-moz-window-inactive {
     background-color: #e7eaed !important;
   }
 
-  :-moz-any(.titlebar-placeholder, .titlebar-spacer)[type='pre-tabs'] {
+  :is(.titlebar-placeholder, .titlebar-spacer)[type='pre-tabs'] {
     width: 4px !important;
   }
 }
 
 /* < FF 65, >= FF 65 */
-:-moz-any(.titlebar-placeholder, .titlebar-spacer) {
+:is(.titlebar-placeholder, .titlebar-spacer) {
   border: 0 !important;
   display: -moz-box !important;
 
@@ -178,11 +178,11 @@
   }
 
   &[image]:not([image^="chrome://branding/"]) .tab-label-container,
-  &:-moz-any([progress], [busy]) .tab-label-container {
+  &:is([progress], [busy]) .tab-label-container {
     padding-inline-start: 8px !important;
   }
 
-  &[pinned]:-moz-any([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image {
+  &[pinned]:is([soundplaying], [muted], [activemedia-blocked]) .tab-icon-image {
     visibility: hidden !important;
   }
 
@@ -288,19 +288,19 @@
   display: none !important;
 }
 
-:-moz-any(:root[privatebrowsingmode='temporary'], #TabsToolbar[brighttext]) .tabbrowser-tab {
+:is(:root[privatebrowsingmode='temporary'], #TabsToolbar[brighttext]) .tabbrowser-tab {
   --tab-opacity: 0;
   --tab-bgcolor: #fff;
 }
 
-:-moz-any(:root[privatebrowsingmode='temporary'], #TabsToolbar[brighttext])
+:is(:root[privatebrowsingmode='temporary'], #TabsToolbar[brighttext])
   .tabbrowser-tab:not([selected='true']):hover,
-:-moz-any(:root[privatebrowsingmode='temporary'], #TabsToolbar[brighttext])
+:is(:root[privatebrowsingmode='temporary'], #TabsToolbar[brighttext])
   .tabbrowser-tab[multiselected]:not([selected='true']) {
   --tab-opacity: 0.06;
 }
 
-:-moz-any(#TabsToolbar) .tabbrowser-tab[visuallyselected] {
+:is(#TabsToolbar) .tabbrowser-tab[visuallyselected] {
   --tab-bgcolor: var(--toolbar-bgcolor);
   --tab-opacity: 1;
 }
@@ -372,7 +372,7 @@
 }
 
 .tab-close-button,
-.tab-icon-overlay:-moz-any([soundplaying], [muted], [activemedia-blocked]),
+.tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]),
 .tab-icon-sound {
   border-radius: 99px !important;
   color: inherit !important;
@@ -495,7 +495,7 @@
     }
 
     & .tabbrowser-tab:not([visuallyselected]):not([pinned]) .tab-close-button,
-    & .tabbrowser-tab[visuallyselected]:not([pinned]) :-moz-any(.tab-label-container, .tab-icon-image),
+    & .tabbrowser-tab[visuallyselected]:not([pinned]) :is(.tab-label-container, .tab-icon-image),
     & .tabbrowser-tab[image]:not([image^="chrome://branding/"]):not([pinned]) .tab-label-container
     {
       display: none !important;

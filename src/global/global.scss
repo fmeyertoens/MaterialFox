@@ -17,7 +17,7 @@
 }
 
 #navigator-toolbox {
-  & :-moz-any(toolbar, #nav-bar-customization-target):not(#toolbar-menubar) {
+  & :is(toolbar, #nav-bar-customization-target):not(#toolbar-menubar) {
     -moz-box-align: center !important;
   }
 }
@@ -65,7 +65,7 @@
   margin: 0 !important;
 }
 
-#navigator-toolbox :-moz-any(.toolbarbutton-1, .scrollbutton-up, .scrollbutton-down),
+#navigator-toolbox :is(.toolbarbutton-1, .scrollbutton-up, .scrollbutton-down),
 /* no ::part workaround - may have side effects */
 #scrollbutton-up[part="scrollbutton-up"]:not(.menupopup-scrollbutton),
 #scrollbutton-down[part="scrollbutton-down"]:not(.menupopup-scrollbutton) {
@@ -75,7 +75,7 @@
   width: 32px;
 }
 
-#navigator-toolbox :-moz-any(.toolbarbutton-icon, .toolbarbutton-badge-stack),
+#navigator-toolbox :is(.toolbarbutton-icon, .toolbarbutton-badge-stack),
 /* no ::part workaround - may have side effects */
 #scrollbutton-up[part="scrollbutton-up"]:not(.menupopup-scrollbutton) > .toolbarbutton-icon,
 #scrollbutton-down[part="scrollbutton-down"]:not(.menupopup-scrollbutton) > .toolbarbutton-icon {
@@ -85,7 +85,7 @@
 }
 
 #navigator-toolbox > #PersonalToolbar .toolbarbutton-1 > .toolbarbutton-icon,
-#navigator-toolbox .toolbarbutton-1 > :-moz-any(.toolbarbutton-icon, .toolbarbutton-badge-stack),
+#navigator-toolbox .toolbarbutton-1 > :is(.toolbarbutton-icon, .toolbarbutton-badge-stack),
 /* no ::part workaround - may have side effects */
 #scrollbutton-up[part="scrollbutton-up"]:not(.menupopup-scrollbutton) > .toolbarbutton-icon,
 #scrollbutton-down[part="scrollbutton-down"]:not(.menupopup-scrollbutton) > .toolbarbutton-icon {
@@ -108,7 +108,7 @@
 }
 
 :root:not([uidensity='compact'])
-  :-moz-any(#customization-palette-container, #customization-panel-container) {
+  :is(#customization-palette-container, #customization-panel-container) {
   margin-top: -1px !important;
 }
 

@@ -156,8 +156,8 @@
     border-radius: 8px 8px 0 0 !important;
     min-height: 37px !important;
     margin: 0 -5px -1px !important;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2),
-      0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12) !important;
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+      0 3px 14px 2px rgba(0, 0, 0, 0.12) !important;
     position: relative !important;
     z-index: 99999 !important;
   }
@@ -229,9 +229,7 @@
   min-height: auto !important;
 }
 
-#urlbar[pageproxystate="valid"]
-  > #identity-box:not(.no-hover)
-  > #identity-icon {
+#urlbar[pageproxystate='valid'] > #identity-box:not(.no-hover) > #identity-icon {
   fill-opacity: 1 !important;
 }
 
@@ -250,10 +248,16 @@
 }
 
 /* separator */
-#urlbar[pageproxystate="valid"]:not([open])
-  #identity-box:-moz-any(.notSecureText, .verifiedIdentity, .chromeUI, .extensionPage, .certUserOverridden)::after,
+#urlbar[pageproxystate='valid']:not([open])
+  #identity-box:is(
+    .notSecureText,
+    .verifiedIdentity,
+    .chromeUI,
+    .extensionPage,
+    .certUserOverridden
+  )::after,
 #urlbar-display-box::after {
-  content: "" !important;
+  content: '' !important;
   display: -moz-box !important;
   position: absolute !important;
   top: 4px !important;
@@ -264,22 +268,46 @@
   transition: opacity 0.2s var(--ease-basic) !important;
 }
 
-#urlbar[pageproxystate="valid"]:not([open])
-  #identity-box:-moz-any(.notSecureText, .verifiedIdentity, .chromeUI, .extensionPage, .certUserOverridden),
+#urlbar[pageproxystate='valid']:not([open])
+  #identity-box:is(
+    .notSecureText,
+    .verifiedIdentity,
+    .chromeUI,
+    .extensionPage,
+    .certUserOverridden
+  ),
 #urlbar-display-box {
   margin-inline-end: 8px !important;
 }
 
-#urlbar[pageproxystate="valid"]:not([open])
-  #identity-box:-moz-any(.notSecureText, .verifiedIdentity, .chromeUI, .extensionPage, .certUserOverridden)
+#urlbar[pageproxystate='valid']:not([open])
+  #identity-box:is(
+    .notSecureText,
+    .verifiedIdentity,
+    .chromeUI,
+    .extensionPage,
+    .certUserOverridden
+  )
   #identity-icon-labels {
   display: -moz-box !important;
 }
 
-#urlbar[pageproxystate="valid"]
-  #identity-box:-moz-any(.notSecureText, .verifiedIdentity, .chromeUI, .extensionPage, .certUserOverridden):hover:not(.no-hover)::after,
-#urlbar[pageproxystate="valid"]
-  #identity-box:-moz-any(.notSecureText, .verifiedIdentity, .chromeUI, .extensionPage, .certUserOverridden)[open]::after {
+#urlbar[pageproxystate='valid']
+  #identity-box:is(
+    .notSecureText,
+    .verifiedIdentity,
+    .chromeUI,
+    .extensionPage,
+    .certUserOverridden
+  ):hover:not(.no-hover)::after,
+#urlbar[pageproxystate='valid']
+  #identity-box:is(
+    .notSecureText,
+    .verifiedIdentity,
+    .chromeUI,
+    .extensionPage,
+    .certUserOverridden
+  )[open]::after {
   opacity: 0 !important;
 }
 
@@ -289,12 +317,12 @@
     margin-inline-end: -16px !important;
   }
 
-  &:-moz-any(.mixedActiveBlocked, .mixedDisplayContentLoadedActiveBlocked, .mixedActiveContent)
+  &:is(.mixedActiveBlocked, .mixedDisplayContentLoadedActiveBlocked, .mixedActiveContent)
     > #connection-icon {
     display: -moz-box !important;
   }
 
-  &:-moz-any(.certUserOverridden, .unknownIdentity) {
+  &:is(.certUserOverridden, .unknownIdentity) {
     color: #c94031 !important;
   }
 
@@ -380,20 +408,49 @@
   width: auto !important;
 }
 
-.urlbar-page-action:-moz-any(#reader-mode-button, #pageActionButton, #pocket-button-box, #pageAction-urlbar-screenshots_mozilla_org, #pageAction-urlbar-sendToDevice, #pageAction-urlbar-emailLink, #pageAction-urlbar-copyURL, #pageAction-urlbar-shareURL, #pageAction-urlbar-addSearchEngine) {
-  transition: background-color 0.2s var(--ease-basic),
-    margin 0.15s var(--ease-in), opacity 0.15s var(--ease-basic),
-    visibility 0s 0.2s !important;
+.urlbar-page-action:is(
+    #reader-mode-button,
+    #pageActionButton,
+    #pocket-button-box,
+    #pageAction-urlbar-screenshots_mozilla_org,
+    #pageAction-urlbar-sendToDevice,
+    #pageAction-urlbar-emailLink,
+    #pageAction-urlbar-copyURL,
+    #pageAction-urlbar-shareURL,
+    #pageAction-urlbar-addSearchEngine
+  ) {
+  transition: background-color 0.2s var(--ease-basic), margin 0.15s var(--ease-in),
+    opacity 0.15s var(--ease-basic), visibility 0s 0.2s !important;
   opacity: 0 !important;
   visibility: hidden !important;
   margin-inline-start: -32px !important;
 }
 
 #urlbar:hover
-  .urlbar-page-action:-moz-any(#reader-mode-button, #pageActionButton, #pocket-button-box, #pageAction-urlbar-screenshots_mozilla_org, #pageAction-urlbar-sendToDevice, #pageAction-urlbar-emailLink, #pageAction-urlbar-copyURL, #pageAction-urlbar-shareURL, #pageAction-urlbar-addSearchEngine),
-.urlbar-page-action:-moz-any(#reader-mode-button, #pageActionButton, #pocket-button-box, #pageAction-urlbar-screenshots_mozilla_org, #pageAction-urlbar-sendToDevice, #pageAction-urlbar-emailLink, #pageAction-urlbar-copyURL, #pageAction-urlbar-shareURL, #pageAction-urlbar-addSearchEngine):-moz-any(:hover, [open], [readeractive]) {
-  transition: background-color 0.2s var(--ease-basic),
-    margin 0.3s var(--ease-out), opacity 0.3s var(--ease-basic) !important;
+  .urlbar-page-action:is(
+    #reader-mode-button,
+    #pageActionButton,
+    #pocket-button-box,
+    #pageAction-urlbar-screenshots_mozilla_org,
+    #pageAction-urlbar-sendToDevice,
+    #pageAction-urlbar-emailLink,
+    #pageAction-urlbar-copyURL,
+    #pageAction-urlbar-shareURL,
+    #pageAction-urlbar-addSearchEngine
+  ),
+.urlbar-page-action:is(
+    #reader-mode-button,
+    #pageActionButton,
+    #pocket-button-box,
+    #pageAction-urlbar-screenshots_mozilla_org,
+    #pageAction-urlbar-sendToDevice,
+    #pageAction-urlbar-emailLink,
+    #pageAction-urlbar-copyURL,
+    #pageAction-urlbar-shareURL,
+    #pageAction-urlbar-addSearchEngine
+  ):is(:hover, [open], [readeractive]) {
+  transition: background-color 0.2s var(--ease-basic), margin 0.3s var(--ease-out),
+    opacity 0.3s var(--ease-basic) !important;
   opacity: 1 !important;
   visibility: visible !important;
   margin-inline-start: 0 !important;
@@ -441,18 +498,18 @@
 }
 
 /* info (not secure) */
-#identity-box[pageproxystate="valid"]:-moz-any(.notSecure, .insecureLoginForms, .mixedActiveContent)
+#identity-box[pageproxystate='valid']:is(.notSecure, .insecureLoginForms, .mixedActiveContent)
   > #identity-icon {
   list-style-image: var(--info-icon) !important;
 }
 
-#identity-box[pageproxystate="valid"]:-moz-any(.certUserOverridden, .weakCipher, .unknownIdentity)
+#identity-box[pageproxystate='valid']:is(.certUserOverridden, .weakCipher, .unknownIdentity)
   > #identity-icon {
   list-style-image: var(--warning-icon) !important;
 }
 
 /* lock (secure) */
-#identity-box[pageproxystate="valid"]:-moz-any(.verifiedDomain, .verifiedIdentity, .mixedActiveBlocked)
+#identity-box[pageproxystate='valid']:is(.verifiedDomain, .verifiedIdentity, .mixedActiveBlocked)
   > #identity-icon {
   list-style-image: var(--lock-icon) !important;
 }
@@ -463,8 +520,8 @@
     padding-inline-end: 0.5px !important;
   }
 
-  #urlbar[pageproxystate="valid"]
-    > #identity-box:-moz-any(.unknownIdentity, .notSecure)
+  #urlbar[pageproxystate='valid']
+    > #identity-box:is(.unknownIdentity, .notSecure)
     > #identity-icon {
     transform: translate(0.5px, 0.5px) !important;
   }
