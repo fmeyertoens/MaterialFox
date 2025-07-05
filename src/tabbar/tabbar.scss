@@ -62,10 +62,6 @@
     margin: 0 -1px !important;
   }
 
-  &[overflow] .tabbrowser-tab[pinned] + .tabbrowser-tab:not([pinned]) .tab-content::before {
-    opacity: 0 !important;
-  }
-
   /* clipped tabs */
   &[closebuttons='activetab'] .tab-content:not([pinned]) {
     padding-inline-start: 8px !important;
@@ -130,7 +126,6 @@
 .tabbrowser-tab {
   max-height: var(--mf-tab-height) !important;
   min-height: var(--mf-tab-height) !important;
-  overflow: visible !important;
   font-size: 12px !important;
   background: 0 !important;
   border: 0 !important;
@@ -138,14 +133,15 @@
   margin-block-start: var(--mf-tab-margin-top) !important;
 
   /* tab background color */
-  --tab-opacity: 0;
-  --tab-bgcolor: #000;
-  --tab-transition-duration: 0.2s;
+  --mf-tab-opacity: 0;
+  --mf-tab-bgcolor: oklch(0% 0 0 / var(--mf-tab-opacity));
+  --mf-tab-transition-duration: 0.2s;
+  --mf-tab-max-width: 240px;
 
   &:not([selected]):hover,
   &[multiselected]:not([selected]) {
-    --tab-opacity: 0.1;
-    --focus-outline-color: var(--tab-bgcolor);
+    --mf-tab-opacity: 0.1;
+    --focus-outline-color: var(--mf-tab-bgcolor);
   }
 
   // selected tab with focus outline
@@ -154,7 +150,7 @@
   }
 
   &[visuallyselected] {
-    --tab-transition-duration: 0s;
+    --mf-tab-transition-duration: 0s;
     color: var(--toolbar-color) !important;
 
     // above other tabs (tab corners overlap otherwise)
@@ -163,7 +159,7 @@
 
   /* regular */
   &[fadein]:not([pinned]):not([style*='max-width']) {
-    max-width: 240px !important;
+    max-width: var(--mf-tab-max-width) !important;
   }
 
   /* neighbouring tabs should "pinch" together */
@@ -234,6 +230,11 @@
     .tab-content::before {
     opacity: var(--tab-separator-opacity) !important;
   }
+
+  &::before,
+  &::after {
+    display: none !important;
+  }
 }
 
 .tab-content {
@@ -282,27 +283,29 @@
   margin-top: 0 !important;
 }
 
-.tabbrowser-tab::before,
-.tabbrowser-tab::after,
 .tab-line {
   display: none !important;
 }
 
 :is(:root[privatebrowsingmode='temporary'], #TabsToolbar[brighttext]) .tabbrowser-tab {
-  --tab-opacity: 0;
-  --tab-bgcolor: #fff;
+  --mf-tab-opacity: 0;
+  --mf-tab-bgcolor: oklch(1 0 0 / var(--mf-tab-opacity));
 }
 
 :is(:root[privatebrowsingmode='temporary'], #TabsToolbar[brighttext])
   .tabbrowser-tab:not([selected='true']):hover,
 :is(:root[privatebrowsingmode='temporary'], #TabsToolbar[brighttext])
   .tabbrowser-tab[multiselected]:not([selected='true']) {
-  --tab-opacity: 0.06;
+  --mf-tab-opacity: 0.06;
 }
 
-:is(#TabsToolbar) .tabbrowser-tab[visuallyselected] {
-  --tab-bgcolor: var(--toolbar-bgcolor);
-  --tab-opacity: 1;
+#TabsToolbar .tabbrowser-tab[visuallyselected] {
+  --mf-tab-bgcolor: var(--toolbar-bgcolor);
+  --mf-tab-opacity: 1;
+}
+
+tab-group[collapsed] .tabbrowser-tab {
+  --mf-tab-max-width: 0;
 }
 
 .tab-background {
@@ -311,12 +314,11 @@
   --tab-border-radius: var(--tab-top-radius) var(--tab-top-radius) 0 0;
 
   margin-block: 0 !important;
-  background: var(--tab-bgcolor) !important;
+  background: var(--mf-tab-bgcolor) !important;
   position: relative !important;
   border: 0 !important;
-  transition: opacity var(--tab-transition-duration) var(--ease-basic),
-    background-color 0s var(--tab-transition-duration) var(--ease-basic) !important;
-  opacity: var(--tab-opacity) !important;
+  transition: opacity var(--mf-tab-transition-duration) var(--ease-basic),
+    background-color var(--mf-tab-transition-duration) var(--ease-basic) !important;
   visibility: visible !important;
 
   /* rounded bottom corners */
@@ -332,7 +334,9 @@
     height: var(--radius) !important;
     bottom: 0 !important;
     pointer-events: none !important;
-    transition: box-shadow 0s var(--tab-transition-duration) var(--ease-basic) !important;
+    transition: box-shadow var(--mf-tab-transition-duration) var(--ease-basic) !important;
+    // prevent visible overlap when using partially transparent tab background
+    clip-path: rect(0 100% 100% 0);
 
     // position behind tab-background focus outline
     z-index: -1;
@@ -342,7 +346,7 @@
     border-bottom-right-radius: var(--radius) !important;
     left: 0 !important;
     transform: translateX(calc(-1 * var(--radius))) !important;
-    box-shadow: var(--half-radius) var(--half-radius) 0 var(--half-radius) var(--tab-bgcolor) !important;
+    box-shadow: var(--half-radius) var(--half-radius) 0 var(--half-radius) var(--mf-tab-bgcolor) !important;
   }
 
   &::after {
@@ -350,7 +354,7 @@
     right: 0 !important;
     transform: translateX(var(--radius)) !important;
     box-shadow: calc(-1 * var(--half-radius)) var(--half-radius) 0 var(--half-radius)
-      var(--tab-bgcolor) !important;
+      var(--mf-tab-bgcolor) !important;
   }
 }
 

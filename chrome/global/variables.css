@@ -11,8 +11,7 @@
   /* toolbar_text */
   --toolbar-color: #606368 !important;
   /* toolbar_bottom_separator */
-  --toolbox-border-bottom-color: #b3b1b3 !important;
-  /* legacy */
+  --toolbox-border-bottom-color: #b3b1b3 !important; /* legacy */
   --chrome-content-separator-color: #b3b1b3 !important;
   /* icons */
   --lwt-toolbarbutton-icon-fill: #606368 !important;
@@ -42,8 +41,7 @@
   /* toolbar_text */
   --toolbar-color: #fff !important;
   /* toolbar_bottom_separator */
-  --toolbox-border-bottom-color: #282828 !important;
-  /* legacy */
+  --toolbox-border-bottom-color: #282828 !important; /* legacy */
   --chrome-content-separator-color: #282828 !important;
   /* icons */
   --lwt-toolbarbutton-icon-fill: #fff !important;
@@ -73,7 +71,7 @@
 
 @media (prefers-color-scheme: dark) {
   :host,
-:root {
+  :root {
     --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
   }
 }
@@ -111,10 +109,8 @@
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
   --ease-basic: linear;
-  --button-size: 32px;
-  /* is this used? */
-  --icon-size: 24px;
-  /* is this used? */
+  --button-size: 32px; /* is this used? */
+  --icon-size: 24px; /* is this used? */
   --downloads-item-height: 48px !important;
   --item-height: 28px;
   --popup-border-radius: 8px;
@@ -132,6 +128,7 @@
   --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
   --tab-top-radius: 8px;
   --tab-bottom-radius: var(--tab-top-radius);
+  --tab-overflow-clip-margin: 4px !important;
   --toolbar-field-background-color: hsl(200, 12%, 95%) !important;
   --toolbar-field-hover-background-color: hsl(216, 12%, 92%) !important;
   --toolbar-field-focus-background-color: hsl(0, 0%, 100%) !important;
@@ -172,21 +169,21 @@
 }
 @media (prefers-color-scheme: dark) {
   :host,
-:root {
+  :root {
     --toolbar-field-background-color: #202124 !important;
     --toolbar-field-hover-background-color: #292a2d !important;
     --toolbar-field-focus-background-color: #202124 !important;
     --focus-outline-color: var(--mf-primary-color) !important;
   }
   :host :is(#urlbar, #searchbar),
-:root :is(#urlbar, #searchbar) {
+  :root :is(#urlbar, #searchbar) {
     --toolbarbutton-hover-background: hsl(206, 5%, 26%) !important;
     --toolbarbutton-active-background: hsl(210, 4%, 31%) !important;
   }
 }
 @media (-moz-bool-pref: 'materialFox.maximizedNoTopPadding') {
   :host[sizemode=maximized],
-:root[sizemode=maximized] {
+  :root[sizemode=maximized] {
     --mf-space-above-tabbar: 0px;
   }
 }
