@@ -58,12 +58,6 @@
   position: relative;
   overflow: clip;
 
-  /* special case for pinned tabs when overflowing */
-  &:not([overflow]) .tabbrowser-tab:not([first-visible-tab]),
-  &[overflow] .tabbrowser-tab:not([first-visible-tab]):not([pinned]) {
-    margin-inline-start: -0.5px !important;
-  }
-
   &[overflow] .tabbrowser-tab[pinned] .tab-background {
     margin: 0 -1px !important;
   }

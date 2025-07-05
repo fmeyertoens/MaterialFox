@@ -96,6 +96,13 @@
   --lwt-brighttext-url-color: var(--mf-primary-color) !important;
 }
 
+@media (prefers-color-scheme: dark) {
+  :host,
+  :root {
+    --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
+  }
+}
+
 :is(#sidebar-box, #sidebar)[style*='--sidebar-background-color:rgb(56, 56, 61);'] {
   /* sidebar */
   --sidebar-background-color: #333639 !important;
@@ -120,6 +127,22 @@
   // active
   --mf-primary-color-very-light: hsl(219, 80%, 65%);
   --mf-primary-text-color: white;
+
+  --error-color: hsl(3, 100%, 62%);
+  --error-text-color: var(--error-color) !important;
+
+  --in-content-focus-outline-color: var(--mf-primary-color) !important;
+
+  --in-content-primary-button-background: var(--mf-primary-color) !important;
+  --in-content-primary-button-text-color: var(--mf-primary-text-color) !important;
+
+  --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
+  --in-content-primary-button-text-color-hover: var(--mf-primary-text-color) !important;
+
+  --in-content-primary-button-background-active: var(--mf-primary-color-very-light) !important;
+  --in-content-primary-button-text-color-active: var(--mf-primary-text-color) !important;
+
+  --lwt-brighttext-url-color: var(--mf-primary-color) !important;
   --toolbarbutton-icon-fill-attention: var(--mf-primary-color) !important;
 
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
