@@ -1,3 +1,5 @@
+@import '../global/functions.scss';
+
 @media (-moz-mac-yosemite-theme) {
   #TabsToolbar {
     -moz-appearance: none !important;
@@ -475,7 +477,7 @@ tab-group[collapsed] .tabbrowser-tab {
 
 /* close button / favicon is centered within 36px tab */
 /* disabled for now because it's broken in recent version of Firefox */
-@media (-moz-bool-pref: "'materialFox.reduceTabOverflow disabled'") {
+@include moz-pref-media('materialFox.reduceTabOverflow') {
   #main-window {
     /* same as Chrome */
     min-width: 500px !important;

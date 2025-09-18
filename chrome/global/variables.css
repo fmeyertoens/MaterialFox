@@ -181,14 +181,14 @@
     --toolbarbutton-active-background: hsl(210, 4%, 31%) !important;
   }
 }
-@media (-moz-bool-pref: 'materialFox.maximizedNoTopPadding') {
+@media (-moz-pref("materialFox.maximizedNoTopPadding")) {
   :host[sizemode=maximized],
   :root[sizemode=maximized] {
     --mf-space-above-tabbar: 0px;
   }
 }
 
-@media (-moz-bool-pref: 'materialFox.reduceTabOverflow') {
+@media (-moz-pref("materialFox.reduceTabOverflow")) {
   #tabbrowser-tabs {
     --tab-min-width: 32px !important;
   }

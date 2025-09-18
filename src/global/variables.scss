@@ -1,3 +1,5 @@
+@import 'functions.scss';
+
 /* light mode */
 :root:not([style]),
 :root[style*='--lwt-accent-color:rgb(227, 228, 230);'],
@@ -234,14 +236,14 @@
     }
   }
 
-  @media (-moz-bool-pref: "'materialFox.maximizedNoTopPadding'") {
+  @include moz-pref-media('materialFox.maximizedNoTopPadding') {
     &[sizemode='maximized'] {
       --mf-space-above-tabbar: 0px;
     }
   }
 }
 
-@media (-moz-bool-pref: "'materialFox.reduceTabOverflow'") {
+@include moz-pref-media('materialFox.reduceTabOverflow') {
   #tabbrowser-tabs {
     --tab-min-width: 32px !important;
   }
