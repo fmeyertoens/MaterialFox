@@ -1,10 +1,13 @@
 #commonDialog {
-  --in-content-primary-button-background: var(--mf-primary-color) !important;
-  --in-content-primary-button-text-color: var(--mf-primary-text-color) !important;
-  --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
-  --in-content-primary-button-text-color-hover: var(--mf-primary-text-color) !important;
-  --in-content-primary-button-background-active: var(--mf-primary-color-very-light) !important;
-  --in-content-primary-button-text-color-active: var(--mf-primary-text-color) !important;
+  --button-background-color-primary: var(--mf-primary-color) !important;
+  --button-border-color-primary: var(--mf-primary-color) !important;
+  --button-text-color-primary: var(--mf-primary-text-color) !important;
+  --button-background-color-primary-hover: var(--mf-primary-color-lighter) !important;
+  --button-border-color-primary-hover: var(--mf-primary-color-lighter) !important;
+  --button-text-color-primary-hover: var(--mf-primary-text-color) !important;
+  --button-background-color-primary-active: var(--mf-primary-color-very-light) !important;
+  --button-border-color-primary-active: var(--mf-primary-color-very-light) !important;
+  --button-text-color-primary-active: var(--mf-primary-text-color) !important;
 }
 
 /*# sourceMappingURL=dialog.css.map */
