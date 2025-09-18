@@ -5,7 +5,7 @@ panel {
 }
 @media (-moz-platform: linux), (-moz-platform: windows) {
   menupopup,
-panel {
+  panel {
     --panel-shadow-margin: 8px !important;
   }
 }
@@ -24,7 +24,7 @@ menupopup {
   );
 }
 menupopup > menu > menupopup {
-  margin-top: calc( -1 * (var(--panel-shadow-margin) + var(--panel-padding-block) + 0px) ) !important;
+  margin-top: calc(-1 * (var(--panel-shadow-margin) + var(--panel-padding-block) + 0px)) !important;
 }
 
 menu,

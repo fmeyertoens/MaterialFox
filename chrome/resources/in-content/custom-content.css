@@ -14,7 +14,7 @@ and when you update you can preserve your modifications by just updating everyth
     }
   }
   :root.theme-dark .ruleview-propertyname,
-:root.theme-dark .inspector-variable {
+  :root.theme-dark .inspector-variable {
     --theme-highlight-blue: #abb2bf;
   }
   :root.theme-dark .ruleview-propertyvalue {
@@ -24,13 +24,13 @@ and when you update you can preserve your modifications by just updating everyth
     --theme-highlight-purple: #e06c75;
   }
   :root.theme-dark .ruleview-rule-ancestor-selectorcontainer,
-:root.theme-dark .ruleview-ancestor-ruleopen,
-:root.theme-dark .ruleview-ancestor-ruleclose {
+  :root.theme-dark .ruleview-ancestor-ruleopen,
+  :root.theme-dark .ruleview-ancestor-ruleclose {
     color: #c678dd;
   }
   :root.theme-dark .ruleview-selector,
-:root.theme-dark .ruleview-ruleopen,
-:root.theme-dark .ruleview-ruleclose {
+  :root.theme-dark .ruleview-ruleopen,
+  :root.theme-dark .ruleview-ruleclose {
     color: #d19a66;
   }
 }
