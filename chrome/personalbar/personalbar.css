@@ -2,17 +2,10 @@
   padding: 6px !important;
 }
 
-#main-window[lwthemetextcolor=bright] #PlacesToolbar .bookmark-item[container] {
-  list-style-image: url(./folder-dark.svg) !important;
-}
-
 #PersonalToolbar .toolbarbutton-1 {
   --toolbarbutton-inner-padding: 6px !important;
 }
 
-#PlacesToolbar .bookmark-item[container] {
-  list-style-image: url(./folder.svg) !important;
-}
 #PlacesToolbar #PlacesToolbarItems toolbarbutton.bookmark-item:not(.subviewbutton) {
   border-radius: 8px !important;
 }
@@ -20,6 +13,15 @@
 #PlacesChevron > .toolbarbutton-icon {
   width: calc(2 * var(--toolbarbutton-inner-padding) + 16px) !important;
   height: calc(2 * var(--toolbarbutton-inner-padding) + 16px) !important;
+}
+
+.bookmark-item[container], .bookmark-item[hostContainer] {
+  --bookmark-item-icon: url(../icons/folder.svg);
+}
+@media (prefers-color-scheme: dark) {
+  .bookmark-item[container], .bookmark-item[hostContainer] {
+    --bookmark-item-icon: url(../icons/folder-dark.svg);
+  }
 }
 
 /*# sourceMappingURL=personalbar.css.map */
