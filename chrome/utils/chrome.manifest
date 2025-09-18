@@ -11,3 +11,6 @@ content userchrome ../resources/
 
 # Override the built-in styles for arrowscrollboxes, mainly to replace scrollbuttons with scrollbars.
 override chrome://global/skin/arrowscrollbox.css ../resources/layout/arrowscrollbox.css
+
+# Override a bunch of icons that appear all over the browser.
+override chrome://global/skin/icons/folder.svg ../icons/folder.svg
