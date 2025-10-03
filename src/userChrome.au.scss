@@ -34,6 +34,6 @@
 menupopup {
   &::part(content) {
     padding-inline: 0 !important;
-    --panel-background: var(--arrowpanel-background);
+    --panel-background: light-dark(Menu, var(--arrowpanel-background));
   }
 }
