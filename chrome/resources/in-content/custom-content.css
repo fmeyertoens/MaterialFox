@@ -2,36 +2,45 @@
 and when you update you can preserve your modifications by just updating everything except this file. */
 /* add a dummy rule so this will be loaded by the style editor on any page. */
 @-moz-document url-prefix("chrome://devtools/content/") {
+  :root.theme-dark {
+    --mf-devtools-red: #e06c75;
+    --mf-devtools-orange: #d19a66;
+    --mf-devtools-green: #98c379;
+    --mf-devtools-grey: #abb2bf;
+    --mf-devtools-purple: #c678dd;
+    --object-color: var(--mf-devtools-red) !important;
+    --string-color: var(--mf-devtools-orange) !important;
+  }
   @layer markup-base {
     :root.theme-dark .tag {
-      --theme-highlight-blue: #e06c75;
+      --theme-highlight-blue: var(--mf-devtools-red);
     }
     :root.theme-dark .attr-name {
-      --theme-highlight-red: #d19a66;
+      --theme-highlight-red: var(--mf-devtools-orange);
     }
     :root.theme-dark .attr-value {
-      --theme-highlight-purple: #98c379;
+      --theme-highlight-purple: var(--mf-devtools-green);
     }
   }
   :root.theme-dark .ruleview-propertyname,
   :root.theme-dark .inspector-variable {
-    --theme-highlight-blue: #abb2bf;
+    --theme-highlight-blue: var(--mf-devtools-grey);
   }
   :root.theme-dark .ruleview-propertyvalue {
-    --theme-highlight-red: #d19a66;
+    --theme-highlight-red: var(--mf-devtools-orange);
   }
   :root.theme-dark .ruleview-propertyvaluecontainer a {
-    --theme-highlight-purple: #e06c75;
+    --theme-highlight-purple: var(--mf-devtools-red);
   }
   :root.theme-dark .ruleview-rule-ancestor-selectorcontainer,
   :root.theme-dark .ruleview-ancestor-ruleopen,
   :root.theme-dark .ruleview-ancestor-ruleclose {
-    color: #c678dd;
+    color: var(--mf-devtools-purple);
   }
   :root.theme-dark .ruleview-selector,
   :root.theme-dark .ruleview-ruleopen,
   :root.theme-dark .ruleview-ruleclose {
-    color: #d19a66;
+    color: var(--mf-devtools-orange);
   }
 }
 

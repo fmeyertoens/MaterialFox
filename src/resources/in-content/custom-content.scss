@@ -9,41 +9,50 @@ and when you update you can preserve your modifications by just updating everyth
 @-moz-document url-prefix("chrome://devtools/content/")
 {
   :root.theme-dark {
+    --mf-devtools-red: #e06c75;
+    --mf-devtools-orange: #d19a66;
+    --mf-devtools-green: #98c379;
+    --mf-devtools-grey: #abb2bf;
+    --mf-devtools-purple: #c678dd;
+
+    --object-color: var(--mf-devtools-red) !important;
+    --string-color: var(--mf-devtools-orange) !important;
+
     @layer markup-base {
       .tag {
-        --theme-highlight-blue: #e06c75;
+        --theme-highlight-blue: var(--mf-devtools-red);
       }
       .attr-name {
-        --theme-highlight-red: #d19a66;
+        --theme-highlight-red: var(--mf-devtools-orange);
       }
       .attr-value {
-        --theme-highlight-purple: #98c379;
+        --theme-highlight-purple: var(--mf-devtools-green);
       }
     }
 
     .ruleview-propertyname,
     .inspector-variable {
-      --theme-highlight-blue: #abb2bf;
+      --theme-highlight-blue: var(--mf-devtools-grey);
     }
 
     .ruleview-propertyvalue {
-      --theme-highlight-red: #d19a66;
+      --theme-highlight-red: var(--mf-devtools-orange);
     }
 
     .ruleview-propertyvaluecontainer a {
-      --theme-highlight-purple: #e06c75;
+      --theme-highlight-purple: var(--mf-devtools-red);
     }
 
     .ruleview-rule-ancestor-selectorcontainer,
     .ruleview-ancestor-ruleopen,
     .ruleview-ancestor-ruleclose {
-      color: #c678dd;
+      color: var(--mf-devtools-purple);
     }
 
     .ruleview-selector,
     .ruleview-ruleopen,
     .ruleview-ruleclose {
-      color: #d19a66;
+      color: var(--mf-devtools-orange);
     }
   }
 }
