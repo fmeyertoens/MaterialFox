@@ -148,7 +148,7 @@
 
   // selected tab with focus outline
   & .tab-background[multiselected][selected] {
-    --tab-border-radius: var(--tab-top-radius);
+    --tab-border-radius: var(--mf-tab-top-radius);
   }
 
   &[visuallyselected] {
@@ -313,7 +313,7 @@ tab-group[collapsed] .tabbrowser-tab {
 .tab-background {
   // used by FF
   /* rounded top corners */
-  --tab-border-radius: var(--tab-top-radius) var(--tab-top-radius) 0 0;
+  --tab-border-radius: var(--mf-tab-top-radius) var(--mf-tab-top-radius) 0 0;
 
   margin-block: 0 !important;
   background: var(--mf-tab-bgcolor) !important;
@@ -326,7 +326,7 @@ tab-group[collapsed] .tabbrowser-tab {
   /* rounded bottom corners */
   &::before,
   &::after {
-    --radius: var(--tab-bottom-radius);
+    --radius: var(--mf-tab-bottom-radius);
     --half-radius: calc(var(--radius) / 2);
 
     content: '' !important;

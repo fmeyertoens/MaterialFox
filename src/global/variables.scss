@@ -178,8 +178,8 @@
   --tab-separator-opacity: 0.35 !important;
   // mf tabs only have top margin unlike default FF tabs
   --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
-  --tab-top-radius: 8px;
-  --tab-bottom-radius: var(--tab-top-radius);
+  --mf-tab-top-radius: 8px;
+  --mf-tab-bottom-radius: var(--mf-tab-top-radius);
   // connect tab-group-lines of adjacent tabs
   --tab-overflow-clip-margin: 4px !important;
 

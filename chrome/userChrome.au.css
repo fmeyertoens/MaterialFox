@@ -18,10 +18,14 @@
 }
 
 #tabbrowser-arrowscrollbox::part(scrollbox) {
-  padding-inline-start: var(--tab-bottom-radius);
+  padding-inline-start: var(--mf-tab-bottom-radius);
 }
 #tabbrowser-arrowscrollbox::part(scrollbutton-down), #tabbrowser-arrowscrollbox::part(scrollbutton-up) {
   margin-block-start: var(--mf-tab-margin-top) !important;
+}
+
+#pinned-tabs-container::part(scrollbox) {
+  padding-inline: var(--mf-tab-bottom-radius);
 }
 
 menupopup::part(content) {

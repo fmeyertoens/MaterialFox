@@ -105,7 +105,7 @@ toolbarpaletteitem:not(#wrapper-firefox-view-button)) + #tabbrowser-tabs {
   --focus-outline-color: var(--mf-tab-bgcolor);
 }
 .tabbrowser-tab .tab-background[multiselected][selected] {
-  --tab-border-radius: var(--tab-top-radius);
+  --tab-border-radius: var(--mf-tab-top-radius);
 }
 .tabbrowser-tab[visuallyselected] {
   --mf-tab-transition-duration: 0s;
@@ -234,7 +234,7 @@ tab-group[collapsed] .tabbrowser-tab {
 
 .tab-background {
   /* rounded top corners */
-  --tab-border-radius: var(--tab-top-radius) var(--tab-top-radius) 0 0;
+  --tab-border-radius: var(--mf-tab-top-radius) var(--mf-tab-top-radius) 0 0;
   margin-block: 0 !important;
   background: var(--mf-tab-bgcolor) !important;
   position: relative !important;
@@ -244,7 +244,7 @@ tab-group[collapsed] .tabbrowser-tab {
   /* rounded bottom corners */
 }
 .tab-background::before, .tab-background::after {
-  --radius: var(--tab-bottom-radius);
+  --radius: var(--mf-tab-bottom-radius);
   --half-radius: calc(var(--radius) / 2);
   content: "" !important;
   display: block !important;
