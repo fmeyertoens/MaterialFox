@@ -513,6 +513,16 @@ tab-group[collapsed] .tabbrowser-tab {
   display: none !important;
 }
 
+.tab-group-line { 
+  tab-group:not([collapsed]) > .tabbrowser-tab:last-of-type > .tab-stack > .tab-background > &,
+  tab-group[collapsed]:not([hasmultipletabs]) & {
+      #tabbrowser-tabs[orient="horizontal"] & {
+      inset-inline-end: calc(-1 * var(--mf-tab-bottom-radius) / 2) !important;
+    }
+  }
+}
+
+
 .scrollbox-clip {
   min-height: var(--mf-tab-height-full) !important;
 
