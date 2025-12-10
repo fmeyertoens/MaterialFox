@@ -182,6 +182,10 @@
   }
 }
 
+.urlbar-background {
+  --focus-outline: 0 solid transparent;
+}
+
 .urlbar-input-container,
 #searchbar {
   display: flex !important;
