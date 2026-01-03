@@ -63,7 +63,6 @@
   max-height: 32px !important;
   height: 32px !important;
   min-height: 32px !important;
-  width: 32px;
 }
 
 #navigator-toolbox :is(.toolbarbutton-icon, .toolbarbutton-badge-stack),
