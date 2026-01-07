@@ -17,6 +17,7 @@ menupopup {
   -moz-context-properties: fill, fill-opacity !important;
   fill: currentColor !important;
   --nested-margin: -4px !important;
+  --menuitem-border-radius: var(--arrowpanel-menuitem-border-radius) !important;
 
   #ContentSelectDropdown:-moz-lwtheme-brighttext > & {
     --content-select-background-image: linear-gradient(
@@ -36,17 +37,21 @@ menupopup {
 menu,
 menuitem {
   --panel-border-radius: 0 !important;
+
+  &[disabled='true'] {
+    pointer-events: none !important;
+  }
+
+  &:where([_moz-menuactive]:not([disabled="true"])) {
+    color: var(--arrowpanel-color) !important;
+    background-color: var(--button-background-color-hover) !important;
+  }
 }
 
 menuitem,
 menu > menu,
 menupopup > menu {
   appearance: none !important;
-}
-
-menuitem[disabled='true'],
-menu[disabled='true'] {
-  pointer-events: none !important;
 }
 
 .menu-right {

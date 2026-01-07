@@ -57,10 +57,7 @@
   --chrome-content-separator-color: light-dark(#b3b1b3, #282828) !important;
   --lwt-toolbarbutton-icon-fill: light-dark(#606368, #fff) !important;
   --lwt-toolbarbutton-icon-fill-attention: light-dark(#5086ec, var(--mf-primary-color)) !important;
-  /* button_background_hover */
-  --lwt-toolbarbutton-hover-background: light-dark(rgba(0, 0, 0, 0.07), #434649) !important;
-  /* button_background_active */
-  --lwt-toolbarbutton-active-background: light-dark(rgba(0, 0, 0, 0.11), #4e5153) !important;
+  --button-background-color-hover: var(--toolbarbutton-hover-background) !important;
   --lwt-toolbar-field-color: light-dark(#202124, #fff) !important;
   --autocomplete-popup-highlight-background: light-dark(#f2f2f2, #4c4f52) !important;
   --autocomplete-popup-highlight-color: light-dark(#202124, #fff) !important;
