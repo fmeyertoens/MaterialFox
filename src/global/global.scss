@@ -92,6 +92,10 @@
   background: 0 !important;
 }
 
+toolbarbutton {
+  padding: 4px !important;
+}
+
 .toolbarbutton-icon {
   -moz-context-properties: fill, stroke;
   fill: var(--lwt-toolbarbutton-icon-fill);

@@ -97,4 +97,12 @@ image[part=drop-indicator] {
   border-radius: 0 !important;
 }
 
+.searchmode-switcher-popup > menuitem {
+  margin-inline: 0 !important;
+}
+
+.searchmode-switcher-popup-description {
+  margin-inline: 0 !important;
+}
+
 /*# sourceMappingURL=popup.css.map */

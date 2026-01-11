@@ -133,6 +133,8 @@
   color: inherit !important;
 
   --urlbar-height: 28px !important;
+  --urlbar-inner-border-radius: var(--border-radius-circle);
+  --urlbar-box-bgcolor: var(--toolbar-bgcolor);
 
   min-height: var(--urlbar-height) !important;
 
