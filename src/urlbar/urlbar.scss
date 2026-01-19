@@ -665,6 +665,16 @@
   overflow: visible !important;
 }
 
+.searchmode-switcher-chicklet {
+  border-start-end-radius: var(--urlbar-inner-border-radius) !important;
+  height: auto !important;
+  padding: 4px;
+}
+
+.searchmode-switcher-title {
+  margin-bottom: -1px !important;
+}
+
 /* 2x */
 @media (min--moz-device-pixel-ratio: 2) {
   #urlbar {
