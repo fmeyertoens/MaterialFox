@@ -43,7 +43,7 @@ menuitem {
   }
 
   &:where([_moz-menuactive]:not([disabled="true"])) {
-    color: var(--arrowpanel-color) !important;
+    color: var(--mf-primary-text-hover-color) !important;
     background-color: var(--button-background-color-hover) !important;
   }
 }
