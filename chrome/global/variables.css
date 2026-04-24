@@ -3,7 +3,8 @@
   --mf-primary-color: hsl(219, 72%, 53%);
   --mf-primary-color-lighter: hsl(219, 75%, 60%);
   --mf-primary-color-very-light: hsl(219, 80%, 65%);
-  --mf-primary-text-color: white;
+  --mf-primary-text-color: light-dark(#606368, #fff);
+  --mf-primary-text-hover-color: light-dark(#202124, #fff);
   --error-color: hsl(3, 100%, 62%);
   --error-text-color: var(--error-color) !important;
   --in-content-focus-outline-color: var(--mf-primary-color) !important;
@@ -102,9 +103,9 @@
     --focus-outline-color: var(--mf-primary-color) !important;
     --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
     /* popup */
-    --arrowpanel-background: #373737 !important;
+    --arrowpanel-background: light-dark(#fff, #373737) !important;
     /* popup_text */
-    --arrowpanel-color: #fff !important;
+    --arrowpanel-color: var(--mf-primary-text-color) !important;
     --autocomplete-popup-color: #fff !important;
     --panel-disabled-color: hsla(0, 0%, 100%, 0.5) !important;
     /* popup_border */
