@@ -42,7 +42,7 @@ menuitem {
     pointer-events: none !important;
   }
 
-  &:where([_moz-menuactive]:not([disabled="true"])) {
+  &:where([_moz-menuactive]:not([disabled='true'])) {
     color: var(--mf-primary-text-hover-color) !important;
     background-color: var(--button-background-color-hover) !important;
   }
@@ -113,5 +113,9 @@ image[part='drop-indicator'] {
   }
 }
 .searchmode-switcher-popup-description {
-	margin-inline: 0 !important;
+  margin-inline: 0 !important;
+}
+
+:root[dialogroot] {
+  --background-color-canvas: var(--mf-background-color-canvas) !important;
 }

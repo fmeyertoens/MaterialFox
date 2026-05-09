@@ -5,6 +5,7 @@
   --mf-primary-color-very-light: hsl(219, 80%, 65%);
   --mf-primary-text-color: light-dark(#606368, #fff);
   --mf-primary-text-hover-color: light-dark(#202124, #fff);
+  --mf-background-color-canvas: light-dark(#fff, hsl(0, 0%, 20%));
   --error-color: hsl(3, 100%, 62%);
   --error-text-color: var(--error-color) !important;
   --in-content-focus-outline-color: var(--mf-primary-color) !important;
@@ -51,7 +52,7 @@
   accent-color: var(--mf-primary-color) !important;
   --lwt-accent-color: light-dark(#dee1e6, #202124) !important;
   --lwt-text-color: light-dark(#606368, #9ba0a5) !important;
-  --toolbar-bgcolor: light-dark(#fff, hsl(0, 0%, 20%)) !important;
+  --toolbar-bgcolor: var(--mf-background-color-canvas) !important;
   --toolbar-color: light-dark(#606368, #fff) !important;
   --toolbox-border-bottom-color: light-dark(#b3b1b3, #282828) !important; /* legacy */
   --chrome-content-separator-color: light-dark(#b3b1b3, #282828) !important;
@@ -105,7 +106,7 @@
     --arrowpanel-background: light-dark(#fff, #373737) !important;
     /* popup_text */
     --arrowpanel-color: var(--mf-primary-text-color) !important;
-    --autocomplete-popup-color: #fff !important;
+    --autocomplete-popup-color: var(--mf-primary-text-color) !important;
     --panel-disabled-color: hsla(0, 0%, 100%, 0.5) !important;
     /* popup_border */
     --arrowpanel-border-color: transparent !important;

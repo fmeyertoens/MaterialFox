@@ -105,4 +105,8 @@ image[part=drop-indicator] {
   margin-inline: 0 !important;
 }
 
+:root[dialogroot] {
+  --background-color-canvas: var(--mf-background-color-canvas) !important;
+}
+
 /*# sourceMappingURL=popup.css.map */
