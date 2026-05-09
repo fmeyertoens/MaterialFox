@@ -140,6 +140,8 @@
   --mf-tab-transition-duration: 0.2s;
   --mf-tab-max-width: 240px;
 
+  --tab-overflow-clip-margin: var(--mf-tab-bottom-radius) !important;
+
   &:not([selected]):hover,
   &[multiselected]:not([selected]) {
     --mf-tab-opacity: 0.1;

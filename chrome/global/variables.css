@@ -38,7 +38,6 @@
   --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
   --mf-tab-top-radius: 8px;
   --mf-tab-bottom-radius: var(--mf-tab-top-radius);
-  --tab-overflow-clip-margin: 4px !important;
   --toolbar-field-background-color: hsl(200, 12%, 95%) !important;
   --toolbar-field-hover-background-color: hsl(216, 12%, 92%) !important;
   --toolbar-field-focus-background-color: hsl(0, 0%, 100%) !important;

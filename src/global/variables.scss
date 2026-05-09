@@ -60,8 +60,6 @@
   --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
   --mf-tab-top-radius: 8px;
   --mf-tab-bottom-radius: var(--mf-tab-top-radius);
-  // connect tab-group-lines of adjacent tabs
-  --tab-overflow-clip-margin: 4px !important;
 
   --toolbar-field-background-color: hsl(200, 12%, 95%) !important;
   --toolbar-field-hover-background-color: hsl(216, 12%, 92%) !important;

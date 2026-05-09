@@ -96,6 +96,7 @@ toolbarpaletteitem:not(#wrapper-firefox-view-button)) + #tabbrowser-tabs {
   --mf-tab-bgcolor: oklch(0% 0 0 / var(--mf-tab-opacity));
   --mf-tab-transition-duration: 0.2s;
   --mf-tab-max-width: 240px;
+  --tab-overflow-clip-margin: var(--mf-tab-bottom-radius) !important;
   /* regular */
   /* neighbouring tabs should "pinch" together */
   /* hide new tab favicon */
