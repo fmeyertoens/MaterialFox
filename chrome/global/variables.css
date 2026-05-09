@@ -34,6 +34,8 @@
   --mf-tab-margin-top: var(--mf-tab-shadow-size);
   --mf-tab-height: 32px !important;
   --mf-tab-height-full: calc(var(--mf-tab-height) + var(--mf-tab-margin-top));
+  --mf-tab-split-group-line-color: hsla(0, 0%, 100%, 0.4);
+  --mf-tab-split-group-line-height: 2px;
   --tab-min-height: var(--mf-tab-height);
   --tab-separator-opacity: 0.35 !important;
   --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
