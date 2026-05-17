@@ -1,4 +1,5 @@
-#commonDialog {
+#commonDialog,
+:root[dialogroot] dialog {
   --button-background-color-primary: var(--mf-primary-color) !important;
   --button-border-color-primary: var(--mf-primary-color) !important;
   --button-text-color-primary: var(--mf-primary-text-color) !important;
