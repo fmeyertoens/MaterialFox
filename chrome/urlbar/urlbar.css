@@ -354,7 +354,7 @@
 .urlbar-page-action,
 #page-action-buttons > toolbarbutton,
 .searchbar-search-button,
-#identity-box,
+#identity-box .identity-box-button,
 #tracking-protection-icon-box {
   min-width: 32px !important;
   height: 24px !important;
@@ -408,7 +408,7 @@
 .urlbar-page-action:hover:not([disabled]),
 #page-action-buttons > toolbarbutton:hover:not([disabled]),
 .searchbar-search-button:hover,
-#identity-box:hover:not(.no-hover),
+#identity-box .identity-box-button:hover:not(.no-hover),
 #tracking-protection-icon-container:hover #tracking-protection-icon-box {
   background-color: var(--toolbarbutton-hover-background) !important;
 }
@@ -417,8 +417,8 @@
 .urlbar-page-action[open],
 #page-action-buttons > toolbarbutton:hover:active:not([disabled]),
 .searchbar-search-button:hover:active,
-#identity-box:hover:active:not(.no-hover),
-#identity-box[open]:not(.no-hover),
+#identity-box .identity-box-button:hover:active:not(.no-hover),
+#identity-box .identity-box-button[open]:not(.no-hover),
 #tracking-protection-icon-container[open] #tracking-protection-icon-box {
   background-color: var(--toolbarbutton-active-background) !important;
   transition-duration: 0 !important;
