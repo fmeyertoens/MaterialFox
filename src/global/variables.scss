@@ -10,7 +10,7 @@
   --mf-primary-text-color: light-dark(#606368, #fff);
   --mf-primary-text-hover-color: light-dark(#202124, #fff);
 
-  --mf-background-color-canvas: light-dark(#fff, hsl(0, 0%, 20%));
+  --mf-background-color-canvas: light-dark(#fff, hsl(0, 0%, 22%));
 
   --error-color: hsl(3, 100%, 62%);
   --error-text-color: var(--error-color) !important;
@@ -71,11 +71,20 @@
 
   --arrowpanel-menuitem-margin: 0 !important;
   --arrowpanel-menuitem-margin-inline: 0 !important;
+  --panel-menuitem-margin-inline: 0 !important;
   --arrowpanel-menuitem-padding-block: 6px !important;
   --arrowpanel-menuitem-padding-inline: 10px !important;
   --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block)
     var(--arrowpanel-menuitem-padding-inline) !important;
   --arrowpanel-menuitem-border-radius: 0px !important;
+  --panel-menuitem-border-radius: 0 !important;
+
+  --arrowpanel-background: var(--mf-background-color-canvas) !important;
+  --panel-background: var(--mf-background-color-canvas) !important;
+  --panel-border-color: var(--panel-background) !important;
+
+  --arrowpanel-color: var(--mf-primary-text-color) !important;
+  --autocomplete-popup-color: var(--mf-primary-text-color) !important;
 
   accent-color: var(--mf-primary-color) !important;
 
@@ -138,17 +147,11 @@
 
     --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
 
-    /* popup */
-    --arrowpanel-background: light-dark(#fff, #373737) !important;
-
-    /* popup_text */
-    --arrowpanel-color: var(--mf-primary-text-color) !important;
-    --autocomplete-popup-color: var(--mf-primary-text-color) !important;
     --panel-disabled-color: hsla(0, 0%, 100%, 0.5) !important;
 
     /* popup_border */
     --arrowpanel-border-color: transparent !important;
-    --autocomplete-popup-border-color: #555 !important;
+    --autocomplete-popup-border-color: hsl(0, 0%, 33%) !important;
 
     /* urlbar popup */
     --lwt-brighttext-url-color: var(--mf-primary-color) !important;
