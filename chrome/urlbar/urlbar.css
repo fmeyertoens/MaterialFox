@@ -131,6 +131,7 @@
   --urlbar-height: 28px !important;
   --urlbar-inner-border-radius: var(--border-radius-circle);
   --urlbar-box-bgcolor: var(--toolbar-bgcolor);
+  --urlbar-box-background-color: var(--mf-background-color-canvas) !important;
   min-height: var(--urlbar-height) !important;
 }
 #urlbar:not(:-moz-lwtheme),
@@ -546,18 +547,15 @@
   fill: currentColor !important;
 }
 
-#urlbar[open] #urlbar-go-button,
-#searchbar[open] #search-go-button,
 #urlbar[open] .urlbar-go-button,
 #searchbar[open] .search-go-button {
-  height: 32px !important;
+  height: 16px !important;
 }
 
-#urlbar-go-button,
-#search-go-button,
 .urlbar-go-button,
 .search-go-button {
-  list-style-image: url(go.svg) !important;
+  content: url(go.svg) !important;
+  padding: 6px !important;
 }
 
 .search-go-container {
@@ -600,6 +598,11 @@
 
 .unified-extensions-item-action-button {
   overflow: visible !important;
+}
+
+.searchmode-switcher {
+  --button-padding: 3px var(--space-small) !important;
+  --button-border-radius: var(--border-radius-circle);
 }
 
 .searchmode-switcher-chicklet {

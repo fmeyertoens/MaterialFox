@@ -132,9 +132,11 @@
   margin: 0 !important;
   color: inherit !important;
 
+  // Firefox variables
   --urlbar-height: 28px !important;
   --urlbar-inner-border-radius: var(--border-radius-circle);
   --urlbar-box-bgcolor: var(--toolbar-bgcolor);
+  --urlbar-box-background-color: var(--mf-background-color-canvas) !important;
 
   min-height: var(--urlbar-height) !important;
 
@@ -161,7 +163,9 @@
     padding: 0 !important;
     border-radius: 8px !important;
     min-height: 37px !important;
-    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14),
+    box-shadow:
+      0 5px 5px -3px rgba(0, 0, 0, 0.2),
+      0 8px 10px 1px rgba(0, 0, 0, 0.14),
       0 3px 14px 2px rgba(0, 0, 0, 0.12) !important;
     z-index: 99999 !important;
   }
@@ -405,8 +409,11 @@
 
 #tracking-protection-icon-box {
   display: block !important;
-  transition: background-color 0.2s var(--ease-basic), width 0.15s var(--ease-in),
-    opacity 0.15s var(--ease-basic), visibility 0s 0.2s !important;
+  transition:
+    background-color 0.2s var(--ease-basic),
+    width 0.15s var(--ease-in),
+    opacity 0.15s var(--ease-basic),
+    visibility 0s 0.2s !important;
   opacity: 0 !important;
   visibility: hidden !important;
   width: 0 !important;
@@ -414,7 +421,9 @@
   #urlbar:hover &,
   #tracking-protection-icon-container[open] &,
   &[active] {
-    transition: background-color 0.2s var(--ease-basic), width 0.3s var(--ease-out),
+    transition:
+      background-color 0.2s var(--ease-basic),
+      width 0.3s var(--ease-out),
       opacity 0.3s var(--ease-basic) !important;
     opacity: 1 !important;
     visibility: visible !important;
@@ -460,18 +469,21 @@
 }
 
 .urlbar-page-action:is(
-    #reader-mode-button,
-    #pageActionButton,
-    #pocket-button-box,
-    #pageAction-urlbar-screenshots_mozilla_org,
-    #pageAction-urlbar-sendToDevice,
-    #pageAction-urlbar-emailLink,
-    #pageAction-urlbar-copyURL,
-    #pageAction-urlbar-shareURL,
-    #pageAction-urlbar-addSearchEngine
-  ) {
-  transition: background-color 0.2s var(--ease-basic), margin 0.15s var(--ease-in),
-    opacity 0.15s var(--ease-basic), visibility 0s 4s !important;
+  #reader-mode-button,
+  #pageActionButton,
+  #pocket-button-box,
+  #pageAction-urlbar-screenshots_mozilla_org,
+  #pageAction-urlbar-sendToDevice,
+  #pageAction-urlbar-emailLink,
+  #pageAction-urlbar-copyURL,
+  #pageAction-urlbar-shareURL,
+  #pageAction-urlbar-addSearchEngine
+) {
+  transition:
+    background-color 0.2s var(--ease-basic),
+    margin 0.15s var(--ease-in),
+    opacity 0.15s var(--ease-basic),
+    visibility 0s 4s !important;
   opacity: 0 !important;
   visibility: hidden !important;
   margin-inline-start: -32px !important;
@@ -525,7 +537,9 @@
     #pageAction-urlbar-shareURL,
     #pageAction-urlbar-addSearchEngine
   ) {
-  transition: background-color 0.2s var(--ease-basic), margin 0.3s var(--ease-out),
+  transition:
+    background-color 0.2s var(--ease-basic),
+    margin 0.3s var(--ease-out),
     opacity 0.3s var(--ease-basic) !important;
   opacity: 1 !important;
   visibility: visible !important;
@@ -597,20 +611,15 @@
   fill: currentColor !important;
 }
 
-#urlbar[open] #urlbar-go-button,
-#searchbar[open] #search-go-button,
-/* < 71 */
 #urlbar[open] .urlbar-go-button,
 #searchbar[open] .search-go-button {
-  height: 32px !important;
+  height: 16px !important;
 }
 
-#urlbar-go-button,
-#search-go-button,
-/* < 71 */
 .urlbar-go-button,
 .search-go-button {
-  list-style-image: url(go.svg) !important;
+  content: url(go.svg) !important;
+  padding: 6px !important;
 }
 
 .search-go-container {
@@ -663,6 +672,11 @@
 .unified-extensions-item-action-button {
   // prevent clipping of extension icon badge
   overflow: visible !important;
+}
+
+.searchmode-switcher {
+  --button-padding: 3px var(--space-small) !important;
+  --button-border-radius: var(--border-radius-circle);
 }
 
 .searchmode-switcher-chicklet {
