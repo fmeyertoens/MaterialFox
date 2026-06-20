@@ -7,27 +7,18 @@
   --mf-primary-color-lighter: hsl(219, 75%, 60%);
   // active
   --mf-primary-color-very-light: hsl(219, 80%, 65%);
-  --mf-primary-text-color: light-dark(#606368, #fff);
-  --mf-primary-text-hover-color: light-dark(#202124, #fff);
+  --mf-primary-text-color: light-dark(hsl(217, 4%, 39%), #fff);
+  --mf-primary-text-hover-color: light-dark(hsl(225, 6%, 13%), #fff);
 
   --mf-background-color-canvas: light-dark(#fff, hsl(0, 0%, 22%));
+  --mf-background-color-canvas-dark: light-dark(hsl(240, 8%, 92%), hsl(0, 0%, 13%));
+  --mf-background-color-canvas-dark-hover: light-dark(hsl(300, 1%, 70%), hsl(0, 0%, 16%));
 
   --error-color: hsl(3, 100%, 62%);
   --error-text-color: var(--error-color) !important;
 
-  --in-content-focus-outline-color: var(--mf-primary-color) !important;
-
-  --in-content-primary-button-background: var(--mf-primary-color) !important;
-  --in-content-primary-button-text-color: var(--mf-primary-text-color) !important;
-
-  --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
-  --in-content-primary-button-text-color-hover: var(--mf-primary-text-color) !important;
-
-  --in-content-primary-button-background-active: var(--mf-primary-color-very-light) !important;
-  --in-content-primary-button-text-color-active: var(--mf-primary-text-color) !important;
-
-  --lwt-brighttext-url-color: var(--mf-primary-color) !important;
   --toolbarbutton-icon-fill-attention: var(--mf-primary-color) !important;
+  --toolbarbutton-border-radius: var(--mf-pill-border-radius) !important;
 
   --ease-in: cubic-bezier(0.4, 0, 1, 1);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
@@ -39,11 +30,10 @@
   --downloads-item-height: 48px !important;
 
   --item-height: 28px;
+  --mf-bookmark-item-border-radius: 8px;
   --popup-border-radius: 8px;
   --icon-button-radius: 50%;
-
-  --toolbar-non-lwt-bgcolor: var(--toolbar-bgcolor) !important;
-  --toolbar-non-lwt-textcolor: var(--toolbar-color) !important;
+  --mf-pill-border-radius: 99px;
 
   --toolbar-field-fontsize: 14px !important;
 
@@ -57,71 +47,65 @@
   --mf-tab-split-group-line-color: hsla(0, 0%, 100%, 0.4);
   --mf-tab-split-group-line-height: 2px;
   // --tab-min-height is used by FF
-  --tab-min-height: var(--mf-tab-height);
+  --tab-min-height: var(--mf-tab-height) !important;
 
   --tab-separator-opacity: 0.35 !important;
   // mf tabs only have top margin unlike default FF tabs
   --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
+
   --mf-tab-top-radius: 8px;
   --mf-tab-bottom-radius: var(--mf-tab-top-radius);
 
-  --toolbar-field-background-color: hsl(200, 12%, 95%) !important;
-  --toolbar-field-hover-background-color: hsl(216, 12%, 92%) !important;
-  --toolbar-field-focus-background-color: hsl(0, 0%, 100%) !important;
+  --toolbar-field-background-color: var(--mf-background-color-canvas-dark) !important;
+  --toolbar-field-background-color-hover: var(--mf-background-color-canvas-dark-hover) !important;
+  --toolbar-field-background-color-focus: var(--mf-background-color-canvas-dark) !important;
 
+  --arrowpanel-background: var(--mf-background-color-canvas) !important;
+  --arrowpanel-color: var(--mf-primary-text-color) !important;
   --arrowpanel-menuitem-margin: 0 !important;
   --arrowpanel-menuitem-margin-inline: 0 !important;
-  --panel-menuitem-margin-inline: 0 !important;
   --arrowpanel-menuitem-padding-block: 6px !important;
   --arrowpanel-menuitem-padding-inline: 10px !important;
   --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block)
     var(--arrowpanel-menuitem-padding-inline) !important;
   --arrowpanel-menuitem-border-radius: 0px !important;
+
+  --panel-menuitem-margin-inline: 0 !important;
   --panel-menuitem-border-radius: 0 !important;
+  --panel-text-color: var(--mf-primary-text-color) !important;
+  --panel-background-color: var(--mf-background-color-canvas) !important;
+  --panel-border-color: var(--panel-background-color) !important;
 
-  --arrowpanel-background: var(--mf-background-color-canvas) !important;
-  --panel-background: var(--mf-background-color-canvas) !important;
-  --panel-border-color: var(--panel-background) !important;
-
-  --arrowpanel-color: var(--mf-primary-text-color) !important;
   --autocomplete-popup-color: var(--mf-primary-text-color) !important;
 
   accent-color: var(--mf-primary-color) !important;
 
-  --lwt-accent-color: light-dark(#dee1e6, #202124) !important;
-  --lwt-text-color: light-dark(#606368, #9ba0a5) !important;
-
-  --toolbar-bgcolor: var(--mf-background-color-canvas) !important;
+  --toolbar-background-color: var(--mf-background-color-canvas) !important;
   --toolbar-color: light-dark(#606368, #fff) !important;
 
-  --toolbox-border-bottom-color: light-dark(#b3b1b3, #282828) !important; /* legacy */
-  --chrome-content-separator-color: light-dark(#b3b1b3, #282828) !important;
+  --toolbox-background-color: var(--mf-background-color-canvas-dark) !important;
+  --toolbox-border-bottom-color: var(--mf-background-color-canvas-dark-hover) !important;
 
-  --lwt-toolbarbutton-icon-fill: light-dark(#606368, #fff) !important;
-  --lwt-toolbarbutton-icon-fill-attention: light-dark(#5086ec, var(--mf-primary-color)) !important;
+  --chrome-content-separator-color: var(--mf-background-color-canvas-dark-hover) !important;
 
-  --button-background-color-hover: var(--toolbarbutton-hover-background) !important;
+  --button-background-color-hover: var(--toolbarbutton-background-color-hover) !important;
 
-  --lwt-toolbar-field-color: light-dark(#202124, #fff) !important;
+  --button-background-color-primary: var(--mf-primary-color) !important;
+  --button-border-color-primary: var(--mf-primary-color) !important;
+  --button-text-color-primary: var(--mf-primary-text-color) !important;
 
-  --autocomplete-popup-highlight-background: light-dark(#f2f2f2, #4c4f52) !important;
-  --autocomplete-popup-highlight-color: light-dark(#202124, #fff) !important;
+  --button-background-color-primary-hover: var(--mf-primary-color-lighter) !important;
+  --button-border-color-primary-hover: var(--mf-primary-color-lighter) !important;
+  --button-text-color-primary-hover: var(--mf-primary-text-color) !important;
 
-  &[privatebrowsingmode='temporary'] {
-    --toolbar-field-background-color: #202124 !important;
-    --toolbar-field-hover-background-color: #292a2d !important;
-    --toolbar-field-focus-background-color: #202124 !important;
+  --button-background-color-primary-active: var(--mf-primary-color-very-light) !important;
+  --button-border-color-primary-active: var(--mf-primary-color-very-light) !important;
+  --button-text-color-primary-active: var(--mf-primary-text-color) !important;
 
     & :is(#urlbar, #searchbar) {
       --toolbarbutton-hover-background: hsl(206, 5%, 26%) !important;
       --toolbarbutton-active-background: hsl(210, 4%, 31%) !important;
     }
-  }
-
-  &:not(:-moz-lwtheme):not([privatebrowsingmode='temporary']) {
-    --toolbar-bgcolor: hsl(0, 0%, 100%) !important;
-    --toolbar-color: hsl(213, 5%, 39%) !important;
-    --toolbox-border-bottom-color: hsl(0, 0%, 70%) !important;
   }
 
   &[sizemode='maximized'] {
@@ -139,10 +123,6 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    --toolbar-field-background-color: #202124 !important;
-    --toolbar-field-hover-background-color: #292a2d !important;
-    --toolbar-field-focus-background-color: #202124 !important;
-
     --focus-outline-color: var(--mf-primary-color) !important;
 
     --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
@@ -183,14 +163,6 @@
 @include moz-pref-media('materialFox.reduceTabOverflow') {
   #tabbrowser-tabs {
     --tab-min-width: 32px !important;
-  }
-}
-
-/* Ubuntu */
-@media (-moz-gtk-csd-available) {
-  :root:not(:-moz-lwtheme):not([privatebrowsingmode='temporary']) {
-    --toolbar-bgcolor: -moz-dialog !important;
-    --toolbar-color: -moz-dialogtext !important;
   }
 }
 

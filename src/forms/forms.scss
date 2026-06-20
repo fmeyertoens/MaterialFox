@@ -1,8 +1,3 @@
-.checkbox-check[checked] {
-  --checkbox-checked-bgcolor: var(--mf-primary-color);
-  fill: var(--mf-primary-text-color) !important;
-}
-
 .autocomplete-richlistitem[selected] {
   background-color: var(--mf-primary-color) !important;
   color: var(--mf-primary-text-color) !important;

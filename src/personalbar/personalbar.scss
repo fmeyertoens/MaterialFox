@@ -8,8 +8,14 @@
 }
 
 #PlacesToolbar {
-  #PlacesToolbarItems toolbarbutton.bookmark-item:not(.subviewbutton) {
-    border-radius: 8px !important;
+  margin-block-end: 4px; // Creates equal space above and below bookmark items
+
+  #PlacesToolbarItems {
+    gap: 2px;
+
+    toolbarbutton.bookmark-item:not(.subviewbutton) {
+      border-radius: var(--mf-bookmark-item-border-radius) !important;
+    }
   }
 }
 

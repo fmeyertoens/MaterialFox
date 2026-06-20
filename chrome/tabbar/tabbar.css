@@ -40,6 +40,7 @@
 
 #TabsToolbar-customization-target {
   margin-block-start: var(--mf-space-above-tabbar);
+  align-items: center;
 }
 
 #tabbrowser-tabs {
@@ -116,7 +117,7 @@ toolbarpaletteitem:not(#wrapper-firefox-view-button)) + #tabbrowser-tabs {
   margin-block-start: var(--mf-tab-margin-top) !important;
   /* tab background color */
   --mf-tab-opacity: 0;
-  --mf-tab-bgcolor: oklch(0% 0 0 / var(--mf-tab-opacity));
+  --mf-tab-background-color: oklch(0% 0 0 / var(--mf-tab-opacity));
   --mf-tab-transition-duration: 0.2s;
   --mf-tab-max-width: 240px;
   --tab-overflow-clip-margin: var(--mf-tab-bottom-radius) !important;
@@ -126,7 +127,7 @@ toolbarpaletteitem:not(#wrapper-firefox-view-button)) + #tabbrowser-tabs {
 }
 .tabbrowser-tab:not([selected]):hover, .tabbrowser-tab[multiselected]:not([selected]) {
   --mf-tab-opacity: 0.1;
-  --focus-outline-color: var(--mf-tab-bgcolor);
+  --focus-outline-color: var(--mf-tab-background-color);
 }
 .tabbrowser-tab .tab-background[multiselected][selected] {
   --tab-border-radius: var(--mf-tab-top-radius);
@@ -242,7 +243,7 @@ toolbarpaletteitem:not(#wrapper-firefox-view-button)) + #tabbrowser-tabs {
 
 :is(:root[privatebrowsingmode=temporary], #TabsToolbar[brighttext]) .tabbrowser-tab {
   --mf-tab-opacity: 0;
-  --mf-tab-bgcolor: oklch(1 0 0 / var(--mf-tab-opacity));
+  --mf-tab-background-color: oklch(1 0 0 / var(--mf-tab-opacity));
 }
 
 :is(:root[privatebrowsingmode=temporary], #TabsToolbar[brighttext]) .tabbrowser-tab:not([selected=true]):hover,
@@ -251,7 +252,7 @@ toolbarpaletteitem:not(#wrapper-firefox-view-button)) + #tabbrowser-tabs {
 }
 
 #TabsToolbar .tabbrowser-tab[visuallyselected] {
-  --mf-tab-bgcolor: var(--toolbar-bgcolor);
+  --mf-tab-background-color: var(--toolbar-background-color);
   --mf-tab-opacity: 1;
 }
 
@@ -263,7 +264,7 @@ tab-group[collapsed] .tabbrowser-tab {
   /* rounded top corners */
   --tab-border-radius: var(--mf-tab-top-radius) var(--mf-tab-top-radius) 0 0;
   margin-block: 0 !important;
-  background: var(--mf-tab-bgcolor) !important;
+  background: var(--mf-tab-background-color) !important;
   position: relative !important;
   border: 0 !important;
   transition: opacity var(--mf-tab-transition-duration) var(--ease-basic), background-color var(--mf-tab-transition-duration) var(--ease-basic) !important;
@@ -288,13 +289,13 @@ tab-group[collapsed] .tabbrowser-tab {
   border-bottom-right-radius: var(--radius) !important;
   left: 0 !important;
   transform: translateX(calc(-1 * var(--radius))) !important;
-  box-shadow: var(--half-radius) var(--half-radius) 0 var(--half-radius) var(--mf-tab-bgcolor) !important;
+  box-shadow: var(--half-radius) var(--half-radius) 0 var(--half-radius) var(--mf-tab-background-color) !important;
 }
 .tab-background::after {
   border-bottom-left-radius: var(--radius) !important;
   right: 0 !important;
   transform: translateX(var(--radius)) !important;
-  box-shadow: calc(-1 * var(--half-radius)) var(--half-radius) 0 var(--half-radius) var(--mf-tab-bgcolor) !important;
+  box-shadow: calc(-1 * var(--half-radius)) var(--half-radius) 0 var(--half-radius) var(--mf-tab-background-color) !important;
 }
 
 .tab-icon-image {
@@ -329,12 +330,12 @@ tab-group[collapsed] .tabbrowser-tab {
 .tab-close-button:hover,
 .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]):hover,
 .tab-icon-sound:hover {
-  background-color: var(--toolbarbutton-hover-background) !important;
+  background-color: var(--toolbarbutton-background-color-hover) !important;
 }
 .tab-close-button:hover:active,
 .tab-icon-overlay:is([soundplaying], [muted], [activemedia-blocked]):hover:active,
 .tab-icon-sound:hover:active {
-  background-color: var(--toolbarbutton-active-background) !important;
+  background-color: var(--toolbarbutton-background-color-active) !important;
 }
 
 .tab-audio-button {
@@ -446,6 +447,10 @@ tab-group[collapsed] .tabbrowser-tab {
 #tabbrowser-tabs #tabs-newtab-button,
 #TabsToolbar #new-tab-button {
   margin-block-start: var(--mf-tab-margin-top) !important;
+}
+
+#tabbrowser-arrowscrollbox-periphery {
+  align-items: center;
 }
 
 /* < 72 */

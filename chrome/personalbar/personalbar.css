@@ -6,8 +6,14 @@
   --toolbarbutton-inner-padding: 6px !important;
 }
 
+#PlacesToolbar {
+  margin-block-end: 4px;
+}
+#PlacesToolbar #PlacesToolbarItems {
+  gap: 2px;
+}
 #PlacesToolbar #PlacesToolbarItems toolbarbutton.bookmark-item:not(.subviewbutton) {
-  border-radius: 8px !important;
+  border-radius: var(--mf-bookmark-item-border-radius) !important;
 }
 
 #PlacesChevron > .toolbarbutton-icon {
@@ -15,11 +21,13 @@
   height: calc(2 * var(--toolbarbutton-inner-padding) + 16px) !important;
 }
 
-.bookmark-item[container], .bookmark-item[hostContainer] {
+.bookmark-item[container],
+.bookmark-item[hostContainer] {
   --bookmark-item-icon: url(../icons/folder.svg);
 }
 @media (prefers-color-scheme: dark) {
-  .bookmark-item[container], .bookmark-item[hostContainer] {
+  .bookmark-item[container],
+  .bookmark-item[hostContainer] {
     --bookmark-item-icon: url(../icons/folder-dark.svg);
   }
 }

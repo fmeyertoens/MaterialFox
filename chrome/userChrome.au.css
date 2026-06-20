@@ -22,6 +22,7 @@
 }
 #tabbrowser-arrowscrollbox::part(scrollbutton-down), #tabbrowser-arrowscrollbox::part(scrollbutton-up) {
   margin-block-start: var(--mf-tab-margin-top) !important;
+  padding: 2px !important;
 }
 
 #pinned-tabs-container::part(scrollbox) {
@@ -30,7 +31,7 @@
 
 menupopup::part(content) {
   padding-inline: 0 !important;
-  --panel-background: var(--arrowpanel-background);
+  --panel-background-color: var(--arrowpanel-background);
 }
 
 /*# sourceMappingURL=userChrome.au.css.map */

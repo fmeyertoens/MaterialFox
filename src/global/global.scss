@@ -22,13 +22,14 @@
   }
 }
 
-#navigator-toolbox :where(.toolbarbutton-1, toolbarbutton.bookmark-item:not(.subviewbutton)),
+toolbar .toolbarbutton-1 > :is(.toolbarbutton-text, .toolbarbutton-badge-stack),
+// The ripple effect does not work on image elements, so we show it on the parent
+toolbar .toolbarbutton-1:has(> .toolbarbutton-icon),
+toolbarbutton.bookmark-item:not(.subviewbutton),
 .close-icon.findbar-closebutton,
 /* no ::part workaround - may have side effects */
 #scrollbutton-up[part="scrollbutton-up"]:not(.menupopup-scrollbutton),
 #scrollbutton-down[part="scrollbutton-down"]:not(.menupopup-scrollbutton) {
-  border: 2px solid transparent !important;
-  border-radius: 99px !important;
   transition-property: background-color, background-size, fill-opacity !important;
   transition-duration: 0.3s !important;
   transition-timing-function: var(--ease-basic), var(--ease-out), var(--ease-basic) !important;
@@ -40,7 +41,6 @@
   background-size: 25% !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
-  background-color: transparent !important;
   background-clip: padding-box !important;
 
   font-size: 12px !important;
@@ -49,13 +49,27 @@
     opacity: 0.42 !important;
   }
 
-  &:is(:hover, :hover:active, [checked], [open]):not([disabled]) {
-    background-color: var(--toolbarbutton-hover-background) !important;
-  }
-
   &:is(:hover:active, [checked], [open]):not([disabled]) {
     fill-opacity: 0.04 !important;
     background-size: 120% !important;
+  }
+
+  & > box {
+    fill-opacity: 1; // Prevent icon from inheriting ripple fill-opacity
+  }
+}
+
+toolbar .toolbarbutton-1.toolbarbutton-1:has(> .toolbarbutton-icon),
+#scrollbutton-up[part='scrollbutton-up']:not(.menupopup-scrollbutton),
+#scrollbutton-down[part='scrollbutton-down']:not(.menupopup-scrollbutton) {
+  border-radius: var(--toolbarbutton-border-radius);
+
+  &:is(:hover, :hover:active, [checked], [open]):not([disabled]) {
+    background-color: var(--toolbarbutton-background-color-hover) !important;
+  }
+
+  & > .toolbarbutton-icon {
+    background-color: transparent !important;
   }
 }
 
@@ -65,20 +79,10 @@
   margin: 0 !important;
 }
 
-#navigator-toolbox :is(.toolbarbutton-1, .scrollbutton-up, .scrollbutton-down),
-/* no ::part workaround - may have side effects */
-#scrollbutton-up[part="scrollbutton-up"]:not(.menupopup-scrollbutton),
-#scrollbutton-down[part="scrollbutton-down"]:not(.menupopup-scrollbutton) {
-  max-height: 32px !important;
-  height: 32px !important;
-  min-height: 32px !important;
-}
-
 #navigator-toolbox :is(.toolbarbutton-icon, .toolbarbutton-badge-stack),
 /* no ::part workaround - may have side effects */
 #scrollbutton-up[part="scrollbutton-up"]:not(.menupopup-scrollbutton) > .toolbarbutton-icon,
 #scrollbutton-down[part="scrollbutton-down"]:not(.menupopup-scrollbutton) > .toolbarbutton-icon {
-  fill-opacity: 1 !important;
   border: 0 !important;
   box-shadow: none !important;
 }
@@ -89,16 +93,11 @@
 #scrollbutton-up[part="scrollbutton-up"]:not(.menupopup-scrollbutton) > .toolbarbutton-icon,
 #scrollbutton-down[part="scrollbutton-down"]:not(.menupopup-scrollbutton) > .toolbarbutton-icon {
   padding: 6px !important;
-  background: 0 !important;
-}
-
-toolbarbutton {
-  padding: 4px !important;
 }
 
 .toolbarbutton-icon {
   -moz-context-properties: fill, stroke;
-  fill: var(--lwt-toolbarbutton-icon-fill);
+  fill: currentColor;
 }
 
 /*
@@ -132,10 +131,12 @@ toolbarbutton {
   display: flex !important;
   border-radius: 4px !important;
   padding: 6px !important;
-  background: #333 !important;
+  background: hsl(0, 0%, 20%) !important;
   border: 0 !important;
   font-size: 14px !important;
-  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14),
+  box-shadow:
+    0 3px 5px -1px rgba(0, 0, 0, 0.2),
+    0 6px 10px 0 rgba(0, 0, 0, 0.14),
     0 1px 18px 0 rgba(0, 0, 0, 0.12) !important;
   color: hsla(0, 0%, 100%, 0.87) !important;
   transition-timing-function: var(--ease-out), linear !important;
@@ -228,6 +229,6 @@ toolbarbutton {
   #navigator-toolbox {
     border-bottom-width: 0.5px !important;
     padding-bottom: 0.5px !important;
-    box-shadow: inset 0 -0.5px var(--toolbar-bgcolor) !important;
+    box-shadow: inset 0 -0.5px var(--toolbar-background-color) !important;
   }
 }

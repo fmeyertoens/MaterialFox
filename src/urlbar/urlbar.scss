@@ -135,8 +135,7 @@
   // Firefox variables
   --urlbar-height: 28px !important;
   --urlbar-inner-border-radius: var(--border-radius-circle);
-  --urlbar-box-bgcolor: var(--toolbar-bgcolor);
-  --urlbar-box-background-color: var(--mf-background-color-canvas) !important;
+  --urlbar-box-background-color: var(--toolbar-background-color) !important;
 
   min-height: var(--urlbar-height) !important;
 
@@ -145,12 +144,12 @@
   }
 
   &:hover {
-    background-color: var(--toolbar-field-hover-background-color) !important;
+    background-color: var(--toolbar-field-background-color-hover) !important;
   }
 
   &[focused],
   &[open] {
-    background-color: var(--toolbar-field-focus-background-color) !important;
+    background-color: var(--toolbar-field-background-color-focus) !important;
   }
 
   &[focused] {
@@ -182,6 +181,7 @@
 .urlbar-background,
 #searchbar {
   border-radius: var(--border-radius-circle) !important;
+  background-color: transparent !important; // #urlbar already has a background color
 
   #urlbar[open] & {
     border-radius: 8px !important;
@@ -219,7 +219,7 @@
 
 #urlbar-input,
 .searchbar-textbox {
-  color: var(--lwt-toolbar-field-color) !important;
+  color: var(--toolbar-field-text-color) !important;
 }
 
 #urlbar-input::placeholder,
@@ -450,7 +450,7 @@
 .searchbar-search-button:hover,
 #identity-box .identity-box-button:hover:not(.no-hover),
 #tracking-protection-icon-container:hover #tracking-protection-icon-box {
-  background-color: var(--toolbarbutton-hover-background) !important;
+  background-color: var(--toolbarbutton-background-color-hover) !important;
 }
 
 .urlbar-page-action:hover:active:not([disabled]),
@@ -460,7 +460,7 @@
 #identity-box .identity-box-button:hover:active:not(.no-hover),
 #identity-box .identity-box-button[open]:not(.no-hover),
 #tracking-protection-icon-container[open] #tracking-protection-icon-box {
-  background-color: var(--toolbarbutton-active-background) !important;
+  background-color: var(--toolbarbutton-background-color-active) !important;
   transition-duration: 0 !important;
 }
 

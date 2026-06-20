@@ -2,7 +2,6 @@
   min-height: 36px !important;
   box-shadow: none !important;
   padding-inline: 5px 6px !important;
-  background-color: var(--toolbar-bgcolor) !important;
 
   &[urlbar-exceeds-toolbar-bounds] #urlbar-container {
     // vertically align url bar when open
@@ -38,5 +37,6 @@
 }
 
 #nav-bar-customization-target {
+  align-items: center;
   overflow: visible !important;
 }

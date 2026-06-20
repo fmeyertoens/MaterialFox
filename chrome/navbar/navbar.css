@@ -2,7 +2,6 @@
   min-height: 36px !important;
   box-shadow: none !important;
   padding-inline: 5px 6px !important;
-  background-color: var(--toolbar-bgcolor) !important;
 }
 #nav-bar[urlbar-exceeds-toolbar-bounds] #urlbar-container {
   align-items: start !important;
@@ -36,6 +35,7 @@
 }
 
 #nav-bar-customization-target {
+  align-items: center;
   overflow: visible !important;
 }
 

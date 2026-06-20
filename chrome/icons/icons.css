@@ -73,6 +73,10 @@
   list-style-image: url(history.svg) !important;
 }
 
+#appMenu-library-downloads-button {
+  list-style-image: url("chrome://browser/skin/downloads/downloads.svg");
+}
+
 #appMenu-logins-button,
 richlistitem[originaltype=loginWithOrigin] .ac-site-icon,
 richlistitem[originaltype=loginsFooter] .ac-site-icon {

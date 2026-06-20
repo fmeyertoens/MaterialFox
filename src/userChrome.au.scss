@@ -28,6 +28,7 @@
   &::part(scrollbutton-down),
   &::part(scrollbutton-up) {
     margin-block-start: var(--mf-tab-margin-top) !important;
+    padding: 2px !important;
   }
 }
 
@@ -40,6 +41,6 @@
 menupopup {
   &::part(content) {
     padding-inline: 0 !important;
-    --panel-background: var(--arrowpanel-background);
+    --panel-background-color: var(--arrowpanel-background);
   }
 }
