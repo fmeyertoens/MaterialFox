@@ -102,6 +102,7 @@
   --button-border-color-primary-active: var(--mf-primary-color-very-light) !important;
   --button-text-color-primary-active: var(--mf-primary-text-color) !important;
 
+  &[privatebrowsingmode='temporary'] {
     & :is(#urlbar, #searchbar) {
       --toolbarbutton-hover-background: hsl(206, 5%, 26%) !important;
       --toolbarbutton-active-background: hsl(210, 4%, 31%) !important;

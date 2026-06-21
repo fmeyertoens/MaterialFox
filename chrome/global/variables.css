@@ -1,17 +1,169 @@
-/* Error: expected "{".
- *     ,
- * 126 |     --focus-outline-color: var(--mf-primary-color) !important;
- *     |                                                    ^
- *     '
- *   src/global/variables.scss 126:52  root stylesheet */
-
-body::before {
-  font-family: "Source Code Pro", "SF Mono", Monaco, Inconsolata, "Fira Mono",
-      "Droid Sans Mono", monospace, monospace;
-  white-space: pre;
-  display: block;
-  padding: 1em;
-  margin-bottom: 1em;
-  border-bottom: 2px solid black;
-  content: 'Error: expected "{".\a     \2577 \a 126 \2502      --focus-outline-color: var(--mf-primary-color) !important;\a     \2502                                                     ^\a     \2575 \a   src/global/variables.scss 126:52  root stylesheet';
+:host,
+:root {
+  --mf-primary-color: hsl(219, 72%, 53%);
+  --mf-primary-color-lighter: hsl(219, 75%, 60%);
+  --mf-primary-color-very-light: hsl(219, 80%, 65%);
+  --mf-primary-text-color: light-dark(hsl(217, 4%, 39%), #fff);
+  --mf-primary-text-hover-color: light-dark(hsl(225, 6%, 13%), #fff);
+  --mf-background-color-canvas: light-dark(#fff, hsl(0, 0%, 22%));
+  --mf-background-color-canvas-dark: light-dark(hsl(240, 8%, 92%), hsl(0, 0%, 13%));
+  --mf-background-color-canvas-dark-hover: light-dark(hsl(300, 1%, 70%), hsl(0, 0%, 16%));
+  --error-color: hsl(3, 100%, 62%);
+  --error-text-color: var(--error-color) !important;
+  --toolbarbutton-icon-fill-attention: var(--mf-primary-color) !important;
+  --toolbarbutton-border-radius: var(--mf-pill-border-radius) !important;
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --ease-basic: linear;
+  --button-size: 32px; /* is this used? */
+  --icon-size: 24px; /* is this used? */
+  --downloads-item-height: 48px !important;
+  --item-height: 28px;
+  --mf-bookmark-item-border-radius: 8px;
+  --popup-border-radius: 8px;
+  --icon-button-radius: 50%;
+  --mf-pill-border-radius: 99px;
+  --toolbar-field-fontsize: 14px !important;
+  --mf-space-above-tabbar: 8px;
+  --mf-tab-shadow-size: 4px;
+  --mf-tab-margin-top: var(--mf-tab-shadow-size);
+  --mf-tab-height: 32px !important;
+  --mf-tab-height-full: calc(var(--mf-tab-height) + var(--mf-tab-margin-top));
+  --mf-tab-split-group-line-color: hsla(0, 0%, 100%, 0.4);
+  --mf-tab-split-group-line-height: 2px;
+  --tab-min-height: var(--mf-tab-height) !important;
+  --tab-separator-opacity: 0.35 !important;
+  --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
+  --mf-tab-top-radius: 8px;
+  --mf-tab-bottom-radius: var(--mf-tab-top-radius);
+  --toolbar-field-background-color: var(--mf-background-color-canvas-dark) !important;
+  --toolbar-field-background-color-hover: var(--mf-background-color-canvas-dark-hover) !important;
+  --toolbar-field-background-color-focus: var(--mf-background-color-canvas-dark) !important;
+  --arrowpanel-background: var(--mf-background-color-canvas) !important;
+  --arrowpanel-color: var(--mf-primary-text-color) !important;
+  --arrowpanel-menuitem-margin: 0 !important;
+  --arrowpanel-menuitem-margin-inline: 0 !important;
+  --arrowpanel-menuitem-padding-block: 6px !important;
+  --arrowpanel-menuitem-padding-inline: 10px !important;
+  --arrowpanel-menuitem-padding: var(--arrowpanel-menuitem-padding-block)
+    var(--arrowpanel-menuitem-padding-inline) !important;
+  --arrowpanel-menuitem-border-radius: 0px !important;
+  --panel-menuitem-margin-inline: 0 !important;
+  --panel-menuitem-border-radius: 0 !important;
+  --panel-text-color: var(--mf-primary-text-color) !important;
+  --panel-background-color: var(--mf-background-color-canvas) !important;
+  --panel-border-color: var(--panel-background-color) !important;
+  --autocomplete-popup-color: var(--mf-primary-text-color) !important;
+  accent-color: var(--mf-primary-color) !important;
+  --toolbar-background-color: var(--mf-background-color-canvas) !important;
+  --toolbar-color: light-dark(#606368, #fff) !important;
+  --toolbox-background-color: var(--mf-background-color-canvas-dark) !important;
+  --toolbox-border-bottom-color: var(--mf-background-color-canvas-dark-hover) !important;
+  --chrome-content-separator-color: var(--mf-background-color-canvas-dark-hover) !important;
+  --button-background-color-hover: var(--toolbarbutton-background-color-hover) !important;
+  --button-background-color-primary: var(--mf-primary-color) !important;
+  --button-border-color-primary: var(--mf-primary-color) !important;
+  --button-text-color-primary: var(--mf-primary-text-color) !important;
+  --button-background-color-primary-hover: var(--mf-primary-color-lighter) !important;
+  --button-border-color-primary-hover: var(--mf-primary-color-lighter) !important;
+  --button-text-color-primary-hover: var(--mf-primary-text-color) !important;
+  --button-background-color-primary-active: var(--mf-primary-color-very-light) !important;
+  --button-border-color-primary-active: var(--mf-primary-color-very-light) !important;
+  --button-text-color-primary-active: var(--mf-primary-text-color) !important;
 }
+:host[privatebrowsingmode=temporary] :is(#urlbar, #searchbar),
+:root[privatebrowsingmode=temporary] :is(#urlbar, #searchbar) {
+  --toolbarbutton-hover-background: hsl(206, 5%, 26%) !important;
+  --toolbarbutton-active-background: hsl(210, 4%, 31%) !important;
+}
+:host[sizemode=maximized],
+:root[sizemode=maximized] {
+  --mf-tab-margin-top: 0;
+}
+:host ::selection,
+:root ::selection {
+  background-color: var(--mf-primary-color);
+  color: var(--mf-primary-text-color);
+}
+:host :is(#urlbar, #searchbar),
+:root :is(#urlbar, #searchbar) {
+  --toolbarbutton-hover-background: light-dark(hsl(210, 5%, 85%), hsl(206, 5%, 26%)) !important;
+  --toolbarbutton-active-background: light-dark(hsl(210, 4%, 80%), hsl(210, 4%, 31%)) !important;
+}
+@media (prefers-color-scheme: dark) {
+  :host,
+  :root {
+    --focus-outline-color: var(--mf-primary-color) !important;
+    --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
+    --panel-disabled-color: hsla(0, 0%, 100%, 0.5) !important;
+    /* popup_border */
+    --arrowpanel-border-color: transparent !important;
+    --autocomplete-popup-border-color: hsl(0, 0%, 33%) !important;
+    /* urlbar popup */
+    --lwt-brighttext-url-color: var(--mf-primary-color) !important;
+  }
+}
+@media (-moz-pref("materialFox.maximizedNoTopPadding")) {
+  :host[sizemode=maximized],
+  :root[sizemode=maximized] {
+    --mf-space-above-tabbar: 0px;
+  }
+}
+
+:is(#sidebar-box, #sidebar)[style*="--sidebar-background-color:rgb(56, 56, 61);"] {
+  /* sidebar */
+  --sidebar-background-color: #333639 !important;
+  /* sidebar_text */
+  --sidebar-text-color: #f1f3ee !important;
+}
+
+:is(.sidebar-panel, body)[style*="--lwt-sidebar-background-color:rgb(56, 56, 61);"] {
+  /* sidebar */
+  --lwt-sidebar-background-color: #333639 !important;
+  /* sidebar_text */
+  --lwt-sidebar-text-color: #f1f3ee !important;
+}
+
+@media (-moz-pref("materialFox.reduceTabOverflow")) {
+  #tabbrowser-tabs {
+    --tab-min-width: 32px !important;
+  }
+}
+:root:-moz-lwtheme-darktext,
+:root toolbar:not([brighttext]),
+.tabbrowser-tab[visuallyselected] {
+  --toolbarbutton-hover-background: var(
+    --lwt-toolbarbutton-hover-background,
+    hsla(0, 0%, 0%, 0.07)
+  ) !important;
+  --toolbarbutton-active-background: var(
+    --lwt-toolbarbutton-active-background,
+    hsla(0, 0%, 0%, 0.11)
+  ) !important;
+}
+
+:root:-moz-lwtheme-brighttext,
+:root toolbar[brighttext],
+.tabbrowser-tab[visuallyselected]:-moz-lwtheme-brighttext {
+  --toolbarbutton-hover-background: var(
+    --lwt-toolbarbutton-hover-background,
+    hsla(0, 0%, 100%, 0.1)
+  ) !important;
+  --toolbarbutton-active-background: var(
+    --lwt-toolbarbutton-active-background,
+    hsla(0, 0%, 100%, 0.17)
+  ) !important;
+}
+
+@-moz-document url("chrome://browser/content/places/bookmarkProperties.xhtml"), url("chrome://browser/content/places/bookmarkProperties2.xhtml") {
+  :root[dialogroot], :root[dialogroot] dialog {
+    --in-content-primary-button-background: var(--mf-primary-color) !important;
+    --in-content-primary-button-text-color: var(--mf-primary-text-color) !important;
+    --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
+    --in-content-primary-button-text-color-hover: var(--mf-primary-text-color) !important;
+    --in-content-primary-button-background-active: var(--mf-primary-color-very-light) !important;
+    --in-content-primary-button-text-color-active: var(--mf-primary-text-color) !important;
+  }
+}
+
+/*# sourceMappingURL=variables.css.map */
