@@ -33,9 +33,10 @@
   --mf-tab-split-group-line-height: 2px;
   --tab-min-height: var(--mf-tab-height) !important;
   --tab-separator-opacity: 0.35 !important;
-  --tab-block-margin: calc(var(--mf-tab-margin-top) / 2) !important;
+  --tab-margin-block: calc(var(--mf-tab-margin-top) / 2) !important;
   --mf-tab-top-radius: 8px;
   --mf-tab-bottom-radius: var(--mf-tab-top-radius);
+  --toolbar-field-border-color-focus: transparent !important;
   --toolbar-field-background-color: var(--mf-background-color-canvas-dark) !important;
   --toolbar-field-background-color-hover: var(--mf-background-color-canvas-dark-hover) !important;
   --toolbar-field-background-color-focus: var(--mf-background-color-canvas-dark) !important;
