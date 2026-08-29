@@ -8,6 +8,7 @@
   --mf-background-color-canvas: light-dark(#fff, hsl(0, 0%, 22%));
   --mf-background-color-canvas-dark: light-dark(hsl(240, 8%, 92%), hsl(0, 0%, 13%));
   --mf-background-color-canvas-dark-hover: light-dark(hsl(300, 1%, 70%), hsl(0, 0%, 16%));
+  --mf-color-scheme: light;
   --error-color: hsl(3, 100%, 62%);
   --error-text-color: var(--error-color) !important;
   --toolbarbutton-icon-fill-attention: var(--mf-primary-color) !important;
@@ -94,6 +95,7 @@
 @media (prefers-color-scheme: dark) {
   :host,
   :root {
+    --mf-color-scheme: dark;
     --focus-outline-color: var(--mf-primary-color) !important;
     --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
     --panel-disabled-color: hsla(0, 0%, 100%, 0.5) !important;

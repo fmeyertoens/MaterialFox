@@ -65,6 +65,7 @@ menuitem[type=radio] .menu-iconic-icon {
 
 .menupopup-arrowscrollbox {
   border: none !important;
+  --panel-border-radius: var(--popup-border-radius);
 }
 
 .panel-viewstack .toolbarbutton-text {
@@ -107,6 +108,15 @@ image[part=drop-indicator] {
 
 :root[dialogroot] {
   --background-color-canvas: var(--mf-background-color-canvas) !important;
+}
+
+#clipboardReadPasteMenuPopup,
+#contentAreaContextMenu,
+#DateTimePickerPanel,
+#PopupAutoComplete,
+#remoteBrowserTooltip,
+#aHTMLTooltip[contenttooltip] {
+  color-scheme: var(--mf-color-scheme) !important;
 }
 
 /*# sourceMappingURL=popup.css.map */

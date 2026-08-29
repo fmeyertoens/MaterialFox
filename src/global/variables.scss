@@ -14,6 +14,8 @@
   --mf-background-color-canvas-dark: light-dark(hsl(240, 8%, 92%), hsl(0, 0%, 13%));
   --mf-background-color-canvas-dark-hover: light-dark(hsl(300, 1%, 70%), hsl(0, 0%, 16%));
 
+  --mf-color-scheme: light;
+
   --error-color: hsl(3, 100%, 62%);
   --error-text-color: var(--error-color) !important;
 
@@ -125,6 +127,8 @@
   }
 
   @media (prefers-color-scheme: dark) {
+    --mf-color-scheme: dark;
+
     --focus-outline-color: var(--mf-primary-color) !important;
 
     --in-content-primary-button-background-hover: var(--mf-primary-color-lighter) !important;
