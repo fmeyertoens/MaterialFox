@@ -91,6 +91,7 @@
 
   --chrome-content-separator-color: var(--mf-background-color-canvas-dark-hover) !important;
 
+  --button-background-color: var(--mf-background-color-canvas) !important;
   --button-background-color-hover: var(--toolbarbutton-background-color-hover) !important;
 
   --button-background-color-primary: var(--mf-primary-color) !important;
@@ -104,6 +105,9 @@
   --button-background-color-primary-active: var(--mf-primary-color-very-light) !important;
   --button-border-color-primary-active: var(--mf-primary-color-very-light) !important;
   --button-text-color-primary-active: var(--mf-primary-text-color) !important;
+
+  --urlbar-input-container-border-width: 2px !important;
+  --urlbar-input-container-padding: 0 !important;
 
   &[privatebrowsingmode='temporary'] {
     & :is(#urlbar, #searchbar) {

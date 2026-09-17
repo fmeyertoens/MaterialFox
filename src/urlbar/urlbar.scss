@@ -182,6 +182,7 @@
 #searchbar {
   border-radius: var(--border-radius-circle) !important;
   background-color: transparent !important; // #urlbar already has a background color
+  border-color: transparent !important;
 
   #urlbar[open] & {
     border-radius: 8px !important;
@@ -200,7 +201,7 @@
 
 .urlbar-input-container {
   padding: 0 !important;
-  border: 2px solid transparent !important;
+  border: var(--urlbar-input-container-border-width) solid transparent !important;
   border-radius: 99px !important;
 }
 
@@ -654,7 +655,6 @@
 #searchbar-input,
 .searchbar-textbox /* < 71 */ {
   transform: translateY(var(--input-offset)) !important;
-  line-height: 1.745em !important;
 }
 
 /* 1x */
