@@ -1,55 +1,6 @@
-.urlbarView-row {
-  /* don't indent url */
-  --urlbarView-second-line-indent: 0 !important;
-}
-.urlbarView-row[has-url][type]:not([type=bookmark]) .urlbarView-row-inner {
-  /* keep title and url on the same line */
-  flex-direction: row !important;
-}
-.urlbarView-row[has-url][type]:not([type=bookmark]) .urlbarView-no-wrap {
-  /* overwrite width: 100% which in turn overwrites flex-basis */
-  width: auto !important;
-}
-.urlbarView-row-inner {
-  /* space to separate title and url */
-  column-gap: 2em;
-  justify-content: space-between !important;
-}
-.urlbarView-title-separator {
-  /* not needed because title and url are separated by space */
-  display: none !important;
-}
-.urlbarView-no-wrap {
-  /* shrink first but not below a minimum width */
-  flex-basis: auto;
-  flex-grow: 0 !important;
-  flex-shrink: 9999 !important;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  min-width: 30ch;
-  column-gap: 2em;
-}
-.urlbarView-action {
-  /* allow to shrink */
-  flex: 0 1 auto !important;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.urlbarView-url {
-  /* place at the end of the line */
-  /* don't shrink until the title is at its minimum width */
-  flex-grow: 1 !important;
-  flex-shrink: 1 !important;
-  flex-basis: 100% !important;
-  max-width: max-content !important;
-}
-.urlbarView-group-aria-label {
-  /* prevent gap before first title in a group */
-  display: none;
-}
-.urlbarView-tags:empty, .urlbarView-url:empty, .urlbarView-action:empty, .urlbarView-no-wrap > span:empty {
-  /* prevent double gap */
-  display: none !important;
+.urlbarView-favicon {
+  margin-inline-end: 10px !important;
+  fill-opacity: 0.6 !important;
 }
 
 /*# sourceMappingURL=urlbarView.css.map */

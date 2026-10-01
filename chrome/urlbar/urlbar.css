@@ -1,20 +1,11 @@
-.urlbarView-body-inner {
-  border: 0 !important;
-}
-
 .urlbarView-row {
   padding: 0 !important;
   border-radius: 0 !important;
 }
 
 .urlbarView-row-inner {
-  align-items: center !important;
-  border-radius: 0 !important;
-  position: relative !important;
   padding: 12px 0 !important;
-  padding-inline: 48px 16px !important;
-  max-width: 100% !important;
-  width: auto !important;
+  padding-inline: 8px 16px !important;
 }
 
 .urlbarView-no-wrap {
@@ -24,72 +15,10 @@
   max-width: 100% !important;
 }
 
-.urlbarView-row[has-url][type]:not([type=bookmark]) .urlbarView-row-inner {
-  flex-direction: column !important;
-  align-items: flex-start !important;
-}
 .urlbarView-row[has-url][type]:not([type=bookmark]) .urlbarView-no-wrap {
   height: auto !important;
   align-self: flex-start !important;
   width: 100% !important;
-}
-
-.urlbarView-title-separator {
-  visibility: visible !important;
-}
-
-.urlbarView-title-separator::before {
-  content: "-" !important;
-  color: inherit !important;
-}
-
-.urlbarView-title-separator,
-.urlbarView-action {
-  opacity: 0.6 !important;
-  color: inherit !important;
-  font-size: revert !important;
-}
-
-.urlbarView-favicon {
-  position: absolute !important;
-  left: 16px !important;
-  top: 50% !important;
-  transform: translateY(-50%) !important;
-  fill-opacity: 0.6 !important;
-  flex: unset !important;
-  margin: unset !important;
-}
-
-.urlbarView-title,
-.urlbarView-url {
-  text-overflow: ellipsis !important;
-  mask-image: none !important;
-}
-
-.urlbarView-title {
-  flex: 1 !important;
-  flex-basis: unset !important;
-}
-
-.urlbarView-url {
-  max-width: 100% !important;
-  font-size: revert !important;
-  color: var(--urlbar-popup-url-color) !important;
-  padding: 0 !important;
-}
-.urlbarView-url:not(:empty) {
-  visibility: visible !important;
-}
-
-.urlbarView-action:not(:empty) {
-  display: flex !important;
-}
-
-.urlbarView-row[type=search] ~ .urlbarView-row[type=search] .urlbarView-title-separator,
-.urlbarView-row[type=search] ~ .urlbarView-row[type=search] .urlbarView-action,
-.urlbarView-row[has-url][type]:not([type=bookmark]) .urlbarView-title-separator,
-.urlbarView-type-icon {
-  display: none !important;
 }
 
 .urlbarView-row[type=tip] > .urlbarView-row-inner > .urlbarView-favicon,
@@ -100,14 +29,16 @@
 }
 
 .urlbarView {
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  position: relative !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  background: 0 !important;
+  top: 4px !important;
+  border-radius: var(--mf-urlbarview-border-radius);
   margin: 0 !important;
+  overflow-clip-margin: 0 !important;
+}
+
+.urlbarView-background {
+  inset: 0 !important;
+  clip-path: none !important;
+  border-radius: var(--mf-urlbarview-border-radius) !important;
 }
 
 #urlbar-container {
@@ -128,7 +59,7 @@
   display: block !important;
   margin: 0 !important;
   color: inherit !important;
-  --urlbar-height: 28px !important;
+  --urlbar-height: 24px !important;
   --urlbar-inner-border-radius: var(--border-radius-circle);
   --urlbar-box-background-color: var(--toolbar-background-color) !important;
   min-height: var(--urlbar-height) !important;
@@ -155,8 +86,6 @@
 #searchbar[open] {
   border: 0 !important;
   padding: 0 !important;
-  border-radius: 8px !important;
-  min-height: 37px !important;
   box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12) !important;
   z-index: 99999 !important;
 }
@@ -182,6 +111,8 @@
 
 .urlbar-background {
   --focus-outline: 0 solid transparent;
+  inset: 0 !important;
+  clip-path: none !important;
 }
 
 .urlbar-input-container,
@@ -224,10 +155,6 @@
 }
 #urlbar[open] #page-action-buttons, #urlbar[open] #tracking-protection-icon-container {
   display: none !important;
-}
-
-#urlbar-results {
-  padding: 0 !important;
 }
 
 #urlbar-container,

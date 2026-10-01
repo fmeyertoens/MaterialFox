@@ -33,7 +33,7 @@
 
   --item-height: 28px;
   --mf-bookmark-item-border-radius: 8px;
-  --popup-border-radius: 8px;
+  --popup-border-radius: 8px !important; // used by FF
   --icon-button-radius: 50%;
   --mf-pill-border-radius: 99px;
 
@@ -74,6 +74,7 @@
   --arrowpanel-menuitem-border-radius: 0px !important;
 
   --panel-menuitem-margin-inline: 0 !important;
+  --panel-menuitem-padding-block: 4px !important;
   --panel-menuitem-border-radius: 0 !important;
   --panel-text-color: var(--mf-primary-text-color) !important;
   --panel-background-color: var(--mf-background-color-canvas) !important;
@@ -81,7 +82,7 @@
 
   --autocomplete-popup-color: var(--mf-primary-text-color) !important;
 
-  accent-color: var(--mf-primary-color) !important;
+  --color-accent-primary: var(--mf-primary-color) !important;
 
   --toolbar-background-color: var(--mf-background-color-canvas) !important;
   --toolbar-color: light-dark(#606368, #fff) !important;
@@ -106,8 +107,10 @@
   --button-border-color-primary-active: var(--mf-primary-color-very-light) !important;
   --button-text-color-primary-active: var(--mf-primary-text-color) !important;
 
+  --mf-urlbarview-border-radius: 14px;
   --urlbar-input-container-border-width: 2px !important;
   --urlbar-input-container-padding: 0 !important;
+  --urlbarView-padding: 0 !important; // used by FF
 
   &[privatebrowsingmode='temporary'] {
     & :is(#urlbar, #searchbar) {

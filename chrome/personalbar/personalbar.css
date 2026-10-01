@@ -21,13 +21,11 @@
   height: calc(2 * var(--toolbarbutton-inner-padding) + 16px) !important;
 }
 
-.bookmark-item[container],
-.bookmark-item[hostContainer] {
+.bookmark-item[container], .bookmark-item[hostContainer] {
   --bookmark-item-icon: url(../icons/folder.svg);
 }
 @media (prefers-color-scheme: dark) {
-  .bookmark-item[container],
-  .bookmark-item[hostContainer] {
+  .bookmark-item[container], .bookmark-item[hostContainer] {
     --bookmark-item-icon: url(../icons/folder-dark.svg);
   }
 }
