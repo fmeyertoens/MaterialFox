@@ -312,7 +312,8 @@
 #page-action-buttons > toolbarbutton,
 .searchbar-search-button,
 #identity-box .identity-box-button,
-#tracking-protection-icon-box {
+#tracking-protection-icon-box,
+#trust-icon-container {
   min-width: 32px !important;
   height: 24px !important;
   padding: 4px 8px !important;
@@ -376,7 +377,8 @@
 #page-action-buttons > toolbarbutton:hover:not([disabled]),
 .searchbar-search-button:hover,
 #identity-box .identity-box-button:hover:not(.no-hover),
-#tracking-protection-icon-container:hover #tracking-protection-icon-box {
+#tracking-protection-icon-container:hover #tracking-protection-icon-box,
+#trust-icon-container:hover {
   background-color: var(--toolbarbutton-background-color-hover) !important;
 }
 
@@ -386,7 +388,8 @@
 .searchbar-search-button:hover:active,
 #identity-box .identity-box-button:hover:active:not(.no-hover),
 #identity-box .identity-box-button[open]:not(.no-hover),
-#tracking-protection-icon-container[open] #tracking-protection-icon-box {
+#tracking-protection-icon-container[open] #tracking-protection-icon-box,
+#trust-icon-container[open] {
   background-color: var(--toolbarbutton-background-color-active) !important;
   transition-duration: 0 !important;
 }
