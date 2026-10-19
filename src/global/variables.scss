@@ -82,7 +82,12 @@
 
   --autocomplete-popup-color: var(--mf-primary-text-color) !important;
 
+  // Firefox's built-in accent tokens can resolve to system colors instead of the theme palette.
   --color-accent-primary: var(--mf-primary-color) !important;
+  --color-accent-primary-selected: var(--mf-primary-color) !important;
+  --color-accent-attention: var(--mf-primary-color) !important;
+  --text-color-accent-primary-selected: #fff !important;
+  --link-color: var(--mf-primary-color) !important;
 
   --toolbar-background-color: var(--mf-background-color-canvas) !important;
   --toolbar-color: light-dark(#606368, #fff) !important;
@@ -111,6 +116,9 @@
   --urlbar-input-container-border-width: 2px !important;
   --urlbar-input-container-padding: 0 !important;
   --urlbarView-padding: 0 !important; // used by FF
+  --urlbarview-background-color-selected: var(--mf-primary-color) !important;
+  --urlbarview-text-color-selected: #fff !important;
+  --urlbarview-text-color-action: var(--mf-primary-color) !important;
 
   &[privatebrowsingmode='temporary'] {
     & :is(#urlbar, #searchbar) {

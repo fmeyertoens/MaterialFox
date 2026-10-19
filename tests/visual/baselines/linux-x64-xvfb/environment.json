@@ -1,0 +1,9 @@
+{
+  "firefox": "158.0 (build 20261007201254)",
+  "os": "Linux x86-64",
+  "backend": "xvfb",
+  "locale": "en-US",
+  "density": 1,
+  "dpr": 1,
+  "window": "1280x800"
+}

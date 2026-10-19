@@ -44,3 +44,9 @@ menupopup {
     --panel-background-color: var(--arrowpanel-background);
   }
 }
+
+html|moz-button.searchmode-switcher {
+  &::part(button) {
+    transition: background-color 0.2s var(--ease-basic) !important;
+  }
+}

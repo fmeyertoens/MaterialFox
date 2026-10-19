@@ -42,6 +42,14 @@ This theme uses SCSS to generate the CSS files for Firefox.
 
 `npm run build[:watch]`
 
+### Live development harness
+
+See [dev/README.md](dev/README.md): it launches an isolated Firefox with the theme so you can inspect the browser chrome DOM, take screenshots and hot-reload CSS.
+
+### Visual regression tests
+
+`npm run test:visual` compares screenshots of the themed UI (toolbar, urlbar, menus, … in light and dark) against baselines, e.g. before and after a Firefox update. See [dev/README.md](dev/README.md#visual-regression-tests).
+
 ## Please note
 
 - This is a fork of the original MaterialFox by muckSponge. I've made some changes to the theme to suit my own preferences and I will update this theme as long as I use it myself but I cannot guarantee that it will work with your setup. My configuration is

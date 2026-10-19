@@ -143,3 +143,10 @@ fabric.properties
 node_modules/
 
 *.css.map
+
+# dev harness (dev/mf.mjs)
+.dev/
+
+# Visual test output (approved baselines live in tests/visual/baselines/)
+test-results/
+playwright-report/

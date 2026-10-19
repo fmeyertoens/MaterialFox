@@ -111,10 +111,6 @@
   border-radius: var(--border-radius-circle) !important;
   background-color: transparent !important; // #urlbar already has a background color
   border-color: transparent !important;
-
-  #urlbar[open] & {
-    border-radius: 8px !important;
-  }
 }
 
 .urlbar-background {
@@ -550,6 +546,7 @@
 .search-go-button {
   content: url(go.svg) !important;
   padding: 4px !important;
+  transition: background-color 0.2s var(--ease-basic) !important;
 }
 
 .search-go-container {
