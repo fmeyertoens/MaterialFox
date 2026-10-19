@@ -48,6 +48,46 @@ export const scenarios = [
     },
   },
   {
+    id: 'tab-groups',
+    title: 'expanded tab group with the selected tab, and a collapsed tab group',
+    crop: ['#TabsToolbar'],
+    async setup(ff) {
+      await ff.openTabs(['/news', '/weather', '/music']);
+      const ok = await ff.exec(`
+        const tab = path => gBrowser.tabs.find(t => t.linkedBrowser.currentURI.spec.endsWith(path));
+        const [firefox, docs, news, weather] = ['/firefox', '/docs', '/news', '/weather'].map(tab);
+        gBrowser.addTabGroup([firefox, docs], { id: 'mf-work', label: 'Work', color: 'blue' });
+        const fun = gBrowser.addTabGroup([news, weather], { id: 'mf-fun', label: 'Fun', color: 'orange' });
+        fun.collapsed = true;
+        gBrowser.selectedTab = firefox;
+        await new Promise(r => setTimeout(r, 300));
+        const groups = gBrowser.tabGroups;
+        return groups.length === 2 && !groups[0].collapsed && groups[1].collapsed
+          && gBrowser.selectedTab.group === groups[0] && !tab('/music').group`);
+      if (!ok) throw new Error('tab groups were not created as expected');
+      await ff.park();
+    },
+  },
+  {
+    id: 'split-view',
+    title: 'active split view and an inactive split view in the tab strip',
+    crop: ['#TabsToolbar'],
+    async setup(ff) {
+      await ff.openTabs(['/news', '/weather', '/music']);
+      const ok = await ff.exec(`
+        const tab = path => gBrowser.tabs.find(t => t.linkedBrowser.currentURI.spec.endsWith(path));
+        const [firefox, docs, news, weather, music] = ['/firefox', '/docs', '/news', '/weather', '/music'].map(tab);
+        gBrowser.addTabSplitView([firefox, docs]);
+        gBrowser.addTabSplitView([weather, music]);
+        gBrowser.selectedTab = firefox;
+        await new Promise(r => setTimeout(r, 500));
+        return document.querySelectorAll('tab-split-view-wrapper').length === 2
+          && firefox.closest('tab-split-view-wrapper') && !news.closest('tab-split-view-wrapper')`);
+      if (!ok) throw new Error('split views were not created as expected');
+      await ff.park();
+    },
+  },
+  {
     id: 'urlbar-hover',
     title: 'pointer over the address bar',
     crop: ['#nav-bar'],

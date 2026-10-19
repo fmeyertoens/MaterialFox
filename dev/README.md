@@ -95,6 +95,8 @@ The same loop works for theme changes: intentional changes show up as failures, 
 | toolbar-default | whole toolbox: tabs, navigation bar, bookmarks bar |
 | tab-hover | pointer over a background tab |
 | tabs-overflow | overflowing tab strip, scrolled to the selected last tab |
+| tab-groups | expanded tab group containing the selected tab, and a collapsed tab group |
+| split-view | active split view and an inactive split view in the tab strip |
 | urlbar-hover / urlbar-focused | address bar hovered / focused with the URL selected |
 | urlbar-results / -result-selected / -result-hover | results popup: plain, keyboard selection, pointer hover |
 | bookmarks-folder | bookmarks toolbar folder popup |

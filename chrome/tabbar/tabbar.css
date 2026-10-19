@@ -91,6 +91,9 @@ toolbarpaletteitem:not(#wrapper-firefox-view-button)) + #tabbrowser-tabs {
 #tabbrowser-tabs tab-split-view-wrapper[hasactivetab], #tabbrowser-tabs tab-split-view-wrapper:not([hasactivetab]):hover {
   background-color: transparent !important;
 }
+#tabbrowser-tabs[orient=horizontal] tab-split-view-wrapper .tabbrowser-tab:last-child > .tab-stack {
+  border-inline-start: 0 !important;
+}
 #tabbrowser-tabs[orient=horizontal] tab-split-view-wrapper .tabbrowser-tab .tab-background .tab-group-line {
   inset-block-end: var(--tab-group-line-toolbar-border-distance) !important;
 }

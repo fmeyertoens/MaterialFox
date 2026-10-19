@@ -137,6 +137,10 @@
   }
 
   &[orient='horizontal'] tab-split-view-wrapper {
+    & .tabbrowser-tab:last-child > .tab-stack {
+      border-inline-start: 0 !important;
+    }
+
     & .tabbrowser-tab {
       & .tab-background {
         & .tab-group-line {

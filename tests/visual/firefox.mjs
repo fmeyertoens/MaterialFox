@@ -360,7 +360,8 @@ export class TestFirefox {
   waitForTabs() {
     return until('tabs to load with favicons and bookmarks toolbar', () =>
       this.exec(`return gBrowser.tabs.every(t => !t.hasAttribute('busy') && t.linkedBrowser.currentURI.spec.startsWith('${SITE}')
-        && t.getAttribute('image')) && document.querySelectorAll('#PlacesToolbarItems > toolbarbutton').length === 2`),
+        && t.getAttribute('image')) && document.querySelectorAll('#PlacesToolbarItems > toolbarbutton').length === 2
+        && !document.getElementById('reload-button')?.hasAttribute('disabled')`),
     );
   }
 
