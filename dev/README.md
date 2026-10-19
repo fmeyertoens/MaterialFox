@@ -68,3 +68,53 @@ Notes:
 - Firefox started from a snap-packaged VS Code inherits variables that crash snap Firefox, so `start` strips them.
 - Firefox's striped "remote controlled" urlbar cue is removed automatically so it doesn't skew screenshots.
 - A dev window hidden behind other windows (Wayland) gets no frame callbacks, so CSS transitions freeze. `shot` finishes all pending animations before capturing; keep that in mind when reading computed styles with `inspect`/`eval` right after a state change.
+
+# Visual regression tests
+
+Screenshot tests that catch every visual change in the themed browser chrome. Typical use is a before/after comparison around a Firefox update:
+
+```sh
+npm run test:visual          # build, then compare against the baselines
+npm run test:visual:report   # open the HTML report: expected / actual / diff (with slider)
+npm run test:visual:update   # accept the current rendering as the new baselines
+```
+
+Firefox update workflow:
+1. Before updating, run `npm run test:visual`. It should pass; if not, update the baselines and commit them first.
+2. Update Firefox, then run `npm run test:visual` again. Each failing test shows which UI state changed. The report annotates every test with the Firefox version used now and the one the baselines were taken with (`baselines/linux-x64-xvfb/environment.json`).
+3. Fix the theme until it looks right, then run `npm run test:visual:update`, review the new PNGs in the git diff, and commit them.
+
+The same loop works for theme changes: intentional changes show up as failures, so review them in the report and update the baselines.
+
+## What is captured
+
+[tests/visual/scenarios.mjs](../tests/visual/scenarios.mjs) defines the UI states. Each one is captured in light and dark (`<id>-<scheme>.png`):
+
+| id | state |
+| --- | --- |
+| toolbar-default | whole toolbox: tabs, navigation bar, bookmarks bar |
+| tab-hover | pointer over a background tab |
+| tabs-overflow | overflowing tab strip, scrolled to the selected last tab |
+| urlbar-hover / urlbar-focused | address bar hovered / focused with the URL selected |
+| urlbar-results / -result-selected / -result-hover | results popup: plain, keyboard selection, pointer hover |
+| bookmarks-folder | bookmarks toolbar folder popup |
+| app-menu | main menu panel |
+| tab-context-menu / page-context-menu | context menus |
+
+To add a state, add an entry with a `setup(ff)` that drives the UI (use `ff.hover/click/contextClick/park/exec`, and assert that the state was actually reached) and the `crop` selectors. Then run `npm run test:visual:update -- -g <id>`.
+
+## How it works
+
+- Playwright Test is only the runner, image differ and reporter. Firefox is driven over Marionette by [tests/visual/firefox.mjs](../tests/visual/firefox.mjs), using the same client as `mf.mjs`.
+- Every test starts its own Xvfb display (1280×800, scale 1) and a fresh Firefox with a throwaway profile under `.dev/visual/`. Tests run in parallel (`MF_VISUAL_WORKERS`, default 4) and never touch your desktop, mouse or the dev Firefox.
+- Screenshots are grabbed from the X screen with ImageMagick `import`, so popups and menus are included (Marionette screenshots omit them). A capture is only accepted once two consecutive grabs are identical.
+- Pointer interaction uses native OS mouse events, so `:hover`, clicks and context menus behave as they do for a real user.
+- Determinism: Firefox's proxy is a local server that serves the fixture pages (`http://materialfox.test/...`) and blocks everything else, so there is no network access. Fixed prefs cover locale, compact density, reduced motion, tooltips and urlbar suggestions. Bookmarks, history and tabs are seeded with fixed data. Comparisons are strict (`threshold: 0`, `maxDiffPixels: 0`).
+- Without a compositor, popups have no shadows and their transparent rounded corners render black. This is the same in every run, so it doesn't affect comparisons.
+
+Requirements:
+- `firefox` on `PATH`, or `MF_FIREFOX=/path/to/firefox`.
+- ImageMagick (`import`).
+- Xvfb (`sudo apt install xvfb`), or `MF_XVFB=/path/to/Xvfb`.
+
+Baselines are specific to this setup (Linux, fonts, GTK theme), so regenerate them when switching machines. Set `MF_KEEP_PROFILE=1` to keep a test's profile and Firefox log in `.dev/visual/`.

@@ -146,3 +146,7 @@ node_modules/
 
 # dev harness (dev/mf.mjs)
 .dev/
+
+# Visual test output (approved baselines live in tests/visual/baselines/)
+test-results/
+playwright-report/

@@ -39,27 +39,36 @@ class Client {
   }
 }
 
-class Marionette extends Client {
+export class Marionette extends Client {
   constructor(sock) {
     super();
     this.sock = sock;
     this.buf = Buffer.alloc(0);
     this.id = 0;
     this.pending = new Map();
-    this.hello = new Promise((r) => (this._hello = r));
+    this.hello = new Promise((resolve, reject) => {
+      this._hello = resolve;
+      this._helloError = reject;
+    });
+    this.helloTimer = setTimeout(() => sock.destroy(new Error('Marionette handshake timed out')), 5000);
+    const fail = (error) => {
+      clearTimeout(this.helloTimer);
+      this._helloError(error);
+      for (const p of this.pending.values()) {
+        clearTimeout(p.timer);
+        p.reject(error);
+      }
+      this.pending.clear();
+    };
+    sock.on('error', fail);
+    sock.on('close', () => fail(new Error('Marionette connection closed')));
     sock.on('data', (d) => this._onData(d));
   }
 
-  static connect(port = PORT) {
-    return new Promise((resolve, reject) => {
-      const sock = net.connect(port, '127.0.0.1');
-      sock.once('error', reject);
-      sock.once('connect', async () => {
-        const m = new Marionette(sock);
-        await m.hello;
-        resolve(m);
-      });
-    });
+  static async connect(port = PORT) {
+    const m = new Marionette(net.connect(port, '127.0.0.1'));
+    await m.hello;
+    return m;
   }
 
   _onData(d) {
@@ -72,11 +81,13 @@ class Marionette extends Client {
       const msg = JSON.parse(this.buf.subarray(colon + 1, colon + 1 + len).toString());
       this.buf = this.buf.subarray(colon + 1 + len);
       if (!Array.isArray(msg)) {
+        clearTimeout(this.helloTimer);
         this._hello(msg);
         continue;
       }
       const [, id, error, result] = msg;
       const p = this.pending.get(id);
+      clearTimeout(p?.timer);
       this.pending.delete(id);
       if (error) p?.reject(new Error(`${error.error}: ${error.message}\n${error.stacktrace || ''}`));
       else p?.resolve(result);
@@ -84,10 +95,17 @@ class Marionette extends Client {
   }
 
   send(name, params = {}) {
+    if (this.sock.destroyed) return Promise.reject(new Error('Marionette connection is closed'));
     const id = ++this.id;
     const body = JSON.stringify([0, id, name, params]);
-    this.sock.write(`${Buffer.byteLength(body)}:${body}`);
-    return new Promise((resolve, reject) => this.pending.set(id, { resolve, reject }));
+    return new Promise((resolve, reject) => {
+      const timer = setTimeout(() => {
+        this.pending.delete(id);
+        reject(new Error(`Marionette command timed out: ${name}`));
+      }, 20000);
+      this.pending.set(id, { resolve, reject, timer });
+      this.sock.write(`${Buffer.byteLength(body)}:${body}`);
+    });
   }
 
   async session() {
@@ -167,7 +185,7 @@ async function portOpen() {
 }
 
 // Strip variables leaked by a snap-packaged parent (e.g. VS Code), which crash snap Firefox.
-function cleanEnv() {
+export function cleanEnv() {
   const env = { ...process.env };
   for (const k of Object.keys(env)) {
     if (/^(SNAP|GTK_|GDK_PIXBUF_|GIO_|GSETTINGS_)/.test(k) || k === 'LOCPATH') delete env[k];
@@ -217,7 +235,7 @@ function writeProfile() {
 
 // Emulates fx-autoconfig + userChromeAgentAuthorSheetLoader: registers
 // chrome/utils/chrome.manifest and loads *.au/.ag/.us.css from the profile chrome dir.
-const BOOTSTRAP = `
+export const BOOTSTRAP = `
   if (Services.mfDevBooted) return 'already';
   const chromeDir = Services.dirsvc.get('UChrm', Ci.nsIFile);
   const manifest = chromeDir.clone();
@@ -235,6 +253,23 @@ const BOOTSTRAP = `
   }
   Services.mfDevBooted = true;
   return loaded;
+`;
+
+// chrome.manifest overrides only affect newly built windows, so swap in a fresh one.
+export const REOPEN_WINDOW = `
+  const old = window;
+  const w = OpenBrowserWindow();
+  await new Promise(r => w.addEventListener('load', r, { once: true }));
+  await w.delayedStartupPromise;
+  setTimeout(() => old.close());
+`;
+
+export const SETTLE_ANIMATIONS = `
+  for (const w of Services.wm.getEnumerator(null)) {
+    for (const a of w.document.getAnimations()) {
+      if (a.effect?.getComputedTiming().endTime !== Infinity) a.finish();
+    }
+  }
 `;
 
 // Re-reads every stylesheet loaded from the profile chrome dir in place
@@ -347,14 +382,7 @@ const commands = {
     await withSession(async (m) => {
       await m.exec(`return delayedStartupPromise`);
       console.log('loaded sheets:', await m.exec(BOOTSTRAP));
-      // chrome.manifest overrides only affect newly built windows, so swap in a fresh one.
-      await m.exec(`
-        const old = window;
-        const w = OpenBrowserWindow();
-        await new Promise(r => w.addEventListener('load', r, { once: true }));
-        await w.delayedStartupPromise;
-        setTimeout(() => old.close());
-      `);
+      await m.exec(REOPEN_WINDOW);
       await sleep(500);
       await m.send('mf:selectBrowserWindow');
       const [w, h] = [Number(opt.width || 1280), Number(opt.height || 800)];
@@ -458,10 +486,7 @@ const commands = {
     const b64 = await withSession(async (m) => {
       // An occluded window (e.g. behind the editor on Wayland) gets no frame
       // callbacks, so transitions freeze at their start value. Settle them.
-      await m.exec(`
-        for (const w of Services.wm.getEnumerator(null))
-          for (const a of w.document.getAnimations()) try { a.finish(); } catch {}
-      `);
+      await m.exec(SETTLE_ANIMATIONS);
       if (!opt.selector) return (await m.send('WebDriver:TakeScreenshot', { full: false, hash: false, scroll: false })).value;
       return m.exec(
         `
@@ -524,12 +549,14 @@ const commands = {
   },
 };
 
-const [cmd, ...rest] = process.argv.slice(2);
-if (!commands[cmd]) {
-  console.log('usage: node dev/mf.mjs <start|stop|restart|eval|inspect|shot|reload|watch|pseudo|size> …  (see dev/README.md)');
-  process.exit(cmd ? 1 : 0);
+if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
+  const [cmd, ...rest] = process.argv.slice(2);
+  if (!commands[cmd]) {
+    console.log('usage: node dev/mf.mjs <start|stop|restart|eval|inspect|shot|reload|watch|pseudo|size> …  (see dev/README.md)');
+    process.exit(cmd ? 1 : 0);
+  }
+  commands[cmd](parseArgs(rest)).catch((e) => {
+    console.error(e.message);
+    process.exit(1);
+  });
 }
-commands[cmd](parseArgs(rest)).catch((e) => {
-  console.error(e.message);
-  process.exit(1);
-});
