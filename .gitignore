@@ -143,3 +143,6 @@ fabric.properties
 node_modules/
 
 *.css.map
+
+# dev harness (dev/mf.mjs)
+.dev/

@@ -6,6 +6,7 @@
   "scripts": {
     "build": "sass src/:chrome/",
     "build:watch": "sass --watch src/:chrome/",
+    "dev": "node dev/mf.mjs",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
