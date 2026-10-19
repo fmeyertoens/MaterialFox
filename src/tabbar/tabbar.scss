@@ -175,7 +175,7 @@
   --mf-tab-transition-duration: 0.2s;
   --mf-tab-max-width: 240px;
 
-  --tab-overflow-clip-margin: var(--mf-tab-bottom-radius) !important;
+  --tab-margin-overflow-clip: var(--mf-tab-bottom-radius) !important;
 
   &:not([selected]):hover,
   &[multiselected]:not([selected]) {
