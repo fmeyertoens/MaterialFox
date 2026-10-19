@@ -483,6 +483,7 @@
 .search-go-button {
   content: url(go.svg) !important;
   padding: 4px !important;
+  transition: background-color 0.2s var(--ease-basic) !important;
 }
 
 .search-go-container {
