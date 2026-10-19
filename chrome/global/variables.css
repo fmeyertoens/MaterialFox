@@ -58,6 +58,13 @@
   --panel-border-color: var(--panel-background-color) !important;
   --autocomplete-popup-color: var(--mf-primary-text-color) !important;
   --color-accent-primary: var(--mf-primary-color) !important;
+  --color-accent-primary-selected: var(--mf-primary-color) !important;
+  --color-accent-attention: var(--mf-primary-color) !important;
+  --text-color-accent-primary-selected: #fff !important;
+  --link-color: var(--mf-primary-color) !important;
+  --urlbarview-background-color-selected: var(--mf-primary-color) !important;
+  --urlbarview-text-color-selected: #fff !important;
+  --urlbarview-text-color-action: var(--mf-primary-color) !important;
   --toolbar-background-color: var(--mf-background-color-canvas) !important;
   --toolbar-color: light-dark(#606368, #fff) !important;
   --toolbox-background-color: var(--mf-background-color-canvas-dark) !important;
