@@ -62,9 +62,6 @@
   --color-accent-attention: var(--mf-primary-color) !important;
   --text-color-accent-primary-selected: #fff !important;
   --link-color: var(--mf-primary-color) !important;
-  --urlbarview-background-color-selected: var(--mf-primary-color) !important;
-  --urlbarview-text-color-selected: #fff !important;
-  --urlbarview-text-color-action: var(--mf-primary-color) !important;
   --toolbar-background-color: var(--mf-background-color-canvas) !important;
   --toolbar-color: light-dark(#606368, #fff) !important;
   --toolbox-background-color: var(--mf-background-color-canvas-dark) !important;
@@ -85,6 +82,9 @@
   --urlbar-input-container-border-width: 2px !important;
   --urlbar-input-container-padding: 0 !important;
   --urlbarView-padding: 0 !important;
+  --urlbarview-background-color-selected: var(--mf-primary-color) !important;
+  --urlbarview-text-color-selected: #fff !important;
+  --urlbarview-text-color-action: var(--mf-primary-color) !important;
 }
 :host[privatebrowsingmode=temporary] :is(#urlbar, #searchbar),
 :root[privatebrowsingmode=temporary] :is(#urlbar, #searchbar) {
