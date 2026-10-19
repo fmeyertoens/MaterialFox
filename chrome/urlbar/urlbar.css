@@ -104,10 +104,6 @@
   background-color: transparent !important;
   border-color: transparent !important;
 }
-#urlbar[open] .urlbar-background,
-#urlbar[open] #searchbar {
-  border-radius: 8px !important;
-}
 
 .urlbar-background {
   --focus-outline: 0 solid transparent;

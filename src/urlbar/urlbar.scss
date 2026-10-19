@@ -111,10 +111,6 @@
   border-radius: var(--border-radius-circle) !important;
   background-color: transparent !important; // #urlbar already has a background color
   border-color: transparent !important;
-
-  #urlbar[open] & {
-    border-radius: 8px !important;
-  }
 }
 
 .urlbar-background {
