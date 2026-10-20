@@ -23,6 +23,7 @@ You might want to set the following preferences in `about:config`.
 | Pref | Type | Value | Note |
 | - | - | - | - |
 | materialFox.maximizedNoTopPadding | Boolean | True | Remove the space above the tab bar when Firefox is maximized |
+| materialFox.useThemeTabbarColor | Boolean | True | Use a solid MaterialFox background behind the tabs instead of the Firefox theme's gradient |
 | browser.tabs.tabClipWidth | Number | 83 | Replicate Chrome's behaviour for clipped tabs (default is `140`) |
 | browser.uidensity | Number | 1 | Enable compact density in "Customize toolbar ..." |
 | security.insecure_connection_text.enabled | Boolean | True | Replicate Chrome's "Not Secure" text on HTTP |

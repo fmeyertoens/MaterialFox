@@ -48,6 +48,13 @@
   --toolbarbutton-inner-padding: inherit !important;
 }
 
+@include moz-pref-media('materialFox.useThemeTabbarColor') {
+  :root body {
+    background-image: none !important;
+    background-color: var(--mf-background-color-canvas-dark) !important;
+  }
+}
+
 #TabsToolbar-customization-target {
   margin-block-start: var(--mf-space-above-tabbar);
   align-items: center;
