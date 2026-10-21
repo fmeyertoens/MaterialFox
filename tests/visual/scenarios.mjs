@@ -16,6 +16,23 @@ async function urlbarResults(ff) {
   if (rows < 4) throw new Error(`expected at least 4 urlbar results, got ${rows}`);
 }
 
+async function findInPage(ff, query, expectedStatus) {
+  const status = await ff.exec(
+    `
+    const findbar = await gBrowser.getFindBar();
+    findbar.onFindCommand();
+    await new Promise(r => setTimeout(r, 300));
+    findbar._findField.value = arguments[0];
+    findbar._find();
+    await new Promise(r => setTimeout(r, 500));
+    return document.activeElement === findbar._findField
+      && (findbar._findField.getAttribute('status') || 'found')`,
+    [query],
+  );
+  if (status !== expectedStatus) throw new Error(`expected findbar status ${expectedStatus}, got ${status}`);
+  await ff.park();
+}
+
 export const scenarios = [
   {
     id: 'toolbar-default',
@@ -173,6 +190,22 @@ export const scenarios = [
     async setup(ff) {
       await ff.mouse([400, 500], ['move', 0], ['down', 2], ['up', 2]);
       await ff.popupState('#contentAreaContextMenu');
+    },
+  },
+  {
+    id: 'findbar-match',
+    title: 'find bar focused with a query that matches the page',
+    crop: ['findbar:not([hidden])'],
+    async setup(ff) {
+      await findInPage(ff, 'fixture', 'found');
+    },
+  },
+  {
+    id: 'findbar-notfound',
+    title: 'find bar focused with a query that does not match the page',
+    crop: ['findbar:not([hidden])'],
+    async setup(ff) {
+      await findInPage(ff, 'xyzzy', 'notfound');
     },
   },
 ];
