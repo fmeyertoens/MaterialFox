@@ -4,6 +4,8 @@
 //   setup(ff)  brings the UI into the state and asserts it got there
 //   crop       elements/popups whose combined bounding box is captured
 
+import { SHOWCASE, SITE, until } from './firefox.mjs';
+
 const ROW = '.urlbarView-row:not([hidden])';
 const BACKGROUND_TAB = '.tabbrowser-tab:not([selected]):not([pinned])';
 
@@ -209,3 +211,37 @@ export const scenarios = [
     },
   },
 ];
+
+// Whole-window screenshot used in the README: a normal (not maximized) window
+// with transparent rounded corners, 806×449 at 2× like a HiDPI screen.
+export const preview = {
+  id: 'preview',
+  title: 'whole window with the showcase page, as in the README',
+  launch: {
+    screen: [2560, 1600],
+    compositor: true,
+    // Keep the README toolbar clean: no VPN button.
+    prefs: { 'browser.ipProtection.enabled': false },
+  },
+  async setup(ff) {
+    await ff.exec(
+      `gBrowser.selectedBrowser.loadURI(Services.io.newURI(arguments[0]), {
+         triggeringPrincipal: Services.scriptSecurityManager.getSystemPrincipal() })`,
+      [SITE + SHOWCASE.path],
+    );
+    await until('the showcase page with back history', () =>
+      ff.exec(`return gBrowser.selectedTab.label === arguments[0] && !gBrowser.selectedTab.hasAttribute('busy')
+        && gBrowser.selectedTab.getAttribute('image') && !document.getElementById('back-button').hasAttribute('disabled')`,
+        [SHOWCASE.title]),
+    );
+    // The offline fixture site is plain http, so Firefox's trust panel would
+    // label it "Not Secure"; hide that label for the README picture only.
+    await ff.exec(`document.getElementById('trust-label')?.style.setProperty('display', 'none', 'important')`);
+    await ff.setContentSize(806, 449, 2);
+    await ff.park();
+    const clean = await ff.exec(`return !document.getElementById('ipprotection-button')
+      && ![...document.querySelectorAll('#identity-icon-label, #trust-label')]
+        .some(el => el.getBoundingClientRect().width)`);
+    if (!clean) throw new Error('VPN button or "Not Secure" label still shown');
+  },
+};

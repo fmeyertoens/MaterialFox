@@ -225,6 +225,9 @@ function writeProfile() {
     'user_pref("browser.startup.page", 0);',
     'user_pref("app.update.disabledForTesting", true);',
     'user_pref("browser.toolbars.bookmarks.visibility", "always");',
+    // Ignore OS window deactivation so the dev window keeps its focused look
+    // (no :-moz-window-inactive) while another app has focus.
+    'user_pref("focusmanager.testmode", true);',
     // README "recommended settings"; override in .dev/extra-prefs.js.
     'user_pref("browser.uidensity", 1);',
   ];
@@ -487,22 +490,35 @@ const commands = {
       // An occluded window (e.g. behind the editor on Wayland) gets no frame
       // callbacks, so transitions freeze at their start value. Settle them.
       await m.exec(SETTLE_ANIMATIONS);
-      if (!opt.selector) return (await m.send('WebDriver:TakeScreenshot', { full: false, hash: false, scroll: false })).value;
       return m.exec(
         `
         const [sel, pad] = arguments;
-        const el = document.querySelector(sel);
-        if (!el) throw new Error('no element for ' + sel);
-        const r = el.getBoundingClientRect();
-        const x = Math.max(0, r.x - pad), y = Math.max(0, r.y - pad);
-        const w = Math.min(innerWidth - x, r.width + 2 * pad), h = Math.min(innerHeight - y, r.height + 2 * pad);
-        const bmp = await browsingContext.currentWindowGlobal.drawSnapshot(new DOMRect(x, y, w, h), devicePixelRatio, 'rgb(255,255,255)');
+        // Render as the focused window. If it was deactivated before focus test
+        // mode was on, let a throwaway popup take focus, then refocus this window.
+        if (document.documentElement.matches(':-moz-window-inactive')) {
+          Services.prefs.setBoolPref('focusmanager.testmode', true);
+          const popup = window.openDialog('data:text/html,', '_blank', 'chrome,popup,width=1,height=1');
+          await new Promise((r) => setTimeout(r, 500));
+          popup.close();
+          window.focus();
+          await new Promise((r) => setTimeout(r, 300));
+        }
+        let x = 0, y = 0, w = innerWidth, h = innerHeight;
+        if (sel) {
+          const el = document.querySelector(sel);
+          if (!el) throw new Error('no element for ' + sel);
+          const r = el.getBoundingClientRect();
+          x = Math.max(0, r.x - pad); y = Math.max(0, r.y - pad);
+          w = Math.min(innerWidth - x, r.width + 2 * pad); h = Math.min(innerHeight - y, r.height + 2 * pad);
+        }
+        // Transparent background keeps the rounded CSD window corners transparent.
+        const bmp = await browsingContext.currentWindowGlobal.drawSnapshot(new DOMRect(x, y, w, h), devicePixelRatio, 'transparent');
         const c = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
         c.width = bmp.width; c.height = bmp.height;
         c.getContext('2d').drawImage(bmp, 0, 0);
         return c.toDataURL('image/png').split(',')[1];
       `,
-        [opt.selector, Number(opt.pad ?? 4)],
+        [opt.selector || null, Number(opt.pad ?? 4)],
       );
     });
     fs.writeFileSync(file, Buffer.from(b64, 'base64'));

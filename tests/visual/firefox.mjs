@@ -13,6 +13,7 @@ const WORK = path.join(ROOT, '.dev', 'visual');
 export const WIDTH = 1280;
 export const HEIGHT = 800;
 export const SITE = 'http://materialfox.test';
+const WINDOW_RADIUS = 15;
 
 export const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -31,8 +32,8 @@ export async function until(what, fn, { timeout = 15000, interval = 100 } = {}) 
   }
 }
 
-function findXvfb() {
-  const candidates = [process.env.MF_XVFB, 'Xvfb', path.join(ROOT, '.dev/tools/xvfb/usr/bin/Xvfb')].filter(Boolean);
+function findTool(name, env, pkg) {
+  const candidates = [process.env[env], name, path.join(ROOT, `.dev/tools/${pkg}/usr/bin/${name}`)].filter(Boolean);
   for (const c of candidates) {
     try {
       execFileSync(c, ['-help'], { stdio: 'ignore' });
@@ -41,7 +42,7 @@ function findXvfb() {
       if (e.code !== 'ENOENT') return c; // exists; `-help` exits non-zero
     }
   }
-  throw new Error('Xvfb not found. Install it (`sudo apt install xvfb`) or set MF_XVFB=/path/to/Xvfb');
+  throw new Error(`${name} not found. Install it (\`sudo apt install ${pkg}\`) or set ${env}=/path/to/${name}`);
 }
 
 // ------------------------------------------------------------- fixture site
@@ -78,6 +79,38 @@ the target for the page context menu screenshot. It is served locally so screens
 the network.</p></body></html>`;
 }
 
+// Landing page for the README preview. Kept out of PAGES so it never shows up
+// in history or urlbar results of the other scenarios.
+export const SHOWCASE = {
+  path: '/showcase',
+  title: 'MaterialFox — Material Design for Firefox',
+  html: `<!doctype html><html lang="en"><head><meta charset="utf-8">
+<title>MaterialFox — Material Design for Firefox</title>
+<link rel="icon" href="data:image/svg+xml,${encodeURIComponent(
+    '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><rect width="16" height="16" rx="4" fill="#6750a4"/><circle cx="8" cy="8" r="3.5" fill="#fff"/></svg>',
+  )}">
+<style>
+  :root { color-scheme: dark; font: 16px/1.5 sans-serif; }
+  body {
+    margin: 0; min-height: 100vh; box-sizing: border-box; padding: 40px 48px;
+    color: #fff; background: linear-gradient(160deg, #1d1b4b 0%, #3b2a7a 55%, #6750a4 100%);
+  }
+  .eyebrow { margin: 0; font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: #d0bcff; }
+  h1 { margin: 8px 0 12px; font-size: 44px; line-height: 1.1; font-weight: 700; }
+  p.lead { margin: 0 0 24px; max-width: 520px; font-size: 17px; color: #e8def8; }
+  .chips { display: flex; gap: 12px; }
+  .chip { padding: 8px 18px; border-radius: 20px; font-size: 14px; font-weight: 600; }
+  .primary { background: #d0bcff; color: #381e72; }
+  .tonal { background: rgba(255, 255, 255, .14); color: #fff; }
+</style></head>
+<body>
+  <p class="eyebrow">userChrome.css theme</p>
+  <h1>Material Design for Firefox</h1>
+  <p class="lead">Rounded tabs, a pill-shaped address bar and Material menus, in light and dark.</p>
+  <div class="chips"><span class="chip primary">Get MaterialFox</span><span class="chip tonal">Light &amp; dark</span></div>
+</body></html>`,
+};
+
 // Firefox uses this as its HTTP(S) proxy: it serves the fixture site and
 // refuses everything else, so tests never touch the network.
 function startProxy() {
@@ -86,9 +119,9 @@ function startProxy() {
     try {
       url = new URL(req.url);
     } catch {}
-    if (url?.host === 'materialfox.test' && PAGES[url.pathname]) {
+    if (url?.host === 'materialfox.test' && (PAGES[url.pathname] || url.pathname === SHOWCASE.path)) {
       res.writeHead(200, { 'content-type': 'text/html; charset=utf-8' });
-      return res.end(pageHtml(url.pathname));
+      return res.end(url.pathname === SHOWCASE.path ? SHOWCASE.html : pageHtml(url.pathname));
     }
     res.writeHead(404, { 'content-type': 'text/plain' });
     res.end('blocked by MaterialFox visual test proxy');
@@ -99,7 +132,7 @@ function startProxy() {
 
 // ---------------------------------------------------------------- profile
 
-function userJs(proxyPort) {
+function userJs(proxyPort, extra = {}) {
   const p = {
     'marionette.port': 0,
     // offline: everything goes through the fixture proxy
@@ -169,6 +202,7 @@ function userJs(proxyPort) {
     'browser.urlbar.suggest.mdn': false,
     'browser.urlbar.suggest.yelp': false,
     'browser.urlbar.autoFill': false,
+    ...extra,
   };
   const repoPrefs = fs.readFileSync(path.join(ROOT, 'user.js'), 'utf8');
   const lines = Object.entries(p).map(([k, v]) => `user_pref(${JSON.stringify(k)}, ${JSON.stringify(v)});`);
@@ -221,10 +255,17 @@ async function stopGroup(proc, timeout = 10000) {
 // ----------------------------------------------------------------- browser
 
 export class TestFirefox {
-  static async launch({ name = 'run', firefox = process.env.MF_FIREFOX || 'firefox' } = {}) {
+  // screen: Xvfb screen size in device px.
+  // compositor: run a compositing manager, so GTK window decorations get rounded,
+  //   transparent corners (`-moz-gtk-csd-transparency-available`). Without one,
+  //   popups have no shadows and their rounded corners render black (deterministically).
+  // prefs: extra prefs for user.js.
+  static async launch({ name = 'run', firefox = process.env.MF_FIREFOX || 'firefox', screen = [WIDTH, HEIGHT], compositor = false, prefs = {} } = {}) {
     const ff = new TestFirefox();
+    ff.screen = screen;
+    ff.prefs = prefs;
     try {
-      await ff._launch(name, firefox);
+      await ff._launch(name, firefox, compositor);
       return ff;
     } catch (e) {
       const log = ff.logFile && fs.existsSync(ff.logFile) ? fs.readFileSync(ff.logFile, 'utf8').slice(-2000) : '';
@@ -233,14 +274,15 @@ export class TestFirefox {
     }
   }
 
-  async _launch(name, firefoxBin) {
+  async _launch(name, firefoxBin, compositor) {
     fs.mkdirSync(WORK, { recursive: true });
     this.dir = fs.mkdtempSync(path.join(WORK, `${name.replace(/[^\w-]+/g, '_')}-`));
     this.logFile = path.join(this.dir, 'firefox.log');
     const log = fs.openSync(this.logFile, 'a');
 
     // Xvfb picks a free display itself and reports it on fd 3.
-    this.xvfb = spawnGroup(findXvfb(), ['-displayfd', '3', '-screen', '0', `${WIDTH}x${HEIGHT}x24`, '-nolisten', 'tcp'], {
+    const [sw, sh] = this.screen;
+    this.xvfb = spawnGroup(findTool('Xvfb', 'MF_XVFB', 'xvfb'), ['-displayfd', '3', '-screen', '0', `${sw}x${sh}x24`, '-nolisten', 'tcp'], {
       stdio: ['ignore', log, log, 'pipe'],
     });
     let buf = '';
@@ -250,12 +292,18 @@ export class TestFirefox {
       return buf.includes('\n') && buf.trim();
     }, { timeout: 10000, interval: 50 });
     this.display = `:${num}`;
+    if (compositor) {
+      this.compositor = spawnGroup(findTool('xcompmgr', 'MF_XCOMPMGR', 'xcompmgr'), ['-n'], {
+        stdio: ['ignore', log, log],
+        env: { ...process.env, DISPLAY: this.display },
+      });
+    }
 
     this.proxy = await startProxy();
     this.profile = path.join(this.dir, 'profile');
     fs.mkdirSync(this.profile);
     fs.symlinkSync(path.join(ROOT, 'chrome'), path.join(this.profile, 'chrome'));
-    fs.writeFileSync(path.join(this.profile, 'user.js'), userJs(this.proxy.address().port));
+    fs.writeFileSync(path.join(this.profile, 'user.js'), userJs(this.proxy.address().port, this.prefs));
 
     const env = cleanEnv();
     delete env.WAYLAND_DISPLAY;
@@ -266,6 +314,21 @@ export class TestFirefox {
       GTK_THEME: 'Adwaita',
       MOZ_CRASHREPORTER_DISABLE: '1',
     });
+    if (compositor) {
+      // Adwaita has rounded CSD corners, but with no window manager on Xvfb its
+      // `.titlebar` rules end up with a 0 radius. Override it with a selector
+      // specific enough to win (GTK3 CSS has no !important).
+      const theme = path.join(this.dir, 'share', 'themes', 'MaterialFoxTest', 'gtk-3.0');
+      fs.mkdirSync(theme, { recursive: true });
+      fs.writeFileSync(
+        path.join(theme, 'gtk.css'),
+        '@import url("resource:///org/gtk/libgtk/theme/Adwaita/gtk-contained.css");\n' +
+          'headerbar.titlebar.default-decoration:not(.mf-a):not(.mf-b):not(.mf-c):not(.mf-d) ' +
+          `{ border-radius: ${WINDOW_RADIUS}px ${WINDOW_RADIUS}px 0 0; }\n`,
+      );
+      env.XDG_DATA_DIRS = [path.join(this.dir, 'share'), env.XDG_DATA_DIRS || '/usr/local/share:/usr/share'].join(':');
+      env.GTK_THEME = 'MaterialFoxTest';
+    }
     this.firefox = spawnGroup(
       firefoxBin,
       ['-profile', this.profile, '-no-remote', '-new-instance', '--marionette', '--remote-allow-system-access'],
@@ -287,16 +350,24 @@ export class TestFirefox {
       await this.m.selectBrowserWindow();
       return this.exec(`return [...Services.wm.getEnumerator('navigator:browser')].length === 1 && window.gBrowserInit?.delayedStartupFinished`);
     });
-    await this.m.send('WebDriver:SetWindowRect', { x: 0, y: 0, width: WIDTH, height: HEIGHT });
-    await until(`window to be ${WIDTH}x${HEIGHT} at 0,0`, () =>
-      this.exec(
-        `return innerWidth === ${WIDTH} && innerHeight === ${HEIGHT} && mozInnerScreenX === 0 && mozInnerScreenY === 0 && devicePixelRatio === 1`,
-      ),
-    );
+    // With a compositor, GTK adds client-side shadows around the window; the
+    // caller sets its own geometry then.
+    if (!compositor) {
+      await this.m.send('WebDriver:SetWindowRect', { x: 0, y: 0, width: WIDTH, height: HEIGHT });
+      await until(`window to be ${WIDTH}x${HEIGHT} at 0,0`, () =>
+        this.exec(
+          `return innerWidth === ${WIDTH} && innerHeight === ${HEIGHT} && mozInnerScreenX === 0 && mozInnerScreenY === 0 && devicePixelRatio === 1`,
+        ),
+      );
+    }
     const themed = await this.exec(
       `return InspectorUtils.getAllStyleSheets(document, false).some(s => s.href?.endsWith('/chrome/userChrome.css'))`,
     );
     if (!themed) throw new Error('userChrome.css is not applied');
+    if (compositor)
+      await until('rounded transparent window corners to be available', () =>
+        this.exec(`return matchMedia('(-moz-gtk-csd-transparency-available)').matches`),
+      );
   }
 
   exec(script, args = []) {
@@ -483,12 +554,59 @@ export class TestFirefox {
     throw new Error(`screenshot of ${selectors.join(', ')} did not stabilise after ${attempts} attempts`);
   }
 
+  // Scales the UI and sizes the window so its content area is exactly w×h CSS px.
+  async setContentSize(w, h, scale) {
+    await this.exec(
+      `Services.prefs.setBoolPref('widget.gtk.rounded-bottom-corners.enabled', true);
+       Services.prefs.setCharPref('layout.css.devPixelsPerPx', String(arguments[0]));`,
+      [scale],
+    );
+    await until(`scale ${scale}`, () => this.exec(`return devicePixelRatio === ${scale}`));
+    await until(`window content to be ${w}x${h}`, async () => {
+      const [iw, ih, ow, oh] = await this.exec(`return [innerWidth, innerHeight, outerWidth, outerHeight]`);
+      if (iw === w && ih === h) return this.exec(`return document.documentElement.getAttribute('sizemode') === 'normal'`);
+      // outer − inner is the CSD frame, so this converges in one step.
+      await this.m.send('WebDriver:SetWindowRect', { x: 0, y: 0, width: w + ow - iw, height: h + oh - ih });
+      await sleep(300);
+    });
+  }
+
+  // The whole window at device resolution, with transparent rounded corners.
+  // The root's GTK decoration painting is turned off for the snapshot: it only
+  // exists on X11 to fill the corners and would make them opaque.
+  async captureWindow({ attempts = 10 } = {}) {
+    let prev;
+    for (let i = 0; i < attempts; i++) {
+      await this.exec(`document.documentElement.removeAttribute('remotecontrol');\n${SETTLE_ANIMATIONS}`);
+      await sleep(250);
+      const b64 = await this.exec(`
+        if (document.documentElement.matches(':-moz-window-inactive')) throw new Error('window is not active');
+        const root = document.documentElement;
+        root.style.setProperty('appearance', 'none', 'important');
+        try {
+          const bmp = await browsingContext.currentWindowGlobal.drawSnapshot(
+            new DOMRect(0, 0, innerWidth, innerHeight), devicePixelRatio, 'transparent');
+          const c = document.createElementNS('http://www.w3.org/1999/xhtml', 'canvas');
+          c.width = bmp.width; c.height = bmp.height;
+          c.getContext('2d').drawImage(bmp, 0, 0);
+          return c.toDataURL('image/png').split(',')[1];
+        } finally {
+          root.style.removeProperty('appearance');
+        }`);
+      const shot = Buffer.from(b64, 'base64');
+      if (prev?.equals(shot)) return shot;
+      prev = shot;
+    }
+    throw new Error(`window screenshot did not stabilise after ${attempts} attempts`);
+  }
+
   async close() {
     if (this.m) {
       await Promise.race([this.m.send('Marionette:Quit', { flags: ['eForceQuit'] }).catch(() => {}), sleep(5000)]);
       this.m.sock.destroy();
     }
     await stopGroup(this.firefox);
+    await stopGroup(this.compositor, 0);
     await stopGroup(this.xvfb, 0);
     this.proxy?.close();
     if (this.dir && !process.env.MF_KEEP_PROFILE) fs.rmSync(this.dir, { recursive: true, force: true });

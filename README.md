@@ -2,7 +2,11 @@
 
 _A Material Design-inspired userChrome.css theme for Firefox_
 
-![Preview](./media/material-fox.webp)
+![MaterialFox in light mode](./tests/visual/baselines/linux-x64-xvfb/preview-light.png)
+
+![MaterialFox in dark mode](./tests/visual/baselines/linux-x64-xvfb/preview-dark.png)
+
+More screenshots of individual UI states (tabs, address bar, menus, …) in light and dark are in [tests/visual/baselines](./tests/visual/baselines/linux-x64-xvfb).
 
 ## What this does
 
