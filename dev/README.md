@@ -85,6 +85,8 @@ The same loop works for theme changes: intentional changes show up as failures, 
 
 Every test runs in its own Xvfb display with a fresh, offline Firefox, so the tests never touch your desktop, mouse or the dev Firefox. They run in parallel (`MF_VISUAL_WORKERS`, default 4). [tests/visual/firefox.mjs](../tests/visual/firefox.mjs) explains how the environment is set up.
 
+The `menu-shadow` checks run with compositing enabled in light and dark mode to verify that the menu's shadow fits inside its popup window. Ordinary menu snapshots run without compositing and do not capture shadows.
+
 Requirements:
 - `firefox` on `PATH`, or `MF_FIREFOX=/path/to/firefox`.
 - ImageMagick (`import`).

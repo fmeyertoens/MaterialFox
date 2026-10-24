@@ -12,6 +12,16 @@ panel {
 }
 
 menupopup {
+  --panel-box-shadow:
+    0 2px 8px hsla(0, 0%, 0%, 0.65),
+    0 0 3px hsla(0, 0%, 0%, 0.45) !important;
+
+  // Reserve the blur's full extent, including the downward offset.
+  @media (-moz-platform: windows),
+    (-moz-platform: linux) and (-moz-gtk-csd-transparency-available) {
+    --panel-box-shadow-margin: 14px !important;
+  }
+
   appearance: none !important;
   color: var(--arrowpanel-color) !important;
   -moz-context-properties: fill, fill-opacity !important;
@@ -29,7 +39,7 @@ menupopup {
   & > menu > menupopup {
     // position submenu at the same height as the parent menu entry (overwrite default +1px)
     margin-top: calc(
-      -1 * (var(--panel-shadow-margin) + var(--panel-padding-block) + 0px)
+      -1 * (var(--panel-box-shadow-margin) + var(--panel-padding-block) + 0px)
     ) !important;
   }
 }

@@ -11,12 +11,20 @@ panel {
 }
 
 menupopup {
+  --panel-box-shadow:
+    0 2px 8px hsla(0, 0%, 0%, 0.65),
+    0 0 3px hsla(0, 0%, 0%, 0.45) !important;
   appearance: none !important;
   color: var(--arrowpanel-color) !important;
   -moz-context-properties: fill, fill-opacity !important;
   fill: currentColor !important;
   --nested-margin: -4px !important;
   --menuitem-border-radius: var(--arrowpanel-menuitem-border-radius) !important;
+}
+@media (-moz-platform: windows), (-moz-platform: linux) and (-moz-gtk-csd-transparency-available) {
+  menupopup {
+    --panel-box-shadow-margin: 14px !important;
+  }
 }
 #ContentSelectDropdown:-moz-lwtheme-brighttext > menupopup {
   --content-select-background-image: linear-gradient(
@@ -25,7 +33,7 @@ menupopup {
   );
 }
 menupopup > menu > menupopup {
-  margin-top: calc(-1 * (var(--panel-shadow-margin) + var(--panel-padding-block) + 0px)) !important;
+  margin-top: calc(-1 * (var(--panel-box-shadow-margin) + var(--panel-padding-block) + 0px)) !important;
 }
 
 menu,
