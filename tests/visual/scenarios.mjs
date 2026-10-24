@@ -160,11 +160,12 @@ export const scenarios = [
   },
   {
     id: 'bookmarks-folder',
-    title: 'bookmarks toolbar folder opened',
+    title: 'bookmarks toolbar folder opened with a hovered entry',
     crop: ['#PlacesToolbarItems > toolbarbutton[type=menu]', '#PlacesToolbarItems > toolbarbutton[type=menu] > menupopup'],
     async setup(ff) {
       await ff.click('#PlacesToolbarItems > toolbarbutton[type=menu]');
       await ff.popupState('#PlacesToolbarItems > toolbarbutton[type=menu] > menupopup');
+      await ff.hover('#PlacesToolbarItems > toolbarbutton[type=menu] > menupopup > menuitem.bookmark-item');
     },
   },
   {

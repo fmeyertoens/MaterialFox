@@ -83,10 +83,6 @@ The same loop works for theme changes: intentional changes show up as failures, 
 
 [tests/visual/scenarios.mjs](../tests/visual/scenarios.mjs) defines the UI states, each captured in light and dark as `<id>-<scheme>.png`. To add one, add a scenario there, then run `npm run test:visual:update -- -g <id>`.
 
-Every test runs in its own Xvfb display with a fresh, offline Firefox, so the tests never touch your desktop, mouse or the dev Firefox. They run in parallel (`MF_VISUAL_WORKERS`, default 4). [tests/visual/firefox.mjs](../tests/visual/firefox.mjs) explains how the environment is set up.
-
-The `menu-shadow` checks run with compositing enabled in light and dark mode to verify that the menu's shadow fits inside its popup window. Ordinary menu snapshots run without compositing and do not capture shadows.
-
 Requirements:
 - `firefox` on `PATH`, or `MF_FIREFOX=/path/to/firefox`.
 - ImageMagick (`import`).

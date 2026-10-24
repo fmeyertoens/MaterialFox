@@ -4,7 +4,7 @@ import { defineConfig } from '@playwright/test';
 // image differ and reporter; Firefox is driven over Marionette (tests/visual/firefox.mjs).
 export default defineConfig({
   testDir: './tests/visual',
-  testMatch: 'theme.spec.mjs',
+  testMatch: '*.spec.mjs',
   // Every test runs its own Xvfb + Firefox, so tests are independent.
   fullyParallel: true,
   workers: Number(process.env.MF_VISUAL_WORKERS) || 4,
