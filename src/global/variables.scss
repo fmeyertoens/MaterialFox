@@ -7,6 +7,8 @@
   --mf-primary-color-lighter: hsl(219, 75%, 60%);
   // active
   --mf-primary-color-very-light: hsl(219, 80%, 65%);
+
+  --mf-on-primary-color: #fff; // text and icons on top of the primary color
   --mf-primary-text-color: light-dark(hsl(217, 4%, 39%), #fff);
   --mf-primary-text-hover-color: light-dark(hsl(225, 6%, 13%), #fff);
 
@@ -94,7 +96,7 @@
   --color-accent-primary: var(--mf-primary-color) !important;
   --color-accent-primary-selected: var(--mf-primary-color) !important;
   --color-accent-attention: var(--mf-primary-color) !important;
-  --text-color-accent-primary-selected: #fff !important;
+  --text-color-accent-primary-selected: var(--mf-on-primary-color) !important;
   --link-color: var(--mf-primary-color) !important;
 
   --toolbar-background-color: var(--mf-background-color-canvas) !important;
@@ -124,9 +126,9 @@
   --mf-urlbarview-border-radius: 14px;
   --urlbar-input-container-border-width: 2px !important;
   --urlbar-input-container-padding: 0 !important;
-  --urlbarView-padding: 0 !important; // used by FF
+  --urlbarview-padding: 0 !important; // used by FF
   --urlbarview-background-color-selected: var(--mf-primary-color) !important;
-  --urlbarview-text-color-selected: #fff !important;
+  --urlbarview-text-color-selected: var(--mf-on-primary-color) !important;
   --urlbarview-text-color-action: var(--mf-primary-color) !important;
 
   &[privatebrowsingmode='temporary'] {
@@ -142,14 +144,11 @@
 
   ::selection {
     background-color: var(--mf-primary-color);
-    color: var(--mf-primary-text-color);
+    color: var(--mf-on-primary-color);
   }
 
   & :is(#urlbar, #searchbar) {
-    --toolbarbutton-background-color-hover: light-dark(
-      hsl(0, 0%, 85%),
-      hsl(0, 0%, 26%)
-    ) !important;
+    --toolbarbutton-background-color-hover: light-dark(hsl(0, 0%, 85%), hsl(0, 0%, 26%)) !important;
     --toolbarbutton-background-color-active: light-dark(
       hsl(0, 0%, 80%),
       hsl(0, 0%, 31%)

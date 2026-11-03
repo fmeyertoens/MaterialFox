@@ -3,6 +3,7 @@
   --mf-primary-color: hsl(219, 72%, 53%);
   --mf-primary-color-lighter: hsl(219, 75%, 60%);
   --mf-primary-color-very-light: hsl(219, 80%, 65%);
+  --mf-on-primary-color: #fff;
   --mf-primary-text-color: light-dark(hsl(217, 4%, 39%), #fff);
   --mf-primary-text-hover-color: light-dark(hsl(225, 6%, 13%), #fff);
   --mf-background-color-canvas: light-dark(#fff, hsl(0, 0%, 22%));
@@ -68,7 +69,7 @@
   --color-accent-primary: var(--mf-primary-color) !important;
   --color-accent-primary-selected: var(--mf-primary-color) !important;
   --color-accent-attention: var(--mf-primary-color) !important;
-  --text-color-accent-primary-selected: #fff !important;
+  --text-color-accent-primary-selected: var(--mf-on-primary-color) !important;
   --link-color: var(--mf-primary-color) !important;
   --toolbar-background-color: var(--mf-background-color-canvas) !important;
   --toolbar-color: light-dark(#606368, #fff) !important;
@@ -90,9 +91,9 @@
   --mf-urlbarview-border-radius: 14px;
   --urlbar-input-container-border-width: 2px !important;
   --urlbar-input-container-padding: 0 !important;
-  --urlbarView-padding: 0 !important;
+  --urlbarview-padding: 0 !important;
   --urlbarview-background-color-selected: var(--mf-primary-color) !important;
-  --urlbarview-text-color-selected: #fff !important;
+  --urlbarview-text-color-selected: var(--mf-on-primary-color) !important;
   --urlbarview-text-color-action: var(--mf-primary-color) !important;
 }
 :host[privatebrowsingmode=temporary] :is(#urlbar, #searchbar),
@@ -107,14 +108,11 @@
 :host ::selection,
 :root ::selection {
   background-color: var(--mf-primary-color);
-  color: var(--mf-primary-text-color);
+  color: var(--mf-on-primary-color);
 }
 :host :is(#urlbar, #searchbar),
 :root :is(#urlbar, #searchbar) {
-  --toolbarbutton-background-color-hover: light-dark(
-    hsl(0, 0%, 85%),
-    hsl(0, 0%, 26%)
-  ) !important;
+  --toolbarbutton-background-color-hover: light-dark(hsl(0, 0%, 85%), hsl(0, 0%, 26%)) !important;
   --toolbarbutton-background-color-active: light-dark(
     hsl(0, 0%, 80%),
     hsl(0, 0%, 31%)
