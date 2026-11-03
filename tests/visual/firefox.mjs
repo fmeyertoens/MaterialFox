@@ -310,6 +310,7 @@ export class TestFirefox {
     Object.assign(env, {
       DISPLAY: this.display,
       MOZ_ENABLE_WAYLAND: '0',
+      MOZ_REMOTE_ALLOW_SYSTEM_ACCESS: '1',
       GDK_BACKEND: 'x11',
       GTK_THEME: 'Adwaita',
       MOZ_CRASHREPORTER_DISABLE: '1',

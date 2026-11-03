@@ -370,7 +370,8 @@ const commands = {
     writeProfile();
     const args = ['-profile', PROFILE, '-no-remote', '-new-instance', '--marionette', '--remote-allow-system-access'];
     const log = fs.openSync(path.join(DEV, 'firefox.log'), 'w');
-    const child = spawn(FIREFOX, args, { detached: true, stdio: ['ignore', log, log], env: cleanEnv() });
+    const env = { ...cleanEnv(), MOZ_REMOTE_ALLOW_SYSTEM_ACCESS: '1' };
+    const child = spawn(FIREFOX, args, { detached: true, stdio: ['ignore', log, log], env });
     child.unref();
     fs.writeFileSync(PIDFILE, String(child.pid));
     for (let i = 0; i < 120 && !(await portOpen()); i++) await sleep(500);
